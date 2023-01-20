@@ -1,0 +1,27 @@
+@import 'abstracts/variables';
+
+.internal-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+
+  .side-menu-container {
+    // width: 100%;
+    max-width: 290px;
+  }
+  .content-wrapper {
+    width: 100%;
+    height: 100%;
+
+    .content-container {
+      padding: 17px 20px;
+      background-color: $grey-300;
+      // height: calc(100vh - 58px);
+      height: 100%;
+
+    }
+  }
+  &.rtl {
+    direction: rtl;
+  }
+}

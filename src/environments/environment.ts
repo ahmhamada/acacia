@@ -2,9 +2,13 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { Url } from "src/app/modules/shared/_models/url.enum";
+
 export const environment = {
-  production: false
-};
+  production: false,
+  ApiUrl: 'http://localhost:4200/',
+  backendUrl: Url.dev,
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

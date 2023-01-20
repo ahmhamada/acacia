@@ -1,0 +1,158 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+body .mat-stroked-button:not(.mat-button-disabled) {
+  border-color: $orange-900;
+}
+
+.custom-button-rounded {
+  border-radius: 50px !important;
+}
+
+.button-icon-label {
+  .mat-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.icon-primary-color {
+  color: $white;
+  background-color: #ffffff65;
+}
+.icon-primary-fill-color {
+  color: $white;
+  background-color: $orange-800;
+}
+
+.font-awsome-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  border-radius: 7px;
+  line-height: normal;
+}
+
+%btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 2em;
+  font-weight: 500;
+  border-radius: 100vmax;
+  padding: 0.66em 1.33em;
+  background-color: transparent;
+  transition: 0.4s ease-in-out;
+  transition-property: background-color, color, outline;
+}
+
+.btn-fill {
+  @extend %btn;
+  background-color: $orange-900;
+  color: $white;
+}
+
+.btn-fill--hover {
+  @extend %btn;
+  background-color: $orange-900;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $orange-900;
+    outline: 1px solid $orange-900;
+  }
+}
+
+.btn-outline {
+  @extend %btn;
+  color: $orange-900;
+  outline: 1px solid $orange-900;
+}
+
+.btn-outline--hover {
+  @extend %btn;
+  color: $orange-900;
+  outline: 1px solid $orange-900;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $orange-900;
+    color: $white;
+    outline: none;
+  }
+}
+
+.leasing-btn {
+  .state-add {
+    height: 1rem;
+    line-height: 1;
+    background: white;
+    color: $orange-900 !important;
+    width: 1rem;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 400;
+  }
+  &:hover {
+    .state-add {
+      background: $orange-900 !important;
+      color: $white !important;
+    }
+  }
+}
+
+%btn-status-log {
+  padding: 4.35px 11.6px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 17px;
+  border-radius: 7.25px;
+  border: none;
+  text-transform: capitalize;
+  @include flex($align: center, $justify: center, $direction: row);
+}
+
+.btn-accepted {
+  @extend %btn-status-log;
+  color: $green-700 !important;
+  background-color: $green-50;
+}
+
+.btn-review {
+  @extend %btn-status-log;
+  color: $yellow-800;
+  background-color: $yellow-50;
+}
+.btn-reopened {
+  @extend %btn-status-log;
+  color: $cyan-800;
+  background-color: $cyan-50;
+}
+
+.btn-draft {
+  @extend %btn-status-log;
+  color: $grey-550;
+  background-color: $grey-450-light;
+}
+
+.btn-danger {
+  @extend %btn-status-log;
+  color: $red-900;
+  background-color: $red-A00;
+}
+
+.workflow-status {
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 10px;
+  border-radius: 7.25px;
+}

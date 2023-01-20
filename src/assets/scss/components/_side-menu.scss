@@ -1,0 +1,111 @@
+@import 'abstracts/variables';
+
+.menu-list {
+  padding: 1.5rem 1.3rem;
+  mat-accordion {
+    mat-expansion-panel {
+      &.mat-expansion-panel {
+        background-color: $white;
+        border-radius: 10px;
+        margin-bottom: 0.5rem !important;
+        .mat-expansion-panel-header {
+          padding: 0 0.7rem;
+          height: auto !important;
+          .mat-content {
+            border: none !important;
+            padding-bottom: 0 !important;
+            height: 48px !important;
+            .mat-expansion-panel-header-title {
+              .link-item {
+                margin-bottom: 3px;
+                a {
+                  padding: 0.3rem 0;
+                }
+              }
+            }
+          }
+          .mat-expansion-indicator {
+            bottom: 0 !important;
+            &::after {
+              border-width: 0 1.5px 1.5px 0;
+              padding: 4px !important;
+            }
+          }
+        }
+        &.active {
+          .mat-expansion-panel-header {
+            background-color: $grey-100;
+            .link-item {
+              .icon {
+                color: $orange-800;
+              }
+            }
+          }
+        }
+        .mat-expansion-panel-content {
+          margin-top: 0.5rem;
+          padding: 0 1rem;
+
+          .mat-expansion-panel-body {
+            padding: 0 0 0 0.6rem;
+            border-left: 1px solid rgba(41, 45, 50, 0.25);
+            margin-left: 0.5rem;
+            .link-item {
+              margin-bottom: 0.5rem;
+              padding: 0 0.1rem 0.2rem;
+              a {
+                padding: 0.7rem 0.5rem;
+                &:hover {
+                  background-color: $grey-100;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .link-item {
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 0.6rem;
+      transition: all 0.2s ease-in-out;
+      border-radius: 10px;
+
+      &.active {
+        background-color: $grey-100;
+      }
+      &.single-link:hover {
+        background-color: $grey-100;
+      }
+      a {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 10px;
+        gap: 0.4rem;
+        .icon {
+          color: $black-500;
+          font-size: 1.5em;
+          transition: all 0.2s ease-in-out;
+        }
+        .link {
+          color: $black-500;
+          font-size: 1.1em;
+          font-weight: 500;
+        }
+        &.active {
+          .icon {
+            color: $orange-800;
+          }
+        }
+        &:hover {
+          .icon {
+            color: $orange-800;
+          }
+        }
+      }
+    }
+  }
+}

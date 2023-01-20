@@ -1,0 +1,22 @@
+.err-msg {
+  color: $red;
+}
+
+.field-error {
+  border: 1px solid $red;
+}
+
+.err-bck,
+.success-bck,
+.warning-bck {
+  color: #fff;
+}
+.err-bck {
+  background-color: $red;
+}
+.success-bck {
+  background-color: $green-700;
+}
+.warning-bck {
+  background-color: $orange-800;
+}
