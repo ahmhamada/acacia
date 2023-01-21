@@ -1,0 +1,51 @@
+@import "abstracts/variables";
+
+.account {
+  width: 100%;
+  height: 100%;
+  padding-top: 9%;
+  background-color: #f9f9f9;
+  .switch-lang {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    margin: 15px 15px;
+    img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      outline: 3px solid #c1bcbc;
+      cursor: pointer;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    h2 {
+      font-size: 38px;
+      color: #202020;
+      &.linear-text {
+        background: linear-gradient(90deg, #47858b 4.61%, #4e55a2 100.04%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 65px;
+        margin-top: -10px;
+      }
+    }
+  }
+
+  &.rtl {
+    direction: rtl;
+    font-family: "Cairo", sans-serif;
+    .switch-lang {
+      right: unset;
+      left: 0;
+    }
+  }
+}

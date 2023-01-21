@@ -1,0 +1,39 @@
+<div class="register__form">
+    <h2>{{"ACCOUNT.SIGN_UP" | translate}}</h2>
+    <p>
+        <span>
+            {{"ACCOUNT.ALREADY_HAVE_ACCOUNT" | translate}}
+        </span>
+        <a [routerLink]="'/login'">
+            {{"ACCOUNT.SIGN_IN" | translate}}
+        </a>
+    </p>
+    <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onLogin(registerForm)">
+        <div class="row">
+            <div class="field-wrapper">
+                <input-field label="LABELS.FORM.USER_NAME" type="text" [formGroup]="registerForm"
+                    controlName="userName">
+                </input-field>
+            </div>
+            <div class="field-wrapper">
+                <input-field label="LABELS.FORM.FULL_NAME" type="text" [formGroup]="registerForm"
+                    controlName="fullName">
+                </input-field>
+            </div>
+            <div class="field-wrapper">
+                <input-field label="LABELS.FORM.EMAIL" type="email" [formGroup]="registerForm" controlName="email">
+                </input-field>
+            </div>
+            <div class="field-wrapper">
+                <input-field label="LABELS.FORM.PASSWORD" type="Password" [formGroup]="registerForm"
+                    controlName="password">
+                </input-field>
+            </div>
+            <div class="btn-wrapper mt-2">
+                <button class="ac-btn btn-fill" [disabled]="registerForm.invalid">
+                    {{"ACTIONS.REGISTER" | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

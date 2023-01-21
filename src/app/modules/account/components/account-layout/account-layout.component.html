@@ -1,0 +1,28 @@
+<div class="account" RtlDir>
+    <div class="switch-lang">
+        <img (click)="changeLang('ar')" *ngIf="currentLang === Lang.english" src="assets/images/logo/arabic.png"
+            alt="Arabic language" title="اللغة العربية" />
+        <img (click)="changeLang('en')" *ngIf="currentLang === Lang.arabic" src="assets/images/logo/english.png"
+            alt="Arabic language" title="English" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="offset-1 col-5">
+                <div class="account__info">
+                    <img src="assets/images/logo/acacia_logo.png" alt="acacia logo" />
+                    <h2>
+                        {{'LABELS.WELCOME_TO' | translate}}
+                    </h2>
+                    <h2 class="linear-text">
+                        {{'LABELS.ACACIA' | translate}}
+                    </h2>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="account__info">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

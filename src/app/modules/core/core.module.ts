@@ -1,17 +1,22 @@
+// Modules
 import { NgModule } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CommonModule } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
 import { HttpClientModule } from '@angular/common/http'
-import { HttpClient } from '@angular/common/http'
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../shared/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Components
 import { ContentLayoutComponent } from './components/content-layout/content-layout.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { MenuItemsComponent } from './components/menu-items/menu-items.component';
-import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../shared/material/material.module';
 import { DynamicLoaderComponent } from './components/dynamic-loader/dynamic-loader.component';
+
+// Services
 import { TranslationService } from './services/translation/translation.service';
-import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -20,12 +25,12 @@ import { LoginComponent } from './pages/login/login.component';
     SideNavComponent,
     MenuItemsComponent,
     DynamicLoaderComponent,
-    LoginComponent
   ],
   imports: [
     HttpClientModule,
     CommonModule,
     RouterModule,
+    BrowserAnimationsModule,
     MaterialModule,
     TranslateModule.forRoot({
       loader: {
@@ -36,11 +41,13 @@ import { LoginComponent } from './pages/login/login.component';
     }),
   ],
   exports: [
-    TranslateModule,
+    // TranslateModule,
     DynamicLoaderComponent,
   ],
   providers: [
     TranslationService,
+    TranslateModule
+
   ]
 })
 export class CoreModule { }

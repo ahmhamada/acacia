@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from '../../services/translation/translation.service';
 
 @Component({
   selector: 'content-layout',
@@ -30,8 +31,9 @@ export class ContentLayoutComponent implements OnInit {
       roles: ['View Companies'],
       linkActiveExact: false
     }]
-  constructor() { }
-
+  constructor(private translationService: TranslationService) {
+    translationService.setLanguage('en');
+  }
   ngOnInit(): void {
   }
 

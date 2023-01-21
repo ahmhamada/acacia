@@ -1,3 +1,29 @@
 {
-  "WELCOME": "Welcome"
+  "LABELS": {
+    "WELCOME_TO": "Welcome to",
+    "ACACIA": "Acacia",
+    "FORM": {
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "REQUIRED_EMAIL": "Please enter your E-mail",
+      "REQUIRED_PASSWORD": "Please enter your password",
+      "FIELD_IS_REQUIRED": "This field is required",
+      "FULL_NAME": "Full Name",
+      "USER_NAME": "User Name"
+    }
+  },
+  "ACCOUNT": {
+    "SIGN_IN": "Sign in",
+    "DO_NOT_HAVE_ACCOUNT": "Don’t have an account?",
+    "SIGN_UP": "Sign Up",
+    "FORGOT_PASS": "Forgot Password?",
+    "ALREADY_HAVE_ACCOUNT": "Already have account?",
+    "RESET_INSTRUCTIONS": "No worries. We’ll send you reset instructions."
+  },
+  "ACTIONS": {
+    "SUBMIT": "Submit",
+    "REGISTER": "Register",
+    "RESET": "Reset",
+    "BACK_TO_LOGIN": "Back To Log In"
+  }
 }

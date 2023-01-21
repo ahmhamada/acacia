@@ -1,3 +1,29 @@
 {
-  "WELCOME": "مرحبا"
+  "LABELS": {
+    "WELCOME_TO": "مرحبا بك في",
+    "ACACIA": "اكاسيا",
+    "FORM": {
+      "EMAIL": "البريد الالكتروني",
+      "PASSWORD": "كلمة المرور",
+      "REQUIRED_EMAIL": "من فضلك ادخل البريد الالكتروني",
+      "REQUIRED_PASSWORD": "من فضلك ادخل كلمة المرور",
+      "FIELD_IS_REQUIRED": "هذا الحقل اجباري",
+      "FULL_NAME": "الاسم بالكامل",
+      "USER_NAME": "اسم المستخدم"
+    }
+  },
+  "ACCOUNT": {
+    "SIGN_IN": "تسجيل الدخول",
+    "DO_NOT_HAVE_ACCOUNT": "ليس لديك حساب؟",
+    "SIGN_UP": "حساب جديد",
+    "FORGOT_PASS": "هل نسيت كلمة المرور",
+    "ALREADY_HAVE_ACCOUNT": "هل لديك حساب؟",
+    "RESET_INSTRUCTIONS": "لا داعي للقلق. سنرسل لك تعليمات إعادة التعيين."
+  },
+  "ACTIONS": {
+    "SUBMIT": "تسجيل الدخول",
+    "REGISTER": "تسجيل",
+    "RESET": "إعادة التعيين",
+    "BACK_TO_LOGIN": "العودة لتسجيل الدخول"
+  }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Lang } from './modules/core/enums/lang.enum';
+import { TranslationService } from './modules/core/services/translation/translation.service';
 import { LoaderService } from './modules/shared/services/loader/loader.service';
 
 @Component({
@@ -7,8 +9,12 @@ import { LoaderService } from './modules/shared/services/loader/loader.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'acacia-p3';
+  title = 'Acacia';
 
-  constructor(public loaderService: LoaderService) { }
+  constructor(public loaderService: LoaderService) {
+    if (!localStorage.getItem(Lang.DEFAULT_LANGUAGE)) {
+      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.english)
+    }
+  }
 
 }

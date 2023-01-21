@@ -1,18 +1,49 @@
-a {
-  text-decoration: none;
-}
+body {
+  font-size: 14px;
+  // font-weight: 400;
+  height: 100%;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  &.rtl {
+    direction: rtl;
+    font-family: "Cairo", sans-serif;
+    input,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      direction: rtl;
+    }
+  }
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+  }
 
-textarea {
-  resize: none !important;
-}
+  a {
+    cursor: pointer;
+    text-decoration: none;
+  }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  textarea {
+    resize: none !important;
+  }
 
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
