@@ -1,27 +1,21 @@
 @import "abstracts/variables";
 
 .login__form {
-  background: #ffffff;
-  box-shadow: 0 1px 2px #00000014;
-  border-radius: 12px;
-  padding: 24px;
-  max-width: 420px;
-
   p {
     margin: 10px 0;
     span {
-      color: #202020;
+      color: $black-900;
       font-weight: 400;
     }
     a {
-      color: #4e57a1;
+      color: $blue-500;
       font-weight: bold;
     }
   }
   .forgot-wrapper {
     margin-bottom: 11px;
     a {
-      color: #4e57a1;
+      color: $blue-500;
     }
   }
 }

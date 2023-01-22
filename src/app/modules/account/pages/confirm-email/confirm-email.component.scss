@@ -1,0 +1,42 @@
+@import "abstracts/variables";
+
+.confirm__email {
+  //   width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 380px;
+  justify-content: center;
+  h6 {
+    span {
+      &:first-of-type {
+        color: $grey-400;
+      }
+      &:last-of-type {
+        cursor: pointer;
+        color: $blue-500;
+        font-weight: bold;
+      }
+    }
+  }
+  .btn-wrapper {
+    width: 75%;
+    button {
+      a {
+        color: $white;
+      }
+      &:hover {
+       a{
+           color: $blue-500;
+       }
+      }
+    }
+  }
+  .back-wrapper {
+    a {
+      font-weight: bold;
+      color: $blue-500;
+    }
+  }
+}

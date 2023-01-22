@@ -8,7 +8,7 @@
             {{"ACCOUNT.SIGN_IN" | translate}}
         </a>
     </p>
-    <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onLogin(registerForm)">
+    <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onRegister(registerForm)">
         <div class="row">
             <div class="field-wrapper">
                 <input-field label="LABELS.FORM.USER_NAME" type="text" [formGroup]="registerForm"

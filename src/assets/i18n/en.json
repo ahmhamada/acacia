@@ -18,12 +18,16 @@
     "SIGN_UP": "Sign Up",
     "FORGOT_PASS": "Forgot Password?",
     "ALREADY_HAVE_ACCOUNT": "Already have account?",
-    "RESET_INSTRUCTIONS": "No worries. We’ll send you reset instructions."
+    "RESET_INSTRUCTIONS": "No worries. We’ll send you reset instructions.",
+    "WE_HAVE_SENT_EMAIL": "We've sent a link to your email address:",
+    "DID_NOT_RECEIVE_MAIL": "Didn't receive an email? "
   },
   "ACTIONS": {
     "SUBMIT": "Submit",
     "REGISTER": "Register",
     "RESET": "Reset",
-    "BACK_TO_LOGIN": "Back To Log In"
+    "BACK_TO_LOGIN": "Back To Log In",
+    "OPEN_WEB_MAIL": "Open web mail",
+    "RESEND": "Resend"
   }
 }

@@ -14,14 +14,14 @@
   transition-property: background-color, color, outline;
   justify-content: center;
   &:disabled {
-    background-color: #d1d1d1;
-    border: 1px solid #d1d1d1;
+    background-color: $grey-200;
+    border: 1px solid $grey-200;
     cursor: not-allowed;
     &:hover {
-      background-color: #d1d1d1;
-      border: 1px solid #d1d1d1;
+      background-color: $grey-200;
+      border: 1px solid $grey-200;
       cursor: not-allowed;
-      color: #fff;
+      color: $white;
     }
   }
 }

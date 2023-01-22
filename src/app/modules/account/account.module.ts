@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { AccountLayoutComponent } from './components/account-layout/account-layout.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     LoginComponent,
     RegisterComponent,
     AccountLayoutComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ConfirmEmailComponent
   ],
   imports: [
     CommonModule,
