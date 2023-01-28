@@ -9,7 +9,7 @@
           <div routerLinkActive="active" class="link-item single-link">
             <a routerLinkActive="active" [routerLink]="item.route">
               <span class="icon" [ngClass]="item.iconClasses"></span>
-              <span class="link"> {{ item.label }}</span>
+              <span class="link"> {{ item.label | translate }}</span>
             </a>
           </div>
         </ng-template>
@@ -17,5 +17,3 @@
     </ng-container>
   </mat-accordion>
 </div>
-{{'WELCOME_TO_ACACIA' | translate}}
-

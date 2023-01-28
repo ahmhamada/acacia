@@ -1,0 +1,37 @@
+<div class="header-wrapper" RtlDir>
+    <div class="logo">
+        <img src="assets/images/logo/acacia_logo.png" alt="acacia logo" height="60" />
+    </div>
+    <div>
+        <div class="language-controls">
+            <div (click)="changeLang('ar')" *ngIf="currentLanguage === 'en'">
+                <img src="assets/images/logo/arabic.png" alt="ar logo" />
+            </div>
+            <div (click)="changeLang('en')" *ngIf="currentLanguage === 'ar'">
+                <img src="assets/images/logo/english.png" alt="en logo" />
+            </div>
+        </div>
+        <div class="user-info">
+            <!-- <h5>Hi, <span>{{currentUser['userName']}}</span></h5> -->
+            <h5>{{'LABELS.HI' | translate}} <span>Ahmed</span></h5>
+            <div (clickOutside)="isMenuOpened = false">
+                <!-- <span (click)="isMenuOpened = !isMenuOpened">
+                    {{currentUser['userName'].charAt(0)}}
+            </span> -->
+                <span mat-button [matMenuTriggerFor]="menu">
+                    <i class="fa fa-light fa-chevron-down"></i>
+                </span>
+                <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>{{'ACTIONS.LOGOUT' | translate}}</button>
+                </mat-menu>
+
+                <!-- <div *ngIf="isMenuOpened">
+                    <ul class="list-unstyled">
+                        <li (click)="handleLogout()">{{'ACTIONS.LOGOUT' | translate}}</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

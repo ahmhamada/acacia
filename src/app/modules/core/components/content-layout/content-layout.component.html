@@ -1,14 +1,13 @@
-<div class="internal-wrapper" inRtl>
-    <side-nav [menuItems]="menuItems"></side-nav>
-  <div class="content-wrapper" inRtl>
+<div class="internal-wrapper" RtlDir>
+  <div class="content-wrapper">
     <div class="header-container">
-      <!-- <app-header (isLanguageChanged)="handleLanguageChange($event)"></app-header> -->
+      <app-header></app-header>
     </div>
     <div class="content-container">
+      <div class="side-menu-container">
+        <side-nav [menuItems]="menuItems"></side-nav>
+      </div>
       <router-outlet></router-outlet>
-      sad
-      {{'WELCOME_TO_ACACIA' | translate}}
-
     </div>
   </div>
 </div>

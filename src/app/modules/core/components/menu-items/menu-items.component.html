@@ -5,7 +5,7 @@
       <div routerLinkActive="active" class="link-item">
         <a routerLinkActive="active">
           <span class="icon" [ngClass]="menuItem.iconClasses"></span>
-          <span class="link"> {{ menuItem.label }}</span>
+          <span class="link"> {{ menuItem.label | translate }}</span>
         </a>
       </div>
     </mat-panel-title>
@@ -20,7 +20,7 @@
       <div routerLinkActive="active" class="link-item">
         <a routerLinkActive="active" [routerLink]="child.route">
           <span class="icon" [ngClass]="child.iconClasses"></span>
-          <span class="link"> {{ child.label }}</span>
+          <span class="link"> {{ child.label | translate}}</span>
         </a>
       </div>
     </ng-template>

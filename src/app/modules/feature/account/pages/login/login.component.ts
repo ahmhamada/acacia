@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { InputTypes } from 'src/app/modules/shared/enums/form-input-types.enum';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: FormGroup) {
     console.log(form)
+  }
+
+  get InputTypes() {
+    return InputTypes
   }
 
 }

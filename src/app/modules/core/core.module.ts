@@ -17,6 +17,8 @@ import { DynamicLoaderComponent } from './components/dynamic-loader/dynamic-load
 
 // Services
 import { TranslationService } from './services/translation/translation.service';
+import { HeaderComponent } from './components/header/header.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { TranslationService } from './services/translation/translation.service';
     SideNavComponent,
     MenuItemsComponent,
     DynamicLoaderComponent,
+    HeaderComponent,
   ],
   imports: [
     HttpClientModule,
@@ -32,6 +35,7 @@ import { TranslationService } from './services/translation/translation.service';
     RouterModule,
     BrowserAnimationsModule,
     MaterialModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,13 +45,11 @@ import { TranslationService } from './services/translation/translation.service';
     }),
   ],
   exports: [
-    // TranslateModule,
-    DynamicLoaderComponent,
+    DynamicLoaderComponent
   ],
   providers: [
     TranslationService,
     TranslateModule
-
   ]
 })
 export class CoreModule { }

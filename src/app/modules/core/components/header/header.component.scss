@@ -1,0 +1,76 @@
+@import "abstracts/variables";
+
+.header-wrapper {
+  display: flex;
+  padding: 13px 20px;
+  background-color: $white;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $grey-400;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .language-controls {
+      padding: 0 25px;
+      img {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+      }
+    }
+    .user-info {
+      // font-family: $poppins-font;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: max-content;
+      h5 {
+        margin-bottom: 0;
+        color: $grey-300;
+        span {
+          color: $grey-500;
+          font-weight: 700;
+        }
+      }
+      div {
+        position: relative;
+        span {
+          display: block;
+          background-color: $white;
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+          text-align: center;
+          cursor: pointer;
+        }
+        div {
+          position: absolute;
+          width: 177px;
+          background-color: $white;
+          left: -145px;
+          color: $black;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 14px;
+          // min-height: 90px;
+          border: 1px solid $green-700;
+          li {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    &.rtl {
+      .user-info {
+        div {
+          div {
+            left: unset;
+            right: -145px;
+          }
+        }
+      }
+    }
+  }
+}

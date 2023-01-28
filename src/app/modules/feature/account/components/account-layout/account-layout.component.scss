@@ -24,8 +24,8 @@
     flex-direction: column;
     align-items: flex-start;
     img {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
     }
     h2 {
       font-size: 38px;
@@ -39,7 +39,7 @@
       }
     }
   }
-  &__form{
+  &__form {
     background: $white;
     box-shadow: 0 1px 2px #00000014;
     border-radius: 12px;
@@ -49,7 +49,10 @@
 
   &.rtl {
     direction: rtl;
-    font-family: "Cairo", sans-serif;
+    font-family: "Cairo", sans-serif !important;
+    .mat-form-field  {
+      font-family: "Cairo", sans-serif !important;
+    }
     .switch-lang {
       right: unset;
       left: 0;

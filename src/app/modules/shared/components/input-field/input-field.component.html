@@ -14,6 +14,6 @@
     formGroup.get(controlName)?.errors && 
     (formGroup.get(controlName)?.dirty || formGroup.get(controlName)?.touched)">
     <div *ngIf="formGroup.get(controlName)?.hasError('required')">
-        {{"LABELS.FORM.FIELD_IS_REQUIRED" | translate}}
+        {{"LABELS.FORM.VALIDATIONS.FIELD_IS_REQUIRED" | translate}}
     </div>
 </div>

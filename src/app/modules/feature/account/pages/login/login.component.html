@@ -10,10 +10,18 @@
     </p>
     <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onLogin(loginForm)">
         <div class="row">
-            <div class="field-wrapper">
+            <!-- <div class="field-wrapper">
                 <input-field label="LABELS.FORM.EMAIL" type="email" [formGroup]="loginForm" controlName="email">
                 </input-field>
-            </div>
+            </div> -->
+            <div class="form-control-wrapper">
+                <form-input
+                  [label]="'LABELS.FORM.EMAIL'"
+                  [type]="InputTypes.TEXT"
+                  [FormControl]="email"
+                >
+                </form-input>
+              </div>
             <div class="field-wrapper">
                 <input-field label="LABELS.FORM.PASSWORD" type="Password" [formGroup]="loginForm"
                     controlName="password">

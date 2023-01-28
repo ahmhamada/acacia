@@ -8,7 +8,7 @@ import { TranslationService } from 'src/app/modules/core/services/translation/tr
 export class RtlDirDirective {
 
   constructor(private elRef: ElementRef, private renderer: Renderer2,
-    private translate: TranslationService) {
+    private translationService: TranslationService) {
     this.switchElementDirection();
   }
 
@@ -16,7 +16,7 @@ export class RtlDirDirective {
    * used to switch rtl class based on the chosen language from TranslationService.
    */
   switchElementDirection() {
-    this.translate.currentLanguage$.subscribe(language => {
+    this.translationService.currentLanguage$.subscribe(language => {
       switch (language) {
         case Lang.english:
           this.renderer.removeClass(this.elRef.nativeElement, 'rtl');

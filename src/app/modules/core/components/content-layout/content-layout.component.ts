@@ -9,16 +9,16 @@ import { TranslationService } from '../../services/translation/translation.servi
 export class ContentLayoutComponent implements OnInit {
   menuItems = [
     {
-      id: 'CREDIT_LIMIT',
-      label: 'Credit',
-      iconClasses: 'icon-cards',
-      route: 'credit',
+      id: 'PROPERTIES',
+      label: 'LABELS.PROPERTIES',
+      iconClasses: 'fa fa-light fa-building',
+      route: 'ad',
       children: [
         {
           id: 'LEVEL_ONE1-1',
-          label: 'All Credit Limits',
+          label: 'LABELS.ADD_PROPERTY',
           iconClasses: '',
-          route: 'credit-limit',
+          route: 'adas',
           roles: ['View Credit']
         }
       ]
@@ -32,7 +32,7 @@ export class ContentLayoutComponent implements OnInit {
       linkActiveExact: false
     }]
   constructor(private translationService: TranslationService) {
-    translationService.setLanguage('en');
+    // translationService.setLanguage('en');
   }
   ngOnInit(): void {
   }

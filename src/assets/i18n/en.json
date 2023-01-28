@@ -5,12 +5,18 @@
     "FORM": {
       "EMAIL": "Email",
       "PASSWORD": "Password",
-      "REQUIRED_EMAIL": "Please enter your E-mail",
-      "REQUIRED_PASSWORD": "Please enter your password",
-      "FIELD_IS_REQUIRED": "This field is required",
+      "VALIDATIONS" : {
+        "REQUIRED_EMAIL": "Please enter your E-mail",
+        "REQUIRED_PASSWORD": "Please enter your password",
+        "FIELD_IS_REQUIRED": "This field is required",
+        "MIN": "Value must be less than"
+      },
       "FULL_NAME": "Full Name",
       "USER_NAME": "User Name"
-    }
+    },
+    "HI": "Hi,",
+    "PROPERTIES": "Properties",
+    "ADD_PROPERTY": "Add Property"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -28,6 +34,7 @@
     "RESET": "Reset",
     "BACK_TO_LOGIN": "Back To Log In",
     "OPEN_WEB_MAIL": "Open web mail",
-    "RESEND": "Resend"
+    "RESEND": "Resend",
+    "LOGOUT": "Log out"
   }
 }
