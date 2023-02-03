@@ -27,6 +27,7 @@ export class AuthLogicService {
       map((result: LoginResponse) => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(result));
+        this.currentUserSubject.next(result);
         return result;
       })
     );

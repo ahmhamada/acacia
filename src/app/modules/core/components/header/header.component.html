@@ -13,26 +13,20 @@
                 EN
             </div>
         </div>
-        <div class="user-info">
+        <div class="user-info" mat-button [matMenuTriggerFor]="menu">
             <!-- <h5>Hi, <span>{{currentUser['userName']}}</span></h5> -->
-            <h5>{{'LABELS.HI' | translate}} <span>Ahmed</span></h5>
-            <div (clickOutside)="isMenuOpened = false">
-                <!-- <span (click)="isMenuOpened = !isMenuOpened">
+            <h5><span>{{currentUser['userName']}}</span></h5>
+            <div>
+                <span>
                     {{currentUser['userName'].charAt(0)}}
-            </span> -->
-                <span mat-button [matMenuTriggerFor]="menu">
+                </span>
+                <span>
                     <i class="fa fa-light fa-chevron-down"></i>
                 </span>
                 <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="handleLogout()">{{'ACTIONS.LOGOUT' | translate}}</button>
                 </mat-menu>
-
-                <!-- <div *ngIf="isMenuOpened">
-                    <ul class="list-unstyled">
-                        <li (click)="handleLogout()">{{'ACTIONS.LOGOUT' | translate}}</li>
-                    </ul>
-                </div> -->
             </div>
         </div>
     </div>

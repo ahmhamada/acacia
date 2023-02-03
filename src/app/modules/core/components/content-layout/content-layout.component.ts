@@ -22,15 +22,15 @@ export class ContentLayoutComponent implements OnInit {
           roles: ['View Credit']
         }
       ]
-    },
-    {
-      id: 'COMPANIES',
-      label: 'Companies',
-      iconClasses: 'icon-building-4',
-      route: 'login',
-      roles: ['View Companies'],
-      linkActiveExact: false
     }]
+    // {
+    //   id: 'COMPANIES',
+    //   label: 'Companies',
+    //   iconClasses: 'icon-building-4',
+    //   route: 'login',
+    //   roles: ['View Companies'],
+    //   linkActiveExact: false
+    // }]
   constructor(private translationService: TranslationService) {
     // translationService.setLanguage('en');
   }

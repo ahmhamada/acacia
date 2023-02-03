@@ -35,13 +35,13 @@ export class AuthGuard implements CanActivate {
     }
 
     // not logged in so redirect to login page with the return url
+
+    this.router.navigate(['/login']);
     this.toastrService.dismiss();
     this.toastrService.showToastr(
       'You are Unauthorized to view this page, Please login',
       ToastrTypes.warning
     );
-
-    this.router.navigate(['/login']);
     return false;
   }
 }
