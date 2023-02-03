@@ -1,5 +1,6 @@
-export interface LoginResponse{
-    loginId?: string,
-    expiration?: string,
-    token?: string
+export interface LoginResponse {
+    token: string,
+    email: string,
+    userName: string,
+    role: string
 }

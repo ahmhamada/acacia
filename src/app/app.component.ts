@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(public loaderService: LoaderService) {
     if (!localStorage.getItem(Lang.DEFAULT_LANGUAGE)) {
-      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.english)
+      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.arabic)
     }
   }
 

@@ -3,26 +3,26 @@ import { Injectable } from '@angular/core';
 import { ToastrTypes } from '../../enums/toastrTypes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastrService {
-
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar) {}
 
   toastConfig: MatSnackBarConfig<any> | undefined = {
     duration: 3000,
     verticalPosition: 'bottom',
     horizontalPosition: 'end',
-    panelClass: ToastrTypes.error
-  }
+    panelClass: ToastrTypes.error,
+  };
 
   showToastr(message: string, toastrType: string) {
-    this._snackBar.open(message, 'X', { ...this.toastConfig, panelClass: toastrType });
+    this._snackBar.open(message, 'X', {
+      ...this.toastConfig,
+      panelClass: toastrType,
+    });
   }
 
-  dismiss(){
+  dismiss() {
     this._snackBar.dismiss();
   }
-
-
 }

@@ -18,6 +18,17 @@
       outline: 3px solid $grey-400;
       cursor: pointer;
     }
+    span {
+      padding: 15px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      outline: 3px solid $grey-400;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   &__info {
     display: flex;
@@ -50,7 +61,7 @@
   &.rtl {
     direction: rtl;
     font-family: "Cairo", sans-serif !important;
-    .mat-form-field  {
+    .mat-form-field {
       font-family: "Cairo", sans-serif !important;
     }
     .switch-lang {

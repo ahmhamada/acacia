@@ -1,9 +1,14 @@
 <div class="account" RtlDir>
     <div class="switch-lang">
-        <img (click)="changeLang('ar')" *ngIf="currentLang === Lang.english" src="assets/images/logo/arabic.png"
+        <!-- <img (click)="changeLang('ar')" *ngIf="currentLang === Lang.english" src="assets/images/logo/arabic.png"
             alt="Arabic language" title="اللغة العربية" />
-        <img (click)="changeLang('en')" *ngIf="currentLang === Lang.arabic" src="assets/images/logo/english.png"
-            alt="Arabic language" title="English" />
+             -->
+        <span (click)="changeLang('ar')" *ngIf="currentLang === Lang.english">AR</span>
+
+        <!-- <img (click)="changeLang('en')" *ngIf="currentLang === Lang.arabic" src="assets/images/logo/english.png"
+            alt="Arabic language" title="English" /> -->
+        <span (click)="changeLang('en')" *ngIf="currentLang === Lang.arabic">EN</span>
+
     </div>
     <div class="container">
         <div class="row">
@@ -25,4 +30,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="overlay" *ngIf="loaderService.showLoading">
+    <mat-progress-spinner class="spinner" mode="indeterminate">
+    </mat-progress-spinner>
 </div>

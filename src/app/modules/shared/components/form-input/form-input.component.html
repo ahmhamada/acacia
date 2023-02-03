@@ -104,6 +104,14 @@
                     [placeholder]="type === InputTypes.SEARCH ? label : placeholder ?? ''" [formControl]="formControl"
                     autocomplete="off" [readonly]="readOnly" />
 
+                <ng-container *ngSwitchCase="InputTypes.PASSWORD">
+                    <input matInput class="form-input__input" type="password" [type]="hide ? 'password' : 'text'"
+                        [placeholder]="placeholder ?? ''" [formControl]="formControl" autocomplete="off"
+                        [readonly]="readOnly" />
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </ng-container>
+
+
                 <input matInput *ngSwitchDefault class="form-input__input" autocomplete="off"
                     [placeholder]="type === InputTypes.SEARCH ? label : placeholder ?? ''" [formControl]="formControl"
                     [type]="type" />

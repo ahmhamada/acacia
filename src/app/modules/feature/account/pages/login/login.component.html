@@ -1,31 +1,22 @@
 <div class="login__form">
     <h2>{{"ACCOUNT.SIGN_IN" | translate}}</h2>
-    <p>
+    <!-- <p>
         <span>
             {{"ACCOUNT.DO_NOT_HAVE_ACCOUNT" | translate}}
         </span>
         <a [routerLink]="'/register'">
             {{"ACCOUNT.SIGN_UP" | translate}}
         </a>
-    </p>
+    </p> -->
     <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onLogin(loginForm)">
         <div class="row">
-            <!-- <div class="field-wrapper">
-                <input-field label="LABELS.FORM.EMAIL" type="email" [formGroup]="loginForm" controlName="email">
-                </input-field>
-            </div> -->
             <div class="form-control-wrapper">
-                <form-input
-                  [label]="'LABELS.FORM.EMAIL'"
-                  [type]="InputTypes.TEXT"
-                  [FormControl]="email"
-                >
+                <form-input [label]="'LABELS.FORM.EMAIL'" [type]="InputTypes.EMAIL" [FormControl]="email">
                 </form-input>
-              </div>
-            <div class="field-wrapper">
-                <input-field label="LABELS.FORM.PASSWORD" type="Password" [formGroup]="loginForm"
-                    controlName="password">
-                </input-field>
+            </div>
+            <div class="form-control-wrapper">
+                <form-input [label]="'LABELS.FORM.PASSWORD'" [type]="InputTypes.PASSWORD" [FormControl]="password">
+                </form-input>
             </div>
             <div class="forgot-wrapper">
                 <a [routerLink]="'/forgot-password'">
@@ -40,4 +31,3 @@
         </div>
     </form>
 </div>
-

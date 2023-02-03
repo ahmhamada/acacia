@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lang } from 'src/app/modules/core/enums/lang.enum';
 import { TranslationService } from 'src/app/modules/core/services/translation/translation.service';
+import { LoaderService } from 'src/app/modules/shared/services/loader/loader.service';
 
 @Component({
   selector: 'account-layout',
@@ -10,7 +11,7 @@ import { TranslationService } from 'src/app/modules/core/services/translation/tr
 export class AccountLayoutComponent implements OnInit {
   currentLang = ''
 
-  constructor(private translationService: TranslationService) { }
+  constructor(private translationService: TranslationService, public loaderService: LoaderService) { }
 
   ngOnInit(): void {
     this.getLang()

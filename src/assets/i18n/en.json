@@ -5,14 +5,19 @@
     "FORM": {
       "EMAIL": "Email",
       "PASSWORD": "Password",
-      "VALIDATIONS" : {
+      "CURRENT_PASSWORD": "Current Password",
+      "NEW_PASSWORD": "New Password",
+      "CONFIRM_NEW_PASSWORD": "Confirm New Password",
+      "VALIDATIONS": {
         "REQUIRED_EMAIL": "Please enter your E-mail",
         "REQUIRED_PASSWORD": "Please enter your password",
         "FIELD_IS_REQUIRED": "This field is required",
-        "MIN": "Value must be less than"
+        "MIN": "Value must be less than",
+        "MIS_MATCH":"Password does not match"
       },
       "FULL_NAME": "Full Name",
-      "USER_NAME": "User Name"
+      "USER_NAME": "User Name",
+      "Role": "Role"
     },
     "HI": "Hi,",
     "PROPERTIES": "Properties",
@@ -35,6 +40,7 @@
     "BACK_TO_LOGIN": "Back To Log In",
     "OPEN_WEB_MAIL": "Open web mail",
     "RESEND": "Resend",
-    "LOGOUT": "Log out"
+    "LOGOUT": "Log out",
+    "CHANGE_PASSWORD": "Change Password"
   }
 }

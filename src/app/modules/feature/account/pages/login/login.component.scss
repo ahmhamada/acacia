@@ -1,6 +1,9 @@
 @import "abstracts/variables";
 
 .login__form {
+  h2{
+    margin-bottom: 20px;
+  }
   p {
     margin: 10px 0;
     span {

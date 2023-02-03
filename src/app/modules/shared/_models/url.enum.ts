@@ -1,4 +1,4 @@
 export enum Url {
-  dev = "",
+  dev = "https://acacia.azurewebsites.net/",
   prod = "",
 }  

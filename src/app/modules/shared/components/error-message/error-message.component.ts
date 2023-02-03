@@ -15,7 +15,8 @@ export class ErrorMessageComponent implements OnInit {
     required: () => 'LABELS.FORM.VALIDATIONS.FIELD_IS_REQUIRED',
     pattern: (params: { requiredPattern: string }) =>
       ErrorMessageComponent.checkPatternMessage(params.requiredPattern),
-    email: () => 'LABELS.FORM.VALIDATIONS.REQUIRED_EMAIL'
+    email: () => 'LABELS.FORM.VALIDATIONS.REQUIRED_EMAIL',
+    notmatched: () => 'LABELS.FORM.VALIDATIONS.MIS_MATCH'
   }
   constructor() { }
 

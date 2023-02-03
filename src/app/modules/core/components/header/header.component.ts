@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TranslationService } from '../../services/translation/translation.service';
 import { Lang } from '../../enums/lang.enum';
+import { AuthLogicService } from '../../services/auth-logic/auth-logic.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isMenuOpened: boolean = false;
   currentUser: any
 
-  constructor(private translationService: TranslationService) { }
+  constructor(private translationService: TranslationService, private authLogicService: AuthLogicService) { }
 
   ngOnInit(): void {
     this.currentLanguage = this.translationService.getLanguage()
@@ -25,6 +26,6 @@ export class HeaderComponent implements OnInit {
   }
 
   handleLogout() {
-    console.log('logout')
+    this.authLogicService.logout()
   }
 }

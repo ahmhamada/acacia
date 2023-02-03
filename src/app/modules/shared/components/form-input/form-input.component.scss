@@ -1,6 +1,7 @@
 @import "abstracts/variables";
 
 .form-input-container {
+  margin-bottom: 10px;
   :host {
     font-size: 0.9375rem;
     height: var(--toogle-size, unset);
@@ -169,12 +170,33 @@
   ::ng-deep {
     .mat-form-field-wrapper {
       padding: 0;
+      .mat-form-field-label-wrapper {
+        top: -0.9em;
+      }
 
       .mat-form-field-flex {
         border-radius: 5px !important;
         padding: 0.8rem 0.8rem 0 0.8rem !important;
         border: 1px solid $grey-400;
         background-color: $white;
+      }
+    }
+
+    .mat-form-field {
+      .mat-icon {
+        width: 30px;
+        margin-top: -10px;
+      }
+      &.ng-dirty.ng-invalid {
+        .mat-form-field-flex {
+          border: 1px solid #c93c3c;
+        }
+      }
+      &.ng-dirty.ng-valid {
+        .mat-form-field-flex {
+          border: 1px solid #47858b;
+          box-shadow: 0 0 7px #dae7e8;
+        }
       }
     }
 
@@ -243,6 +265,5 @@
     .mat-input-element {
       text-align: right;
     }
-
   }
 }

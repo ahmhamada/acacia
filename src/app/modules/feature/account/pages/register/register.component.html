@@ -20,6 +20,15 @@
                     controlName="fullName">
                 </input-field>
             </div>
+            <!-- <div class="field-wrapper">
+                <form-input [label]="'COMPANY.CONTACT_PERSON.ID_TYPE' | translate" [type]="InputTypes.SELECT"
+                    [selectOptions]="{
+                  list: (roleTypes$ | async)!,
+                  key: 'enumValue',
+                  value: 'nameEn'
+                }" [FormControl]="role">
+                </form-input>
+            </div> -->
             <div class="field-wrapper">
                 <input-field label="LABELS.FORM.EMAIL" type="email" [formGroup]="registerForm" controlName="email">
                 </input-field>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthLogicService } from 'src/app/modules/core/services/auth-logic/auth-logic.service';
 import { InputTypes } from 'src/app/modules/shared/enums/form-input-types.enum';
+import { NavigationService } from 'src/app/modules/shared/services/navigation/navigation.service';
+import { LoginPayload } from '../../models/login-payload.model';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +13,10 @@ import { InputTypes } from 'src/app/modules/shared/enums/form-input-types.enum';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authLogicService: AuthLogicService, private navigationService: NavigationService) {
     this.loginForm = this.fb.group({
-      email: ['a@a.com', [Validators.required, Validators.email]],
-      password: ['asdsad', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -29,7 +32,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(form: FormGroup) {
-    console.log(form)
+    const payload: LoginPayload = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    }
+    this.authLogicService.login(form.value).subscribe(res => {
+      this.navigationService.navigate(['/property'])
+    });
   }
 
   get InputTypes() {
