@@ -1,0 +1,46 @@
+{
+  "LABELS": {
+    "WELCOME_TO": "Welcome to",
+    "ACACIA": "Acacia",
+    "FORM": {
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CURRENT_PASSWORD": "Current Password",
+      "NEW_PASSWORD": "New Password",
+      "CONFIRM_NEW_PASSWORD": "Confirm New Password",
+      "VALIDATIONS": {
+        "REQUIRED_EMAIL": "Please enter your E-mail",
+        "REQUIRED_PASSWORD": "Please enter your password",
+        "FIELD_IS_REQUIRED": "This field is required",
+        "MIN": "Value must be less than",
+        "MIS_MATCH":"Password does not match"
+      },
+      "FULL_NAME": "Full Name",
+      "USER_NAME": "User Name",
+      "Role": "Role"
+    },
+    "HI": "Hi,",
+    "PROPERTIES": "Properties",
+    "ADD_PROPERTY": "Add Property"
+  },
+  "ACCOUNT": {
+    "SIGN_IN": "Sign in",
+    "DO_NOT_HAVE_ACCOUNT": "Don’t have an account?",
+    "SIGN_UP": "Sign Up",
+    "FORGOT_PASS": "Forgot Password?",
+    "ALREADY_HAVE_ACCOUNT": "Already have account?",
+    "RESET_INSTRUCTIONS": "No worries. We’ll send you reset instructions.",
+    "WE_HAVE_SENT_EMAIL": "We've sent a link to your email address:",
+    "DID_NOT_RECEIVE_MAIL": "Didn't receive an email? "
+  },
+  "ACTIONS": {
+    "SUBMIT": "Submit",
+    "REGISTER": "Register",
+    "RESET": "Reset",
+    "BACK_TO_LOGIN": "Back To Log In",
+    "OPEN_WEB_MAIL": "Open web mail",
+    "RESEND": "Resend",
+    "LOGOUT": "Log out",
+    "CHANGE_PASSWORD": "Change Password"
+  }
+}

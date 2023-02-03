@@ -1,0 +1,46 @@
+{
+  "LABELS": {
+    "WELCOME_TO": "مرحبا بك في",
+    "ACACIA": "اكاسيا",
+    "FORM": {
+      "EMAIL": "البريد الالكتروني",
+      "PASSWORD": "كلمة المرور",
+      "CURRENT_PASSWORD": "كلمة المرور الحالية",
+      "NEW_PASSWORD": "كلمة المرور الجديدة",
+      "CONFIRM_NEW_PASSWORD": "تأكيد كلمة المرور الجديدة",
+      "VALIDATIONS": {
+        "REQUIRED_EMAIL": "من فضلك ادخل البريد الالكتروني",
+        "REQUIRED_PASSWORD": "من فضلك ادخل كلمة المرور",
+        "FIELD_IS_REQUIRED": "هذا البيان اجباري",
+        "MIN": "قيمة البيان لابد ان تكون اصغر من ",
+        "MIS_MATCH": "كلمة المرور غير متطابقة"
+      },
+      "FULL_NAME": "الاسم بالكامل",
+      "USER_NAME": "اسم المستخدم",
+      "Role": "نوع المستخدم"
+    },
+    "HI": "مرحبا",
+    "PROPERTIES": "العقارات",
+    "ADD_PROPERTY": "اضافة عقار"
+  },
+  "ACCOUNT": {
+    "SIGN_IN": "تسجيل الدخول",
+    "DO_NOT_HAVE_ACCOUNT": "ليس لديك حساب؟",
+    "SIGN_UP": "حساب جديد",
+    "FORGOT_PASS": "هل نسيت كلمة المرور",
+    "ALREADY_HAVE_ACCOUNT": "هل لديك حساب؟",
+    "RESET_INSTRUCTIONS": "لا داعي للقلق. سنرسل لك تعليمات إعادة التعيين.",
+    "WE_HAVE_SENT_EMAIL": "لقد أرسلنا رابطًا إلى عنوان بريدك الإلكتروني:",
+    "DID_NOT_RECEIVE_MAIL": "ألم تتلق بريدًا إلكترونيًا؟"
+  },
+  "ACTIONS": {
+    "SUBMIT": "تسجيل الدخول",
+    "REGISTER": "تسجيل",
+    "RESET": "إعادة التعيين",
+    "BACK_TO_LOGIN": "العودة لتسجيل الدخول",
+    "OPEN_WEB_MAIL": "فتح البريد الالكتروني",
+    "RESEND": "إعادة الارسال",
+    "LOGOUT": "تسجيل الخروج",
+    "CHANGE_PASSWORD": "تغيير كلمة المرور"
+  }
+}
