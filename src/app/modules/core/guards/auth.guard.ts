@@ -8,14 +8,16 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthLogicService } from '../services/auth-logic/auth-logic.service';
-
+import { ToastrService } from '../../shared/services/toastr/toastr.service';
+import { ToastrTypes } from '../../shared/enums/toastrTypes';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authLogicService: AuthLogicService
+    private authLogicService: AuthLogicService,
+    private toastrService: ToastrService
   ) {}
 
   canActivate(
@@ -33,7 +35,13 @@ export class AuthGuard implements CanActivate {
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.toastrService.dismiss();
+    this.toastrService.showToastr(
+      'You are Unauthorized to view this page, Please login',
+      ToastrTypes.warning
+    );
+
+    this.router.navigate(['/login']);
     return false;
   }
 }
