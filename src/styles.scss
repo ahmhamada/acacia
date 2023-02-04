@@ -1,13 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '../node_modules/ngx-toastr/toastr';
-@import './assets/scss/app';
-@import 'abstracts/variables';
+@import "../node_modules/ngx-toastr/toastr";
+@import "./assets/scss/app";
+@import "abstracts/variables";
 
-
-.rtl{
-    .mat-menu-item{
-      font-family: "Cairo", sans-serif !important;
-  
-    }
-  }
+.mat-menu-item.rtl,
+.rtl .mat-menu-item {
+  font-family: "Cairo", sans-serif !important;
+  text-align: right;
+}

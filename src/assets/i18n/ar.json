@@ -21,7 +21,12 @@
     },
     "HI": "مرحبا",
     "PROPERTIES": "العقارات",
-    "ADD_PROPERTY": "اضافة عقار"
+    "ADD_NEW_PROPERTY": "اضافة عقار جديد",
+    "DATE": "التاريخ",
+    "STATUS": "الحالة",
+    "REAL_ESTATE": "العقار",
+    "OWNER": "المالك",
+    "ID": "Id"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -41,6 +46,9 @@
     "OPEN_WEB_MAIL": "فتح البريد الالكتروني",
     "RESEND": "إعادة الارسال",
     "LOGOUT": "تسجيل الخروج",
-    "CHANGE_PASSWORD": "تغيير كلمة المرور"
+    "CHANGE_PASSWORD": "تغيير كلمة المرور",
+    "ACTIONS": "الاجراءات",
+    "EDIT":"تعديل",
+    "DELETE":"حذف"
   }
 }

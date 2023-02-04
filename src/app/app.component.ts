@@ -6,15 +6,20 @@ import { LoaderService } from './modules/shared/services/loader/loader.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Acacia';
 
-  constructor(public loaderService: LoaderService) {
+  constructor(
+    public loaderService: LoaderService,
+    private translationService: TranslationService
+  ) {
     if (!localStorage.getItem(Lang.DEFAULT_LANGUAGE)) {
-      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.arabic)
+      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.arabic);
     }
+    this.translationService.setLanguage(
+      localStorage.getItem(Lang.DEFAULT_LANGUAGE) as string
+    );
   }
-
 }

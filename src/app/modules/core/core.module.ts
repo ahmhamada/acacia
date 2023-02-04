@@ -1,10 +1,10 @@
 // Modules
 import { NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CommonModule } from '@angular/common';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
-import { HttpClientModule } from '@angular/common/http'
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +20,6 @@ import { TranslationService } from './services/translation/translation.service';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
   declarations: [
     ContentLayoutComponent,
@@ -33,27 +32,21 @@ import { SharedModule } from '../shared/shared.module';
     HttpClientModule,
     CommonModule,
     RouterModule,
-    BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
   ],
-  exports: [
-    DynamicLoaderComponent
-  ],
-  providers: [
-    TranslationService,
-    TranslateModule
-  ]
+  exports: [DynamicLoaderComponent, ContentLayoutComponent,TranslateModule],
+  providers: [TranslationService],
 })
-export class CoreModule { }
+export class CoreModule {}
 
-function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json')
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }

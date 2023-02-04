@@ -1,14 +1,14 @@
-import { TranslateService } from '@ngx-translate/core'
-import { BehaviorSubject, Observable } from 'rxjs'
-import { Injectable } from '@angular/core'
-import { Lang } from '../../enums/lang.enum'
+import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Lang } from '../../enums/lang.enum';
 
 @Injectable()
 export class TranslationService {
-  currentLanguage = new BehaviorSubject<any>(null)
+  currentLanguage = new BehaviorSubject<any>(null);
 
   constructor(private translate: TranslateService) {
-    this.initLanguage()
+    this.initLanguage();
   }
 
   /**
@@ -16,9 +16,9 @@ export class TranslationService {
    * then set the language across the app
    */
   initLanguage() {
-    const language = this.getLanguage()
-    this.translate.setDefaultLang(language)
-    this.setLanguage(language)
+    const language = this.getLanguage();
+    this.translate.setDefaultLang(language);
+    this.setLanguage(language);
   }
 
   /**
@@ -26,9 +26,9 @@ export class TranslationService {
    * save the language in the local storage
    */
   setLanguage(lang: string) {
-    this.translate.use(lang)
-    localStorage.setItem(Lang.DEFAULT_LANGUAGE, lang)
-    this.currentLanguage.next(lang)
+    this.translate.use(lang);
+    localStorage.setItem(Lang.DEFAULT_LANGUAGE, lang);
+    this.currentLanguage.next(lang);
   }
 
   /**
@@ -36,15 +36,15 @@ export class TranslationService {
    */
   getLanguage(): string {
     if (!localStorage.getItem(Lang.DEFAULT_LANGUAGE)) {
-      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.english)
+      localStorage.setItem(Lang.DEFAULT_LANGUAGE, Lang.english);
     }
-    return localStorage.getItem(Lang.DEFAULT_LANGUAGE) as string
+    return localStorage.getItem(Lang.DEFAULT_LANGUAGE) as string;
   }
 
   /**
    * get the last updated language
    */
   get currentLanguage$(): Observable<string> {
-    return this.currentLanguage.asObservable()
+    return this.currentLanguage.asObservable();
   }
 }

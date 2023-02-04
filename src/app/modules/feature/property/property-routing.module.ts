@@ -5,10 +5,10 @@ import { PropertyListingComponent } from './pages/property-listing/property-list
 const routes: Routes = [
   {
     title: 'Properties',
-    path: 'property',
+    path: '',
     children: [
       {
-        title: 'All Properties',
+        title: 'Properties',
         path: '',
         component: PropertyListingComponent
       }]

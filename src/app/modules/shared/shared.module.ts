@@ -6,14 +6,18 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
-import {TranslateModule} from '@ngx-translate/core'
+import {TranslateModule} from '@ngx-translate/core';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component'
 
 @NgModule({
   declarations: [
     RtlDirDirective,
     InputFieldComponent,
     ErrorMessageComponent,
-    FormInputComponent
+    FormInputComponent,
+    DataTableComponent,
+    EmptyStateComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import {TranslateModule} from '@ngx-translate/core'
     InputFieldComponent,
     ReactiveFormsModule,
     ErrorMessageComponent,
-    FormInputComponent
+    FormInputComponent,
+    DataTableComponent,
+    EmptyStateComponent
   ]
 })
 export class SharedModule { }

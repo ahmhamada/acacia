@@ -1,1 +1,47 @@
-<p>property-listing works!</p>
+<div class="page-container property-listing">
+    <div class="page-header">
+        <h4>{{'LABELS.PROPERTIES' | translate }}</h4>
+        <div class="btn-wrapper">
+            <button class="ac-btn btn-fill">
+                {{"LABELS.ADD_NEW_PROPERTY" | translate }}
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <section class="table-wrapper">
+            <data-table class="preview__table" [dataSource]="(propertyTable$ | async)!" *ngIf="propertyTable$">
+                <ng-template #tableHead>
+                    <tr>
+                        <th>{{'LABELS.ID' | translate}}</th>
+                        <th>{{'LABELS.REAL_ESTATE' | translate}}</th>
+                        <th>{{'LABELS.OWNER' | translate}}</th>
+                        <th>{{'LABELS.DATE' | translate}}</th>
+                        <th>{{'LABELS.STATUS' | translate}}</th>
+                        <th>{{'ACTIONS.ACTIONS' | translate}}</th>
+                    </tr>
+                </ng-template>
+                <ng-template #tableRows let-row>
+                    <tr>
+                        <td>1</td>
+                        <td>property 1</td>
+                        <td>user 1</td>
+                        <td>25/2/2023</td>
+                        <td>Active</td>
+                        <td RtlDir>
+                            <button mat-button [matMenuTriggerFor]="menu">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                            <mat-menu #menu="matMenu" RtlDir>
+                                <button mat-menu-item RtlDir>{{'ACTIONS.EDIT' | translate}}</button>
+                                <button mat-menu-item RtlDir>{{'ACTIONS.DELETE' | translate}}</button>
+                            </mat-menu>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template #loaderRef></ng-template>
+            </data-table>
+        </section>
+    </div>
+</div>

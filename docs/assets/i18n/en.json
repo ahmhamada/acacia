@@ -13,7 +13,7 @@
         "REQUIRED_PASSWORD": "Please enter your password",
         "FIELD_IS_REQUIRED": "This field is required",
         "MIN": "Value must be less than",
-        "MIS_MATCH":"Password does not match"
+        "MIS_MATCH": "Password does not match"
       },
       "FULL_NAME": "Full Name",
       "USER_NAME": "User Name",
@@ -21,7 +21,12 @@
     },
     "HI": "Hi,",
     "PROPERTIES": "Properties",
-    "ADD_PROPERTY": "Add Property"
+    "ADD_NEW_PROPERTY": "Add New Property",
+    "DATE": "Date",
+    "STATUS": "Status",
+    "REAL_ESTATE": "Real Estate",
+    "OWNER": "Owner",
+    "ID": "Id"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -41,6 +46,9 @@
     "OPEN_WEB_MAIL": "Open web mail",
     "RESEND": "Resend",
     "LOGOUT": "Log out",
-    "CHANGE_PASSWORD": "Change Password"
+    "CHANGE_PASSWORD": "Change Password",
+    "ACTIONS": "Actions",
+    "EDIT":"Edit",
+    "DELETE":"Delete"
   }
 }
