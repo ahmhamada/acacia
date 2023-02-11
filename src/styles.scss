@@ -9,3 +9,50 @@
   font-family: "Cairo", sans-serif !important;
   text-align: right;
 }
+
+.mat-datepicker-content .mat-calendar {
+  font-family: "Cairo", sans-serif !important;
+}
+
+.mat-calendar-body-label,
+.mat-calendar-period-button {
+  font-family: "Cairo", sans-serif !important;
+}
+
+.mat-slide-toggle {
+  .mat-slide-toggle-label {
+    gap: 5px;
+  }
+  .mat-slide-toggle-content {
+    font-family: "Cairo", sans-serif !important;
+  }
+  &.mat-checked .mat-slide-toggle-thumb {
+    background-color: #4e55a2;
+  }
+  &.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(78 85 162 / 54%);
+  }
+}
+
+.rtl {
+  .mat-slide-toggle {
+    .mat-slide-toggle-label {
+      flex-direction: row-reverse;
+    }
+  }
+}
+// .mat-form-field-invalid .mat-input-element,
+// .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+//   caret-color: #1c1e1c;
+//   color: #1c1e1c;
+//   font-weight: 500;
+// }
+
+// .mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+// .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+//   background-color: rgba(0, 0, 0, 0.87);
+// }
+
+// .mat-form-field-appearance-fill .mat-form-field-ripple {
+//   height: 1px;
+// }

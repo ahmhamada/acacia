@@ -1,6 +1,6 @@
 export interface IEmptyState {
   iconClass?: string;
-  headline?: string;
+  headline?: any;
   addtiotionalMessage?: string;
   showEmptySate?: boolean;
 }

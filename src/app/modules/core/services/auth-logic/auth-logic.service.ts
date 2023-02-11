@@ -27,6 +27,7 @@ export class AuthLogicService {
       map((result: LoginResponse) => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(result));
+        localStorage.setItem('token', JSON.stringify(result.token));
         this.currentUserSubject.next(result);
         return result;
       })
@@ -36,6 +37,7 @@ export class AuthLogicService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
@@ -47,15 +49,6 @@ export class AuthLogicService {
   get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-
-  // // roles
-  // getRoles() {
-  //   return this.authService.getRoles().pipe(
-  //     map((result) => {
-  //       return result;
-  //     })
-  //   );
-  // }
 
   resetPassword(payload: ResetPayload) {
     return this.authService.resetPassword(payload).pipe(

@@ -20,6 +20,7 @@ import {
   RangeDatePicker,
   RadioOption,
 } from '../../_models/form-input-model';
+import 'moment/locale/ar';
 
 @Component({
   selector: 'form-input',
@@ -55,6 +56,7 @@ export class FormInputComponent implements OnInit {
   dropDownSearchFormControl = new FormControl('');
   isOptional!: boolean;
   subs = new Subscriptions();
+  @Input() isArabicDatePicker = false;
 
   ngOnInit(): void {
     if (this.type === InputTypes.TEXT_AREA) {

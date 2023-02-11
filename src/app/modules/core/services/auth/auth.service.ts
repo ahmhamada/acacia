@@ -28,19 +28,6 @@ export class AuthService {
       );
   }
 
-  // getRoles() {
-  //   return this.xhrService
-  //     .call({
-  //       url: 'api/Role/GetRoles',
-  //       method: Method.get,
-  //       body: {},
-  //     })
-  //     .pipe(
-  //       map((res) => {
-  //         return res;
-  //       })
-  //     );
-  // }
 
   resetPassword(payload: ResetPayload) {
     return this.xhrService

@@ -1,0 +1,67 @@
+<div class="upload-file-wrapper" [ngClass]="{'is-image-preview': imgURL}">
+    <!-- <label for="uploadFile">{{label | translate}}</label> -->
+
+    <input type="file" name="uploadFile" #fileDropRef hidden="true" [accept]="canAccept"
+        (change)="onFileSelected($event,2)" [multiple]="!singleFile" />
+
+    <!-- input file overlay design -->
+    <div class="multiple-preview">
+
+        <div class="overlay" (click)="fileDropRef.click()" *ngIf="!imgURL" RtlDir
+            (fileDropped)="onFileSelected($event,1)">
+            <img src="assets/images/upload-icon.png" alt="upload icon">
+            <div>
+                <h2>{{label | translate}}</h2>
+                <span>Pdf , PNG, TIFF ,JPEG formats are allowed</span>
+            </div>
+        </div>
+
+        <!-- single file wrapper -->
+        <ng-container *ngIf="singleFile && selectedFiles.length ">
+            <div class="image-preview-wrapper" *ngIf="imgURL">
+                <div class="image-preview">
+                    <div (click)="fileDropRef.click()">
+                        <img src="assets/images/edit.png" alt="edit-icon">
+                    </div>
+                    <img [src]="imgURL" width="154px" height="140px" *ngIf="singleFile && !editMode">
+                    <img src="assets/images/photo-icon.png" width="154px" height="140px" *ngIf="singleFile && editMode">
+                </div>
+                <!-- <span (click)="handleRemoveFile(0)">Remove</span> -->
+            </div>
+        </ng-container>
+
+        <!-- multiple file wrapper -->
+        <ng-container *ngIf="!singleFile && selectedFiles.length">
+            <div class="multiple-files-wrapper">
+                <div class="single-file-wrapper" *ngFor="let item of selectedFiles,let index = index">
+                    <div class="file-preview">
+                        <div>
+                            <img src="assets/images/pdf.png" *ngIf="!singleFile &&
+                                !checkFile(item)" />
+                            <img src="assets/images/photo-icon.png" *ngIf="!singleFile &&
+                                checkFile(item)" />
+                            <span class="file-name">
+                                {{item['attachment'] ? item['attachment'] : item['name']}}
+                            </span>
+                        </div>
+                        <!-- <span class="remove-file" (click)="handleRemoveFile(index)">{{"ACTIONS.REMOVE" |
+                            translate}}</span> -->
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="validation-meassages">
+    <div *ngIf="errorType === 'notAllowedType'">
+        {{"LABELS.FORM.VALIDATIONS.FILE_NOT_ALLOWED" | translate}}
+    </div>
+</div>
+
+<div class="ctrl-error" *ngIf="formControl?.invalid && 
+formControl?.errors && (formControl?.dirty || formControl?.touched)">
+    <div *ngIf="formControl?.hasError('required')">
+        {{"LABELS.FORM.VALIDATIONS.FIELD_IS_REQUIRED" | translate}}
+    </div>
+</div>

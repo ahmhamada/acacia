@@ -16,6 +16,7 @@
   &:disabled {
     background-color: $grey-200;
     border: 1px solid $grey-200;
+    color: #FFF;
     cursor: not-allowed;
     &:hover {
       background-color: $grey-200;
@@ -34,6 +35,18 @@
   &:hover {
     background-color: $white;
     color: $blue-500;
+    border: 1px solid $blue-500;
+  }
+}
+
+.btn-outlined {
+  @extend %ac-btn;
+  background-color: $white;
+  border: 1px solid $blue-500;
+  color: $blue-500;
+  &:hover {
+    background-color: $blue-500;
+    color: $white;
     border: 1px solid $blue-500;
   }
 }

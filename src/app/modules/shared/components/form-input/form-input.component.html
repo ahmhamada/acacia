@@ -21,6 +21,9 @@
             </mat-error>
         </mat-form-field>
 
+        <locale-date-picker *ngSwitchCase="InputTypes.LOCALE_DATE_PICKER" [label]="label" [formControl]="formControl"
+            [isArabicDatePicker]="isArabicDatePicker"></locale-date-picker>
+
         <mat-slide-toggle *ngSwitchCase="InputTypes.TOGGLE" class="form-toggle" [formControl]="formControl">
             {{ label | translate }}
         </mat-slide-toggle>

@@ -12,4 +12,5 @@ export enum InputTypes {
   AUTO_COMPLETE = 'autocomplete',
   RADIO = 'radio',
   PERCENTAGE = 'number',
+  LOCALE_DATE_PICKER = 'locale-date-picker',
 }

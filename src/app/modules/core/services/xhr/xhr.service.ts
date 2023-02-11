@@ -38,7 +38,7 @@ export class XhrService {
   public getFinalParams(options: any, isFile: boolean = false): any {
     !isFile
       ? (this.defaultOptions.headers = new HttpHeaders({
-          'Accept': '/',
+          Accept: '/',
           'Content-Type': 'application/json',
           'Accept-Language': localStorage.getItem('defaultLanguage')
             ? (localStorage.getItem('defaultLanguage') as string)
@@ -52,7 +52,7 @@ export class XhrService {
             : '',
         }))
       : (this.defaultOptions.headers = new HttpHeaders({
-          'Accept': '/',
+          Accept: '/',
           'Accept-Language': localStorage.getItem('defaultLanguage')
             ? (localStorage.getItem('defaultLanguage') as string)
             : 'en',

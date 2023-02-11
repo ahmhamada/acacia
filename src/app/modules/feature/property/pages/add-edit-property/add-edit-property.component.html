@@ -1,0 +1,424 @@
+<div class="add-edit-property" RtlDir>
+    <div class="content-wrapper">
+        <form [formGroup]="addEditProperty" autocomplete="off" (ngSubmit)="onAddProperty(addEditProperty)">
+            <mat-stepper class="form-stepper" [orientation]="(stepperOrientation | async)!"
+                (selectionChange)="onSelection($event)" [selectedIndex]="selectedIndex" RtlDir>
+                <mat-step [label]="'PROPERTY.PROPERTY_DOCUMENTS' | translate"
+                    [stepControl]="formGroup('propertyDocument')">
+                    <form [formGroup]="formGroup('propertyDocument')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'PROPERTY.ADD_PROPERTY_DOCUMENT' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.LEGAL_DOCUMENT_TYPE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                                            list: (documentTypes$ | async)!,
+                                            key: 'id',
+                                            value: 'name'
+                                        }" [FormControl]="formControl('propertyDocument','documentTypeId')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_DOCUMENT_NUMBER'"
+                                            [type]="InputTypes.NUMBER"
+                                            [FormControl]="formControl('propertyDocument','documentNumber')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <locale-date-picker [label]="'PROPERTY.ISSUING_DATE'"
+                                        [FormControl]="formControl('propertyDocument','releaseDate')"
+                                        [isArabicDatePicker]="true"
+                                        *ngIf="currentLang === Lang.arabic"></locale-date-picker>
+
+                                    <locale-date-picker [label]="'PROPERTY.ISSUING_DATE'"
+                                        [FormControl]="formControl('propertyDocument','releaseDate')"
+                                        [isArabicDatePicker]="false"
+                                        *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <upload-file label="PROPERTY.UPLOAD_A_COPY_OF_PROPERTY_DOCUMENT" [singleFile]="true"
+                                        [formGroup]="addEditProperty"
+                                        [formControl]="formControl('propertyDocument','attachment')"
+                                        [editMode]="editMode" [oldAttachments]="oldAttachments"
+                                        [allowedTypes]="allowedTypes" (onAttachmentChange)="onLogoChange($event)"
+                                        canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'PROPERTY.PROPERTY_OWNERS' | translate" [stepControl]="formGroup('owner')">
+                    <form [formGroup]="formGroup('owner')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'PROPERTY.ADD_PROPERTY_OWNER' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.NATIONAL_ID'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('owner','ownerId')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.FULL_NAME'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('owner','name')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
+                                        [FormControl]="formControl('owner','ownerBirthDay')" [isArabicDatePicker]="true"
+                                        *ngIf="currentLang === Lang.arabic"></locale-date-picker>
+
+                                    <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
+                                        [FormControl]="formControl('owner','ownerBirthDay')"
+                                        [isArabicDatePicker]="false"
+                                        *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+                                </div>
+                                <h6>{{'LABELS.FORM.ADDRESS_IN_SAUDI' | translate}}:
+                                </h6>
+                                <div class="form-row">
+
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.CITY' | translate" [type]="InputTypes.SELECT"
+                                            [selectOptions]="{
+                                list: (cities$ | async)!,
+                                key: 'id',
+                                value: 'name'
+                                }" [FormControl]="formControl('owner','city')" (selectedOption)="onCityChange($event)">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.AREA' | translate" [type]="InputTypes.SELECT"
+                                            [selectOptions]="{
+                                list: (areas$ | async)!,
+                                key: 'id',
+                                value: 'name'
+                                }" [FormControl]="formControl('owner','area')"
+                                            (selectedOption)="onDistrictChange($event)">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.DISTRICT' | translate" [type]="InputTypes.SELECT"
+                                            [selectOptions]="{
+                                list: (districts$ | async)!,
+                                key: 'id',
+                                value: 'name'
+                                }" [FormControl]="formControl('owner','districtId')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="formGroup('realEstateDetails')"
+                    [label]="'PROPERTY.PROPERTY_DETAILS' | translate">
+                    <form [formGroup]="formGroup('realEstateDetails')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'PROPERTY.ADD_PROPERTY_DETAILS' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-row equal-columns">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_TYPE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (propertyTypes$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formControl('realEstateDetails','realEstateTypeId')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_USAGE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (propertyUsageTypes$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formControl('realEstateDetails','realEstateUseId')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <locale-date-picker [label]="'PROPERTY.BUILD_DATE'"
+                                            [FormControl]="formControl('realEstateDetails','buildDate')"
+                                            [isArabicDatePicker]="true"
+                                            *ngIf="currentLang === Lang.arabic"></locale-date-picker>
+
+                                        <locale-date-picker [label]="'PROPERTY.BUILD_DATE'"
+                                            [FormControl]="formControl('realEstateDetails','buildDate')"
+                                            [isArabicDatePicker]="false"
+                                            *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+                                    </div>
+                                </div>
+                                <div class="form-row equal-columns">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_NUMBER'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('realEstateDetails','realEstateNumber')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.NUMBER_OF_FLOORS'" [type]="InputTypes.NUMBER"
+                                            [FormControl]="formControl('realEstateDetails','numOfFloors')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.TOTAL_NUMBER_OF_FLOORS'"
+                                            [type]="InputTypes.NUMBER"
+                                            [FormControl]="formControl('realEstateDetails','numOfProperty')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-row equal-columns">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.NAME'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('realEstateDetails','name')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.ADDRESS_IN_SAUDI'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('realEstateDetails','address')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.BUILDING_NUMBER'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('realEstateDetails','buildingNumber')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'PROPERTY.ADDITIONAL_NUMBER'" [type]="InputTypes.TEXT"
+                                        [FormControl]="formControl('realEstateDetails','addationalNumber')">
+                                    </form-input>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="formGroup('properties')" [label]="'PROPERTY.UNITS_DETAILS' | translate">
+                    <form [formGroup]="addEditProperty" autocomplete="off">
+                        <div formArrayName="properties">
+                            <div class="property-tab">
+                                <h4>{{'PROPERTY.ADD_UNITS_DETAILS' | translate}}</h4>
+                                <div class="form-wrapper mt-5 unit-wrapper"
+                                    *ngFor="let unit of properties.controls; let i = index" [formGroupName]="i">
+                                    <div class="unit-title">
+                                        <h5>{{'PROPERTY.ADD_UNIT_DETAILS' | translate}} #{{i + 1}}</h5>
+                                        <!-- <span (click)="                handleRemoveUnit(i, formArrayControl(i, 'id').value)
+                                        ">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </span> -->
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.UNIT_NUMBER'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'propertyNumber')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.UNIT_USAGE'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'propertyUse')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.UNIT_TYPE'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'propertyType')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.FLOOR_NUMBER'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'floorNumber')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.UNIT_AREA'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'area')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.UNIT_FINISHING'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'propertyFinish')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <locale-date-picker [label]="'PROPERTY.BUILD_DATE'"
+                                                [FormControl]="formArrayControl(i,'buildDate')"
+                                                [isArabicDatePicker]="true"
+                                                *ngIf="currentLang === Lang.arabic"></locale-date-picker>
+
+                                            <locale-date-picker [label]="'PROPERTY.BUILD_DATE'"
+                                                [FormControl]="formArrayControl(i,'buildDate')"
+                                                [isArabicDatePicker]="false"
+                                                *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.NUMBER_OF_ROOMS'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'roomsNo')">
+
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.FURNISHED' | translate"
+                                                [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'furnished')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper"
+                                            *ngIf="formArrayControl(i,'furnished')?.value">
+                                            <form-input [label]="'PROPERTY.UNIT_FINISHING'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'furnishedType')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <h6>{{'PROPERTY.UTILITIES' | translate}}:
+                                    </h6>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.BED_ROOMS'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formArrayControl(i,'bedRoomsNo')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.BATHROOMS'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'bathroomsNo')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.HALL'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'hallNo')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.MAID_ROOM'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'maidRoomNumber')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.KITCHEN'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'kitchenNo')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.STORE'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'storesNo')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.BACK_YARD'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'backyardNo')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.LIVING_ROOM'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'livingRoomNo')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.CENTRAL_AC'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'centralAirConditionNumber')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.SPLIT_AC'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'airConditionNumber')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input [label]="'PROPERTY.DESERT_AC'" [type]="InputTypes.TEXT"
+                                                [FormControl]="formArrayControl(i,'desertAirConditionNumber')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <div class="form-row equal-columns">
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.DRESSING' | translate"
+                                                [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'hasDressing')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.BUILT_IN_KITCHEN' | translate"
+                                                [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'hasKitchen')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <h6>{{'PROPERTY.SERVICES' | translate}}:
+                                    </h6>
+                                    <div class="form-row equal-columns mb-1">
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.GAS' | translate" [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'hasGasMeter')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.ELECTRICITY' | translate"
+                                                [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'hasElectricityMeter')">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-toggle-wrapper">
+                                            <form-input [label]="'PROPERTY.WATER' | translate"
+                                                [type]="InputTypes.TOGGLE"
+                                                [FormControl]="formArrayControl(i,'hasWaterMeter')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-btn-wrapper" [ngClass]="{'mt-5': properties.length === 0}">
+                                    <button class="ac-btn btn-fill" (click)="handleAddUnit()">
+                                        {{"ACTIONS.ADD_UNIT" | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'PROPERTY.ATTCHMENTS' | translate">
+                    <div class="property-tab">
+                        <h4>{{'PROPERTY.ATTCHMENTS' | translate}}</h4>
+                        <div class="form-control-wrapper mt-5">
+                            <upload-file label="PROPERTY.ADD_ATTACHMENTS" [singleFile]="false" [editMode]="editMode"
+                                [oldAttachments]="oldAttachments" [allowedTypes]="allowedTypes"
+                                (onAttachmentChange)="onAttachmentsChange($event)" canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                    ">
+                            </upload-file>
+                        </div>
+                    </div>
+                </mat-step>
+
+            </mat-stepper>
+            <div class="add-edit-actions mt-1">
+                <div>
+                    <button type="button" class="ac-btn btn-outlined">
+                        {{"ACTIONS.CANCEL" | translate}}
+                    </button>
+                    <button type="button" class="ac-btn btn-outlined" (click)="handleBack()" *ngIf="selectedIndex > 0">
+                        {{"ACTIONS.BACK" | translate}}
+
+                    </button>
+                    <button type="button" class="ac-btn btn-fill" (click)="handleNext()" *ngIf="selectedIndex !== 4">
+                        {{"ACTIONS.NEXT" | translate}}
+
+                    </button>
+                    <button type="submit" class="ac-btn btn-outlined" [disabled]="addEditProperty.invalid">
+                        {{"ACTIONS.SAVE" | translate}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

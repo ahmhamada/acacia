@@ -14,8 +14,8 @@ export class LoaderService {
   constructor() { }
 
   show() {
-    this.isLoading.next(true)
     this.showLoading = true;
+    this.isLoading.next(true)
   }
 
   hide() {

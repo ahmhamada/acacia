@@ -1,0 +1,8 @@
+<div class="form-input-container" RtlDir>
+    <mat-form-field appearance="fill" class="form-input">
+        <mat-label class="form-input__label">{{ label | translate }}</mat-label>
+        <input matInput [matDatepicker]="dpicker" [formControl]="formControl">
+        <mat-datepicker-toggle matSuffix [for]="dpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dpicker></mat-datepicker>
+    </mat-form-field>
+</div>
