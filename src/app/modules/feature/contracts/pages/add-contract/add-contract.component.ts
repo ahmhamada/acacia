@@ -349,6 +349,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
     console.log(this.selectedIndex);
     this.selectedIndex === 4 &&
       this.formControl('contractDuration', 'startDate')?.value &&
+      this.formControl('financialDetails', 'annualRentalFees').value &&
       (this.installmentPlanTable = this.generateInstallmentPlanTable(
         new Date(this.formControl('contractDuration', 'startDate')?.value),
         this.formControl('financialDetails', 'annualRentalFees').value,
