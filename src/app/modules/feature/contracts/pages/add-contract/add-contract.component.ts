@@ -348,8 +348,8 @@ export class AddContractComponent implements OnInit, OnDestroy {
     this.selectedIndex = e.selectedIndex;
     console.log(this.selectedIndex);
     this.selectedIndex === 4 &&
-      this.formControl('contractDuration', 'startDate')?.value &&
       this.formControl('financialDetails', 'annualRentalFees').value &&
+      this.formControl('contractDuration', 'startDate')?.value &&
       (this.installmentPlanTable = this.generateInstallmentPlanTable(
         new Date(this.formControl('contractDuration', 'startDate')?.value),
         this.formControl('financialDetails', 'annualRentalFees').value,
@@ -366,6 +366,10 @@ export class AddContractComponent implements OnInit, OnDestroy {
 
   handleBack() {
     this.selectedIndex > 0 && this.selectedIndex--;
+  }
+
+  handleCancel() {
+    this.router.navigateByUrl('/contracts');
   }
 
   formControl(subForm: string, key: string) {

@@ -403,7 +403,7 @@
             </mat-stepper>
             <div class="add-edit-actions mt-1">
                 <div>
-                    <button type="button" class="ac-btn btn-outlined">
+                    <button type="button" class="ac-btn btn-outlined" (click)="handleCancel()">
                         {{"ACTIONS.CANCEL" | translate}}
                     </button>
                     <button type="button" class="ac-btn btn-outlined" (click)="handleBack()" *ngIf="selectedIndex > 0">

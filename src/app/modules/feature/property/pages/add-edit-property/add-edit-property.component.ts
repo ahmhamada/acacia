@@ -275,6 +275,10 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     this.selectedIndex > 0 && this.selectedIndex--;
   }
 
+  handleCancel(){
+    this.router.navigateByUrl('/property');
+  }
+
   formControl(subForm: string, key: string) {
     return this.addEditProperty?.get(subForm)?.get(key) as FormControl;
   }
