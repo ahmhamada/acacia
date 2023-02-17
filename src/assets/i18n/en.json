@@ -14,7 +14,8 @@
         "FIELD_IS_REQUIRED": "This field is required",
         "MIN": "Value must be less than",
         "MIS_MATCH": "Password does not match",
-        "FILE_NOT_ALLOWED": "This file type is not allowed"
+        "FILE_NOT_ALLOWED": "This file type is not allowed",
+        "COMMISSION_CAN_NOT_EXCEED": "Commission can’t exceed 2.5% of  Annual Rental Fees for the Unit "
       },
       "FULL_NAME": "Full Name",
       "USER_NAME": "User Name",
@@ -23,7 +24,11 @@
       "ADDRESS_IN_SAUDI": "Address in Saudi Arabia",
       "NAME": "NAME",
       "YOU_ARE_ABOUT": "You are about to",
-      "ARE_YOU_SURE": "Are you sure you want to proceed?"
+      "ARE_YOU_SURE": "Are you sure you want to proceed?",
+      "STARTING_DATE": "Starting Date",
+      "END_DATE": "End Date",
+      "RENTAL_PERIOD": "Rental Period",
+      "TELEPHONE": "Telephone"
     },
     "AREA": "Area",
     "CITY": "City",
@@ -37,7 +42,19 @@
     "OWNER": "Owner",
     "ID": "Id",
     "ADDRESS": "Address",
-    "NO_DATA": "No Data Found"
+    "NO_DATA": "No Data Found",
+    "CONTRACTS": "Contracts",
+    "YEARS": "Years",
+    "MONTHS": "Months",
+    "DAYS": "Days",
+    "RENTAL_PERIOD_AD": "The Rental Period",
+    "SAR": "SAR",
+    "YEAR": "Year",
+    "MONTH": "Month",
+    "DAY": "Day",
+    "OWNER_NAME": "Owner Name",
+    "REAL_ESTATE_NAME":"Real Estate Name",
+    "CODE":"Code"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -69,6 +86,7 @@
     "ADD_UNIT": "Add Unit",
     "DELETE_UNIT": "Delete Unit",
     "DELETE_REAL_ESTATE": "Delete Real Estate",
+    "DELETE_CONTRACT": "Delete Contract",
     "REMOVE": "Remove"
   },
   "PROPERTY": {
@@ -124,5 +142,42 @@
     "GAS": "Gas",
     "ELECTRICITY": "Electricity",
     "WATER": "Water"
+  },
+  "CONTRACTS": {
+    "ADD_NEW_CONTRACT": "Add New Contract",
+    "CONTRACT_DURATION": "Contract Duration",
+    "ADD_CONTRACT_DURATION": "Add Contract Duration",
+    "PROPERTY_AND_UNITS": "Property and Units",
+    "CONTRACT_PARTIES": "Contract Parties",
+    "FINANCIAL_DATA": "Financial Data",
+    "CONFIRMATION": "Confirmation",
+    "CHOOSE_THE_PROPERTY": "Choose the property",
+    "CHOOSE_THE_UNIT": "Choose the unit",
+    "TENANT": "Tenant",
+    "TENANT_NAME": "Tenant Name",
+    "ANNUAL_FEES_FOR_RENTAL": "Annual Rental Fees for the Unit",
+    "ELECTRICITY_FEES": "Electricity Fees",
+    "FIXED_AMOUNT": "Fixed Amount",
+    "CONSUMPTION": "Consumption",
+    "ELECTRICITY_FIXED_FEES": "Electricity Fixed Fees",
+    "ELECTRICITY_CONSUMPTION": "Electricity Consumption",
+    "GAS_FEES": "Gas Fees",
+    "GAS_FIXED_FEES": "Gas Fixed Fees",
+    "GAS_CONSUMPTION": "Gas Consumption",
+    "WATER_FEES": "Water Fees",
+    "WATER_FIXED_FEES": "Water Fixed Fees",
+    "WATER_CONSUMPTION": "Water Consumption",
+    "PAYMENTS": "Payments",
+    "REPEATED_PAYMENTS": "Repeated Payments",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly",
+    "HAIF_YEAR": "Half Year",
+    "PER_QUARTER": "Per Quarter",
+    "TOTAL_VALUE_OF_CONTRACT": "The total value of the contract",
+    "INSURANCE_AMOUNT": "Insurance Amount",
+    "COMMISSION": "Commission",
+    "INSATLLMENTS_PAYMENT": "Installments Payment",
+    "DUE_DATE": "Due Date",
+    "INVOICE_VALUE": "Invoice Value"
   }
 }

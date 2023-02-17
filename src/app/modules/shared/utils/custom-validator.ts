@@ -10,3 +10,17 @@ export const passwordMatchingValidatior: ValidatorFn = (
     ? null
     : { notmatched: true };
 };
+
+export function exceedValueValidator(controlName: string, compareToControlName: string): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const controlValue = control.get(controlName)?.value;
+    const compareToControlValue = control.get(compareToControlName)?.value;
+
+    if (controlValue && compareToControlValue && controlValue > (compareToControlValue * 0.025)) {
+      return { compareValuesPercentage: true };
+    }
+
+    return null;
+  };
+}
+

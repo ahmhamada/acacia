@@ -101,7 +101,7 @@ export class PropertyLogicService {
           },
           owner: {
             name: result.name,
-            ownerId: result.realEstateOwner.ownerId,
+            ownerId: result.realEstateOwner.ownerNationalId,
             ownerBirthDay: result.realEstateOwner.ownerBirthDay,
             districtId: result.realEstateOwner.districtId,
             id: result.realEstateOwner.id,

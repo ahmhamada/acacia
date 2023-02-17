@@ -1,0 +1,446 @@
+<div class="add-edit-property" RtlDir>
+    <div class="content-wrapper">
+        <form [formGroup]="addEditContract" autocomplete="off" (ngSubmit)="onAddContract(addEditContract)">
+            <mat-stepper class="form-stepper" [orientation]="(stepperOrientation | async)!"
+                (selectionChange)="onSelection($event)" [selectedIndex]="selectedIndex" RtlDir>
+                <mat-step [label]="'CONTRACTS.CONTRACT_DURATION' | translate"
+                    [stepControl]="formGroup('contractDuration')">
+                    <form [formGroup]="formGroup('contractDuration')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'CONTRACTS.ADD_CONTRACT_DURATION' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-control-wrapper">
+
+                                    <locale-date-picker [label]="'LABELS.FORM.RENTAL_PERIOD'" [FormControl]="
+                                        {
+                                            start: formControl('contractDuration','startDate') ,
+                                             end: formControl('contractDuration','endDate') }"
+                                        [isArabicDatePicker]="true" *ngIf="currentLang === Lang.arabic"
+                                        (valueChanges)="onChange($event)"></locale-date-picker>
+                                    <locale-date-picker [label]="'CONTRACTS.CONTRACT_DURATION'" [FormControl]="
+                                        {
+                                            start: formControl('contractDuration','startDate') ,
+                                             end: formControl('contractDuration','endDate') }"
+                                        [isArabicDatePicker]="false"
+                                        *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+
+                                    <div class="duration-container" *ngIf="calculatedContractDuration">
+                                        <p>{{ 'LABELS.RENTAL_PERIOD_AD' | translate }} : </p>
+                                        <div class="duration-wrapper">
+                                            <div>
+                                                <span>
+                                                    {{'LABELS.YEARS'
+                                                    | translate}}
+                                                </span>
+                                                <span>
+                                                    {{ calculatedContractDuration.years
+                                                    }}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    {{'LABELS.MONTHS'
+                                                    | translate}}
+                                                </span>
+                                                <span>
+                                                    {{ calculatedContractDuration.months
+                                                    }}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    {{'LABELS.DAYS' |
+                                                    translate}}
+                                                </span>
+                                                <span>
+                                                    {{ calculatedContractDuration.days }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'CONTRACTS.PROPERTY_AND_UNITS' | translate"
+                    [stepControl]="formGroup('propertyUnitDetails')">
+                    <form [formGroup]="formGroup('propertyUnitDetails')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'CONTRACTS.PROPERTY_AND_UNITS' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_USAGE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (propertyUsageTypes$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formControl('propertyUnitDetails','realEstateUseId')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.PROPERTY_TYPE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (propertyTypes$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formControl('propertyUnitDetails','realEstateTypeId')"
+                                            (selectedOption)="onPropertyTypeChange($event)">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'CONTRACTS.CHOOSE_THE_PROPERTY' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (realEstateOptions$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formControl('propertyUnitDetails','realEstateId')"
+                                            (selectedOption)="onRealEstateChange($event)">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'CONTRACTS.CHOOSE_THE_UNIT' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (propertiesOptions$ | async)!,
+                            key: 'id',
+                            value: 'propertyNumber'
+                            }" [FormControl]="formControl('propertyUnitDetails','propertyId')"
+                                            (selectedOption)="onPropertyChange($event)">
+                                        </form-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'CONTRACTS.CONTRACT_PARTIES' | translate"
+                    [stepControl]="formGroup('contractParties')">
+                    <form [formGroup]="formGroup('contractParties')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'CONTRACTS.CONTRACT_PARTIES' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <h6>{{'LABELS.OWNER' | translate}}:
+                                </h6>
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.FULL_NAME'" [type]="InputTypes.TEXT"
+                                            [isReadonly]="true" [FormControl]="formControl('contractParties','name')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.NATIONAL_ID'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('contractParties','nationalId')"
+                                            [isReadonly]="true">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <h6>{{'CONTRACTS.TENANT' | translate}}:
+                                </h6>
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'CONTRACTS.TENANT_NAME'" [type]="InputTypes.TEXT"
+                                            [FormControl]="formControl('contractParties','tenantName')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'PROPERTY.NATIONAL_ID'" [type]="InputTypes.NUMBER"
+                                            [FormControl]="formControl('contractParties','tenantNationalId')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
+                                            [FormControl]="formControl('contractParties','tenantBirthDay')"
+                                            [isArabicDatePicker]="true"
+                                            *ngIf="currentLang === Lang.arabic"></locale-date-picker>
+
+                                        <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
+                                            [FormControl]="formControl('contractParties','tenantBirthDay')"
+                                            [isArabicDatePicker]="false"
+                                            *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
+                                    </div>
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.TELEPHONE'" [type]="InputTypes.NUMBER"
+                                            [FormControl]="formControl('contractParties','tenantTelephone')">
+                                        </form-input>
+                                    </div>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'LABELS.FORM.EMAIL'" [type]="InputTypes.EMAIL"
+                                        [FormControl]="formControl('contractParties','email')">
+                                    </form-input>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'CONTRACTS.FINANCIAL_DATA' | translate"
+                    [stepControl]="formGroup('financialDetails')">
+                    <form [formGroup]="formGroup('financialDetails')" autocomplete="off">
+                        <div class="property-tab">
+                            <h4>{{'CONTRACTS.FINANCIAL_DATA' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'CONTRACTS.ANNUAL_FEES_FOR_RENTAL'" [iconClass]="true"
+                                        [type]="InputTypes.NUMBER"
+                                        [FormControl]="formControl('financialDetails','annualRentalFees')"
+                                        (valueChanges)="
+                                        onTotalValueChange()">
+                                    </form-input>
+                                </div>
+                                <div class=" form-toggle-wrapper">
+                                    <form-input [label]="'PROPERTY.SERVICES' | translate" [type]="InputTypes.TOGGLE"
+                                        [FormControl]="formControl('financialDetails','services')"
+                                        (valueChanges)="onServicesChange($event)">
+                                    </form-input>
+                                </div>
+                                <ng-container *ngIf="formControl('financialDetails','services').value">
+
+                                    <h6>{{'CONTRACTS.ELECTRICITY_FEES' | translate}}:
+                                    </h6>
+                                    <div class="form-row">
+                                        <div class="form-radio-wrapper">
+                                            <form-input [label]="'CONTRACTS.ELECTRICITY_FEES' | translate"
+                                                [type]="InputTypes.RADIO" [radioOptions]="[
+                                          {
+                                            key: 1,
+                                            value: 'CONTRACTS.FIXED_AMOUNT' | translate
+                                          },
+                                          {
+                                            key: 2,
+                                            value: 'CONTRACTS.CONSUMPTION' | translate
+                                          }
+                                        ]" [FormControl]="formControl('financialDetails','selectedElectricityOption')"
+                                                (valueChanges)="onFeesValueChange($event,formControl('financialDetails', 'electricityFixedFees'),formControl('financialDetails', 'electricityConsumption'))">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedElectricityOption').value === 1"
+                                                [label]="'CONTRACTS.ELECTRICITY_FIXED_FEES'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','electricityFixedFees')"
+                                                (valueChanges)="
+                                                onTotalValueChange()">
+                                            </form-input>
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedElectricityOption').value === 2"
+                                                [label]="'CONTRACTS.ELECTRICITY_CONSUMPTION'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','electricityConsumption')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <h6>{{'CONTRACTS.GAS_FEES' | translate}}:
+                                    </h6>
+                                    <div class="form-row">
+                                        <div class="form-radio-wrapper">
+                                            <form-input [label]="'CONTRACTS.GAS_FIXED_FEES' | translate"
+                                                [type]="InputTypes.RADIO" [radioOptions]="[
+                                          {
+                                            key: 1,
+                                            value: 'CONTRACTS.FIXED_AMOUNT' | translate
+                                          },
+                                          {
+                                            key: 2,
+                                            value: 'CONTRACTS.CONSUMPTION' | translate
+                                          }
+                                        ]" [FormControl]="formControl('financialDetails','selectedGasOption')"
+                                                (valueChanges)="
+                                                onFeesValueChange($event,formControl('financialDetails', 'gasFixedFees'),formControl('financialDetails', 'gasConsumption'))">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedGasOption').value === 1"
+                                                [label]="'CONTRACTS.GAS_FIXED_FEES'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','gasFixedFees')"
+                                                (valueChanges)="
+                                                onTotalValueChange()">
+                                            </form-input>
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedGasOption').value === 2"
+                                                [label]="'CONTRACTS.GAS_CONSUMPTION'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','gasConsumption')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                    <h6>{{'CONTRACTS.WATER_FEES' | translate}}:
+                                    </h6>
+                                    <div class="form-row">
+                                        <div class="form-radio-wrapper">
+                                            <form-input [label]="'CONTRACTS.WATER_FEES' | translate"
+                                                [type]="InputTypes.RADIO" [radioOptions]="[
+                                          {
+                                            key: 1,
+                                            value: 'CONTRACTS.FIXED_AMOUNT' | translate
+                                          },
+                                          {
+                                            key: 2,
+                                            value: 'CONTRACTS.CONSUMPTION' | translate
+                                          }
+                                        ]" [FormControl]="formControl('financialDetails','selectedWaterOption')"
+                                                (valueChanges)="onFeesValueChange($event,formControl('financialDetails', 'waterFixedFees'),formControl('financialDetails', 'waterConsumption'))">
+                                            </form-input>
+                                        </div>
+                                        <div class="form-control-wrapper">
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedWaterOption').value === 1"
+                                                [label]="'CONTRACTS.WATER_FIXED_FEES'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','waterFixedFees')"
+                                                (valueChanges)="
+                                                onTotalValueChange()">
+                                            </form-input>
+                                            <form-input
+                                                *ngIf="formControl('financialDetails','selectedWaterOption').value === 2"
+                                                [label]="'CONTRACTS.WATER_CONSUMPTION'" [type]="InputTypes.NUMBER"
+                                                [FormControl]="formControl('financialDetails','waterConsumption')">
+                                            </form-input>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <h5 class="font-weight-bold">{{'CONTRACTS.PAYMENTS' | translate}}
+                                </h5>
+                                <h6 class="mt-4 mb-0">{{'CONTRACTS.REPEATED_PAYMENTS' | translate}}:
+                                </h6>
+                                <div class="form-radio-wrapper">
+                                    <form-input [label]="'CONTRACTS.PAYMENTS' | translate" [type]="InputTypes.RADIO"
+                                        [radioOptions]="[
+                                  {
+                                    checked: true,
+                                    key: PaymentWay.Monthly,
+                                    value: 'CONTRACTS.MONTHLY' | translate
+                                  },
+                                  {
+                                    key: PaymentWay.Quarterly,
+                                    value: 'CONTRACTS.PER_QUARTER' | translate
+                                  },
+                                  {
+                                    key: PaymentWay.SemiAnnual,
+                                    value: 'CONTRACTS.HAIF_YEAR' | translate
+                                  },{
+                                    key: PaymentWay.Yearly,
+                                    value: 'CONTRACTS.YEARLY' | translate
+                                  }
+                                ]" [FormControl]="formControl('financialDetails','paymentWay')">
+                                    </form-input>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'CONTRACTS.TOTAL_VALUE_OF_CONTRACT'" [type]="InputTypes.NUMBER"
+                                        [FormControl]="formControl('financialDetails','totalValue')" [isReadonly]="true"
+                                        [iconClass]="true">
+                                    </form-input>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'CONTRACTS.INSURANCE_AMOUNT'" [type]="InputTypes.NUMBER"
+                                        [FormControl]="formControl('financialDetails','insuranceAmount')"
+                                        [iconClass]="true">
+                                    </form-input>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input [label]="'CONTRACTS.COMMISSION'" [type]="InputTypes.NUMBER"
+                                        [FormControl]="formControl('financialDetails','commissionAmount')">
+                                    </form-input>
+                                    <div class="error-message"
+                                        *ngIf="formControl('financialDetails','commissionAmount').touched
+                                    && formGroup('financialDetails').errors && formGroup('financialDetails').errors['compareValuesPercentage']">
+                                        <i class="mat-error fa-solid fa-xmark"></i>
+                                        <p class="mat-error">{{'LABELS.FORM.VALIDATIONS.COMMISSION_CAN_NOT_EXCEED' |
+                                            translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [label]="'CONTRACTS.CONFIRMATION' | translate" [stepControl]="formGroup('contractDuration')">
+                    <div class="property-tab">
+                        <form [formGroup]="formGroup('financialDetails')" autocomplete="off">
+                            <h4>{{'CONTRACTS.CONFIRMATION' | translate}}</h4>
+                            <div class="form-wrapper mt-5">
+                                <div class="details-container">
+                                    <div class="details-row">
+                                        <div class="details-col">
+                                            <span>{{'LABELS.FORM.STARTING_DATE' | translate}}</span>
+                                            <span>{{formControl('contractDuration','startDate')?.value |
+                                                date:'yyyy-MM-dd'}}</span>
+                                        </div>
+                                        <div class="details-col">
+                                            <span>{{'LABELS.FORM.END_DATE' | translate}}</span>
+                                            <span>{{formControl('contractDuration','endDate')?.value |
+                                                date:'yyyy-MM-dd'}}</span>
+                                        </div>
+                                        <div class="details-col">
+                                            <span>{{'LABELS.OWNER_NAME' | translate}}</span>
+                                            <span>
+                                                {{formControl('contractParties','name')?.value}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="details-row">
+                                        <div class="details-col">
+                                            <span>{{'CONTRACTS.TENANT_NAME' | translate}}</span>
+                                            <span>{{formControl('contractParties','tenantName')?.value }}</span>
+                                        </div>
+                                        <div class="details-col">
+                                            <span>{{'LABELS.REAL_ESTATE_NAME' | translate}}</span>
+                                            <span>
+                                                {{realEstateName}}
+                                            </span>
+                                        </div>
+                                        <div class="details-col">
+                                            <span>{{'PROPERTY.UNIT_NUMBER' | translate}}</span>
+                                            <span>
+                                                {{unitNumber}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details-container mt-3" *ngIf="installmentPlanTable.length > 0">
+                                    <table>
+                                        <tr>
+                                            <th>
+                                                {{'PROPERTY.ISSUING_DATE' | translate}}
+                                            </th>
+                                            <th>
+                                                {{'CONTRACTS.DUE_DATE' | translate}}
+                                            </th>
+                                            <th>{{'CONTRACTS.INVOICE_VALUE' | translate}}</th>
+                                        </tr>
+                                        <tr *ngFor="let installment of installmentPlanTable">
+                                            <td>{{installment.issuingDate | date:'yyyy-MM-dd'}}</td>
+                                            <td>{{installment.dueDate | date:'yyyy-MM-dd'}}</td>
+                                            <td>{{+installment.totalInvoiceValue?.toFixed(2)}} {{ 'LABELS.SAR' | translate}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-step>
+
+            </mat-stepper>
+            <div class="add-edit-actions mt-1">
+                <div>
+                    <button type="button" class="ac-btn btn-outlined">
+                        {{"ACTIONS.CANCEL" | translate}}
+                    </button>
+                    <button type="button" class="ac-btn btn-outlined" (click)="handleBack()" *ngIf="selectedIndex > 0">
+                        {{"ACTIONS.BACK" | translate}}
+
+                    </button>
+                    <button type="button" class="ac-btn btn-fill" (click)="handleNext()" *ngIf="selectedIndex !== 4">
+                        {{"ACTIONS.NEXT" | translate}}
+
+                    </button>
+                    <button type="submit" [disabled]="addEditContract.invalid" class="ac-btn btn-outlined">
+                        {{"ACTIONS.SAVE" | translate}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

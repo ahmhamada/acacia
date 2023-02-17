@@ -1,4 +1,11 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   MAT_MOMENT_DATE_FORMATS,
@@ -11,6 +18,9 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import 'moment/locale/ar';
+import { Subscriptions } from '../../utils/subscriptions';
+import { RangeDatePicker } from '../../_models/form-input-model';
+import { merge, of } from 'rxjs';
 
 @Component({
   selector: 'locale-date-picker',
@@ -32,8 +42,10 @@ import 'moment/locale/ar';
 })
 export class LocaleDatePickerComponent implements OnInit {
   @Input() label!: string;
-  @Input() FormControl!: FormControl;
+  @Input() FormControl!: FormControl | RangeDatePicker;
   @Input() isArabicDatePicker = false;
+  subs = new Subscriptions();
+  @Output() valueChanges = new EventEmitter();
 
   constructor(
     private _adapter: DateAdapter<any>,
@@ -44,6 +56,17 @@ export class LocaleDatePickerComponent implements OnInit {
     if (this.isArabicDatePicker) {
       this.arabic();
     }
+    this.subs.add = merge(
+      this.formControl?.valueChanges || of(),
+      this.datePicker?.start?.valueChanges || of(),
+      this.datePicker?.end?.valueChanges || of()
+    )?.subscribe((value) =>
+      this.valueChanges.emit({
+        selectedValue: value,
+        startValue: this.datePicker?.start.value,
+        endValue: this.datePicker?.end.value,
+      })
+    );
   }
 
   writeValue(): void {}
@@ -53,6 +76,14 @@ export class LocaleDatePickerComponent implements OnInit {
   arabic() {
     this._locale = 'ar';
     this._adapter.setLocale(this._locale);
+  }
+
+  get datePicker() {
+    return this.FormControl as RangeDatePicker;
+  }
+
+  get isRangeDatePicker() {
+    return (this.FormControl as RangeDatePicker).start ? true : false;
   }
 
   get formControl() {

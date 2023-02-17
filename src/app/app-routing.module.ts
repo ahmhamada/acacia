@@ -7,9 +7,12 @@ import { AuthGuard } from './modules/core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/feature/account/account.module').then(m => m.AccountModule)
-  }
-  , {
+    loadChildren: () =>
+      import('./modules/feature/account/account.module').then(
+        (m) => m.AccountModule
+      ),
+  },
+  {
     path: '',
     component: ContentLayoutComponent,
     children: [
@@ -20,14 +23,21 @@ const routes: Routes = [
           import('./modules/feature/property/property.module').then(
             (m) => m.PropertyModule
           ),
-      }
-    ]
+      },
+      {
+        path: 'contracts',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./modules/feature/contracts/contracts.module').then(
+            (m) => m.ContractsModule
+          ),
+      },
+    ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

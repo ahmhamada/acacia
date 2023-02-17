@@ -36,8 +36,8 @@
             </mat-radio-button>
         </mat-radio-group>
 
-        <mat-form-field *ngSwitchDefault [ngClass]="{search: type === InputTypes.SEARCH}" class="form-input"
-            appearance="fill">
+        <mat-form-field *ngSwitchDefault [ngClass]="{search: type === InputTypes.SEARCH,'is-readonly': isReadonly}"
+            class="form-input" appearance="fill">
             <mat-label class="form-input__label">{{ label | translate }}</mat-label>
 
             <ng-container [ngSwitch]="type">
@@ -84,7 +84,7 @@
 
                 <ng-container *ngSwitchCase="InputTypes.AUTO_COMPLETE">
                     <input matInput class="form-input__input" [placeholder]="placeholder ?? ''" [type]="InputTypes.TEXT"
-                        [formControl]="formControl" [matAutocomplete]="auto" />
+                        [formControl]="formControl" [matAutocomplete]="auto" [readonly]="isReadonly" />
 
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option disabled *ngIf="(selectOptionsList$ | async)?.length === 0">
@@ -105,26 +105,26 @@
 
                 <input matInput *ngSwitchCase="InputTypes.NUMBER" class="form-input__input" type="number" min="0"
                     [placeholder]="type === InputTypes.SEARCH ? label : placeholder ?? ''" [formControl]="formControl"
-                    autocomplete="off" [readonly]="readOnly" />
+                    autocomplete="off" [readonly]="isReadonly" />
 
                 <ng-container *ngSwitchCase="InputTypes.PASSWORD">
                     <input matInput class="form-input__input" type="password" [type]="hide ? 'password' : 'text'"
                         [placeholder]="placeholder ?? ''" [formControl]="formControl" autocomplete="off"
-                        [readonly]="readOnly" />
+                        [readonly]="isReadonly" />
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </ng-container>
 
 
                 <input matInput *ngSwitchDefault class="form-input__input" autocomplete="off"
                     [placeholder]="type === InputTypes.SEARCH ? label : placeholder ?? ''" [formControl]="formControl"
-                    [type]="type" />
+                    [type]="type" [readonly]="isReadonly" />
             </ng-container>
 
             <mat-error>
                 <error-message [ctrl]="formControl"></error-message>
             </mat-error>
 
-            <span *ngIf="iconClass" [class]="iconClass + ' form-input__icon'"></span>
+            <span RtlDir *ngIf="iconClass" class="form-input__icon">{{'LABELS.SAR' | translate}}</span>
         </mat-form-field>
     </ng-container>
 

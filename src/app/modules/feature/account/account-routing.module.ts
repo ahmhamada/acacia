@@ -14,7 +14,8 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/login'
+        redirectTo: '/login',
+        title: 'Acacia'
       },
       {
         path: 'login',

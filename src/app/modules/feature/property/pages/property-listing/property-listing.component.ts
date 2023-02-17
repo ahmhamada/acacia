@@ -2,7 +2,6 @@ import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IDataTable } from 'src/app/modules/shared/_models/data-table.model';
 import { Observable, of } from 'rxjs';
-import { PropertyHeader } from '../../_models/property-header.model';
 import { originalOrder } from 'src/app/modules/shared/utils/keyvalue-original-order';
 import { InputTypes } from 'src/app/modules/shared/enums/form-input-types.enum';
 import { FormControl } from '@angular/forms';
@@ -20,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./property-listing.component.scss'],
 })
 export class PropertyListingComponent implements OnInit {
-  propertyTable$: Observable<IDataTable<PropertyHeader>> = of({
+  propertyTable$: Observable<IDataTable<any>> = of({
     data: [],
     length: 0,
     pageSize: 0,
@@ -28,9 +27,7 @@ export class PropertyListingComponent implements OnInit {
     emptyState: 'No Data Found!',
   });
 
-  headers!: PropertyHeader;
   currentLang!: string;
-  date = new FormControl();
   propertyPagingPayload = {
     pagedSearch: {
       pageIndex: 1,
@@ -97,18 +94,7 @@ export class PropertyListingComponent implements OnInit {
       });
   }
 
-  toRow(row: PropertyHeader): PropertyHeader {
-    return row;
-  }
-
   get Lang() {
     return Lang;
-  }
-
-  originalOrder(
-    a: KeyValue<keyof PropertyHeader, string>,
-    b: KeyValue<keyof PropertyHeader, string>
-  ) {
-    return originalOrder(a, b);
   }
 }

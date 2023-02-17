@@ -19,6 +19,7 @@ const routes: Routes = [
         component: AddEditPropertyComponent,
       },
       {
+        title: 'Edit Property',
         path: 'edit-property/:id',
         component: AddEditPropertyComponent,
       },

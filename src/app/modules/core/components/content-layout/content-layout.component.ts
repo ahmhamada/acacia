@@ -13,6 +13,12 @@ export class ContentLayoutComponent implements OnInit {
       label: 'LABELS.PROPERTIES',
       iconClasses: 'fa fa-light fa-building',
       route: '/property'
+    },
+    {
+      id: 'CONTRACTS',
+      label: 'LABELS.CONTRACTS',
+      iconClasses: 'fa fa-light fa-file-contract',
+      route: '/contracts'
     }]
     // {
     //   id: 'COMPANIES',

@@ -42,8 +42,8 @@ export class FormInputComponent implements OnInit {
   @Input() FormControl!: FormControl | RangeDatePicker;
   @Input() selectOptions?: SelectOptions;
   @Input() radioOptions?: RadioOption[];
-  @Input() iconClass?: string;
-  @Input() readOnly = false;
+  @Input() iconClass?: boolean = false;
+  @Input() isReadonly = false;
   @Output() selectedOption = new EventEmitter();
   @Output() valueChanges = new EventEmitter();
   @ContentChild('selectOption') selectOption!: TemplateRef<Element> | null;
@@ -62,7 +62,6 @@ export class FormInputComponent implements OnInit {
     if (this.type === InputTypes.TEXT_AREA) {
       this.formControl?.addValidators([Validators.maxLength(400)]);
     }
-
     this.setInitialFilteredListValue();
     this.filterListChangeEvent();
 

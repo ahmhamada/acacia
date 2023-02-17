@@ -67,7 +67,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       }),
       owner: this.fb.group({
         name: ['', [Validators.required]],
-        ownerId: [null, [Validators.required]],
+        ownerNationalId: [null, [Validators.required]],
         ownerBirthDay: ['', [Validators.required]],
         districtId: ['', [Validators.required]],
         city: [''],

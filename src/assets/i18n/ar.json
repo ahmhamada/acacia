@@ -14,7 +14,8 @@
         "FIELD_IS_REQUIRED": "هذا البيان اجباري",
         "MIN": "قيمة البيان لابد ان تكون اصغر من ",
         "MIS_MATCH": "كلمة المرور غير متطابقة",
-        "FILE_NOT_ALLOWED": "صيغة الملف غير مدعومة"
+        "FILE_NOT_ALLOWED": "صيغة الملف غير مدعومة",
+        "COMMISSION_CAN_NOT_EXCEED": "لا يمكن ان تتجاوز العموله 2.5%   من \"رسم الايجار السنوي للوحدة \""
       },
       "FULL_NAME": "الاسم بالكامل",
       "USER_NAME": "اسم المستخدم",
@@ -23,7 +24,11 @@
       "ADDRESS_IN_SAUDI": "العنوان في المملكة العربية السعودية",
       "NAME": "الاسم",
       "YOU_ARE_ABOUT": "انت علي وشك ",
-      "ARE_YOU_SURE": "هل انت متأكد انك تريد المتابعة؟"
+      "ARE_YOU_SURE": "هل انت متأكد انك تريد المتابعة؟",
+      "STARTING_DATE": "تاريخ البدء",
+      "END_DATE": "تاريخ الانتهاء",
+      "RENTAL_PERIOD": "مدة الايجار",
+      "TELEPHONE": "التليفون"
     },
     "AREA": "المنطقة",
     "CITY": "المدينة",
@@ -37,7 +42,19 @@
     "OWNER": "المالك",
     "ID": "Id",
     "ADDRESS": "العنوان",
-    "NO_DATA": "لاتوجد بيانات!"
+    "NO_DATA": "لاتوجد بيانات!",
+    "CONTRACTS": "العقود",
+    "YEARS": "سنوات",
+    "MONTHS": "شهور",
+    "DAYS": "أيام",
+    "RENTAL_PERIOD_AD": "فترة الايجار (الميلادي)",
+    "SAR": "ريال",
+    "YEAR": "Year",
+    "MONTH": "شهر",
+    "DAY": "يوم",
+    "OWNER_NAME": "اسم المالك",
+    "REAL_ESTATE_NAME": "اسم العقار",
+    "CODE": "كود العقد"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -69,7 +86,8 @@
     "ADD_UNIT": "اضافة وحدة",
     "DELETE_UNIT": "حذف وحدة",
     "DELETE_REAL_ESTATE": "حذف عقار",
-    "REMOVE": "حذف"
+    "REMOVE": "حذف",
+    "DELETE_CONTRACT": "حذف عقد"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "وثائق الملكية",
@@ -124,5 +142,42 @@
     "GAS": "عداد غاز",
     "ELECTRICITY": "عداد كهرباء",
     "WATER": "عداد مياه"
+  },
+  "CONTRACTS": {
+    "ADD_NEW_CONTRACT": "اضافة عقد جديد",
+    "CONTRACT_DURATION": "مدة العقد",
+    "ADD_CONTRACT_DURATION": "اضافة مدة العقد",
+    "PROPERTY_AND_UNITS": "العقار والوحدات",
+    "CONTRACT_PARTIES": "اطراف العقد",
+    "FINANCIAL_DATA": "البيانات المالية",
+    "CONFIRMATION": "التأكيد",
+    "CHOOSE_THE_PROPERTY": "اختيار العقار",
+    "CHOOSE_THE_UNIT": "اختيار الوحدة",
+    "TENANT": "المستأجر",
+    "TENANT_NAME": "اسم المستأجر",
+    "ANNUAL_FEES_FOR_RENTAL": "رسم الايجار السنوي للوحدة",
+    "ELECTRICITY_FEES": "رسوم الكهرباء",
+    "FIXED_AMOUNT": "قيمة ثابتة",
+    "CONSUMPTION": "قراءة العداد",
+    "ELECTRICITY_FIXED_FEES": "رسوم الكهرباء الثابتة",
+    "ELECTRICITY_CONSUMPTION": "قراءة عداد الكهرباء",
+    "GAS_FEES": "رسوم الغاز",
+    "GAS_FIXED_FEES": "رسوم الغاز الثابتة",
+    "GAS_CONSUMPTION": "قراءة عداد الغاز",
+    "WATER_FEES": "رسوم المياة",
+    "WATER_FIXED_FEES": "رسوم المياة الثابتة",
+    "WATER_CONSUMPTION": "قراءة عداد المياة",
+    "PAYMENTS": "تكرار الدفعة",
+    "REPEATED_PAYMENTS": "دفعات متكررة",
+    "MONTHLY": "شهري",
+    "YEARLY": "سنوي",
+    "HAIF_YEAR": "نصف سنوي",
+    "PER_QUARTER": "ربعي",
+    "TOTAL_VALUE_OF_CONTRACT": "اجمالي قيمة العقد",
+    "INSURANCE_AMOUNT": "مبلغ الضمان",
+    "COMMISSION": "العمولة",
+    "INSATLLMENTS_PAYMENT": "سداد الرسوم",
+    "DUE_DATE": "تاريخ الاستحقاق",
+    "INVOICE_VALUE": "قيمة الفاتورة"
   }
 }
