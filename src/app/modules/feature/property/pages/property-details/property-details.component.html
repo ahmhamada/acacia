@@ -1,0 +1,254 @@
+<div class="page-container details-page" RtlDir>
+    <div class="page-content">
+        <div class="content-section">
+            <h4 class="tab-headline">{{'PROPERTY.PROPERTY_DOCUMENTS' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.LEGAL_DOCUMENT_TYPE' | translate}}</span>
+                        <span>{{propertyDetails?.propertyDocument?.propertyDocumentType?.nameEn}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_DOCUMENT_NUMBER' | translate}}</span>
+                        <span>{{propertyDetails?.propertyDocument?.documentNumber}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.ISSUING_DATE' | translate}}</span>
+                        <span>{{propertyDetails?.propertyDocument?.releaseDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'PROPERTY.PROPERTY_OWNERS' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NATIONAL_ID' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.ownerNationalId}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.FULL_NAME' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.name}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.DATE_OF_BIRTH' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.ownerBirthDay | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                </div>
+                <h6 class="mb-4">
+                    {{'LABELS.FORM.ADDRESS_IN_SAUDI' | translate}} :
+                </h6>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.CITY' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.district?.area?.city?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.AREA' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.district?.area?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.DISTRICT' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.district?.nameAr}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'PROPERTY.PROPERTY_DETAILS' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_TYPE' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateType?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_USAGE' | translate}}</span>
+                        <span>{{propertyDetails?.realEstateUse?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.BUILD_DATE' | translate}}</span>
+                        <span>{{propertyDetails?.buildDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_NUMBER' | translate}}</span>
+                        <span>{{propertyDetails?.buildingNumber}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NUMBER_OF_FLOORS' | translate}}</span>
+                        <span>{{propertyDetails?.numOfFloors}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.TOTAL_NUMBER_OF_FLOORS' | translate}}</span>
+                        <span>{{propertyDetails?.numOfProperty}}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.NAME' | translate}}</span>
+                        <span>{{propertyDetails?.name}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.ADDRESS_IN_SAUDI' | translate}}</span>
+                        <span>{{propertyDetails?.address}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.BUILDING_NUMBER' | translate}}</span>
+                        <span>{{propertyDetails?.buildingNumber}}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.ADDITIONAL_NUMBER' | translate}}</span>
+                        <span>{{propertyDetails?.addationalNumber}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'PROPERTY.UNITS_DETAILS' | translate}}</h4>
+            <div class="details-container" *ngFor="let unit of propertyDetails?.properties; let i = index">
+                <div class="unit-wrapper">
+                    <h5 class="mb-3">{{'PROPERTY.UNIT_DETAILS' | translate}} #{{i + 1}}</h5>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_NUMBER' | translate}}</span>
+                            <span>{{unit?.propertyNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_USAGE' | translate}}</span>
+                            <span>{{unit?.propertyUse}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_TYPE' | translate}}</span>
+                            <span>{{unit?.propertyType}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.FLOOR_NUMBER' | translate}}</span>
+                            <span>{{unit?.floorNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_AREA' | translate}}</span>
+                            <span>{{unit?.area}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_FINISHING' | translate}}</span>
+                            <span>{{unit?.propertyFinish}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.BUILD_DATE' | translate}}</span>
+                            <span>{{unit?.buildDate | date}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.NUMBER_OF_ROOMS' | translate}}</span>
+                            <span>{{unit?.roomsNo}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.FURNISHED' | translate}}</span>
+                            <span>{{unit?.furnished ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.UNIT_FINISHING' | translate}}</span>
+                            <span>{{unit?.propertyFinish}}</span>
+                        </div>
+                    </div>
+                    <h6 class="mb-4">{{'PROPERTY.UTILITIES' | translate}}:
+                    </h6>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.BED_ROOMS' | translate}}</span>
+                            <span>{{unit?.bedRoomsNo}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.BATHROOMS' | translate}}</span>
+                            <span>{{unit?.bathroomsNo}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.HALL' | translate}}</span>
+                            <span>{{unit?.hallNo}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.MAID_ROOM' | translate}}</span>
+                            <span>{{unit?.maidRoomNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.KITCHEN' | translate}}</span>
+                            <span>{{propertyDetails?.addationalNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.STORE' | translate}}</span>
+                            <span>{{unit?.storesNo}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.BACK_YARD' | translate}}</span>
+                            <span>{{unit?.backyardNo}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.LIVING_ROOM' | translate}}</span>
+                            <span>{{unit?.livingRoomNo}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.CENTRAL_AC' | translate}}</span>
+                            <span>{{unit?.centralAirConditionNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.SPLIT_AC' | translate}}</span>
+                            <span>{{unit?.airConditionNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.DESERT_AC' | translate}}</span>
+                            <span>{{unit?.desertAirConditionNumber}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.DRESSING' | translate}}</span>
+                            <span>{{unit?.hasDressing ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                    </div>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.BUILT_IN_KITCHEN' | translate}}</span>
+                            <span>{{unit?.hasBuiltInKitchen ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                    </div>
+                    <h6 class="mb-4">{{'PROPERTY.SERVICES' | translate}}:
+                    </h6>
+                    <div class="details-row">
+                        <div class="details-col">
+                            <span>{{'PROPERTY.GAS' | translate}}</span>
+                            <span>{{unit?.hasGasMeter ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.ELECTRICITY' | translate}}</span>
+                            <span>{{unit?.hasElectricityMeter ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                        <div class="details-col">
+                            <span>{{'PROPERTY.WATER' | translate}}</span>
+                            <span>{{unit?.hasWaterMeter ? ('LABELS.YES' | translate) : ('LABELS.NO'
+                                | translate)}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

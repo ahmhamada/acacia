@@ -1,0 +1,17 @@
+.details-container {
+  background-color: #f6f6f6;
+  .details-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .details-col {
+      align-items: start;
+      span:first-of-type {
+        color: #4e55a2;
+      }
+    }
+  }
+  .unit-wrapper{
+    background-color: #FFF;
+    padding: 15px;
+  }
+}

@@ -88,6 +88,14 @@ export class PropertyLogicService {
     );
   }
 
+  getRealEstateDetails(districtId: number) {
+    return this.propertyService.getRealEstateById(districtId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
   getRealEstateById(districtId: number) {
     return this.propertyService.getRealEstateById(districtId).pipe(
       map((result) => {
@@ -95,7 +103,7 @@ export class PropertyLogicService {
           propertyDocument: {
             documentTypeId: result.propertyDocument.propertyDocumentTypeId,
             documentNumber: result.propertyDocument.documentNumber,
-            releaseDate: result.propertyDocument.createdOn,
+            releaseDate: result.propertyDocument.releaseDate,
             attachment: result.propertyDocument.attachment,
             id: result.propertyDocument.id,
           },

@@ -40,6 +40,9 @@
                             </button>
                             <mat-menu #menu="matMenu" RtlDir>
                                 <button mat-menu-item RtlDir
+                                    [routerLink]="['/property/details', row?.id]">{{'PROPERTY.PROPERTY_DETAILS' |
+                                    translate}}</button>
+                                <button mat-menu-item RtlDir
                                     [routerLink]="['/property/edit-property', row?.id]">{{'ACTIONS.EDIT' |
                                     translate}}</button>
                                 <button mat-menu-item RtlDir (click)="handleRemoveProperty(row.id)">{{'ACTIONS.DELETE' |

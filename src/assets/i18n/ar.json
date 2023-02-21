@@ -54,7 +54,9 @@
     "DAY": "يوم",
     "OWNER_NAME": "اسم المالك",
     "REAL_ESTATE_NAME": "اسم العقار",
-    "CODE": "كود العقد"
+    "CODE": "كود العقد",
+    "YES": "نعم",
+    "NO": "لا"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -114,6 +116,7 @@
     "ADDITIONAL_NUMBER": "رقم اضافي",
     "ADD_UNITS_DETAILS": "اضافة تفاصيل الوحدات",
     "ADD_UNIT_DETAILS": "اضافة تفاصيل الوحدة",
+    "UNIT_DETAILS":"تفاصيل وحدة",
     "UNIT_NUMBER": "رقم الوحدة",
     "UNIT_USAGE": "استخدام الوحدة",
     "UNIT_TYPE": "نوع الوحدة",

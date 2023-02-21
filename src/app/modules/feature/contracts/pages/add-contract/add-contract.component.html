@@ -1,16 +1,15 @@
-<div class="add-edit-property" RtlDir>
-    <div class="content-wrapper">
+<div class="add-edit-page" RtlDir>
+    <div class="content-container">
         <form [formGroup]="addEditContract" autocomplete="off" (ngSubmit)="onAddContract(addEditContract)">
             <mat-stepper class="form-stepper" [orientation]="(stepperOrientation | async)!"
                 (selectionChange)="onSelection($event)" [selectedIndex]="selectedIndex" RtlDir>
                 <mat-step [label]="'CONTRACTS.CONTRACT_DURATION' | translate"
                     [stepControl]="formGroup('contractDuration')">
                     <form [formGroup]="formGroup('contractDuration')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'CONTRACTS.ADD_CONTRACT_DURATION' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'CONTRACTS.ADD_CONTRACT_DURATION' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <div class="form-control-wrapper">
-
                                     <locale-date-picker [label]="'LABELS.FORM.RENTAL_PERIOD'" [FormControl]="
                                         {
                                             start: formControl('contractDuration','startDate') ,
@@ -66,9 +65,9 @@
                 <mat-step [label]="'CONTRACTS.PROPERTY_AND_UNITS' | translate"
                     [stepControl]="formGroup('propertyUnitDetails')">
                     <form [formGroup]="formGroup('propertyUnitDetails')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'CONTRACTS.PROPERTY_AND_UNITS' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'CONTRACTS.PROPERTY_AND_UNITS' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <div class="form-row">
                                     <div class="form-control-wrapper">
                                         <form-input [label]="'PROPERTY.PROPERTY_USAGE' | translate"
@@ -119,9 +118,9 @@
                 <mat-step [label]="'CONTRACTS.CONTRACT_PARTIES' | translate"
                     [stepControl]="formGroup('contractParties')">
                     <form [formGroup]="formGroup('contractParties')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'CONTRACTS.CONTRACT_PARTIES' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'CONTRACTS.CONTRACT_PARTIES' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <h6>{{'LABELS.OWNER' | translate}}:
                                 </h6>
                                 <div class="form-row">
@@ -181,9 +180,9 @@
                 <mat-step [label]="'CONTRACTS.FINANCIAL_DATA' | translate"
                     [stepControl]="formGroup('financialDetails')">
                     <form [formGroup]="formGroup('financialDetails')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'CONTRACTS.FINANCIAL_DATA' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'CONTRACTS.FINANCIAL_DATA' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <div class="form-control-wrapper">
                                     <form-input [label]="'CONTRACTS.ANNUAL_FEES_FOR_RENTAL'" [iconClass]="true"
                                         [type]="InputTypes.NUMBER"
@@ -356,10 +355,10 @@
                     </form>
                 </mat-step>
                 <mat-step [label]="'CONTRACTS.CONFIRMATION' | translate" [stepControl]="formGroup('contractDuration')">
-                    <div class="property-tab">
+                    <div class="tab-container">
                         <form [formGroup]="formGroup('financialDetails')" autocomplete="off">
-                            <h4>{{'CONTRACTS.CONFIRMATION' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                            <h4 class="tab-headline">{{'CONTRACTS.CONFIRMATION' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <div class="details-container">
                                     <div class="details-row">
                                         <div class="details-col">

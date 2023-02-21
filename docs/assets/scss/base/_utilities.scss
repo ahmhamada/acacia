@@ -24,5 +24,29 @@
 .ctrl-error {
   color: $red;
   margin-bottom: 10px;
+}
 
+.tab-headline {
+  position: relative;
+  margin-bottom: 45px;
+  &::after {
+    content: " ";
+    width: 91px;
+    color: black;
+    background: linear-gradient(172deg, #47858b -15.74%, #4e55a2 111.09%);
+    height: 5px;
+    position: absolute;
+    bottom: -15px;
+    left: 3px;
+    border-radius: 8px;
+  }
+}
+
+.rtl {
+  .tab-headline {
+    &::after {
+      right: 3px;
+      left: unset;
+    }
+  }
 }

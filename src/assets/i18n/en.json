@@ -53,8 +53,10 @@
     "MONTH": "Month",
     "DAY": "Day",
     "OWNER_NAME": "Owner Name",
-    "REAL_ESTATE_NAME":"Real Estate Name",
-    "CODE":"Code"
+    "REAL_ESTATE_NAME": "Real Estate Name",
+    "CODE": "Code",
+    "YES": "Yes",
+    "NO": "No"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -114,6 +116,7 @@
     "ADDITIONAL_NUMBER": "Additional Number",
     "ADD_UNITS_DETAILS": "Add Units Details",
     "ADD_UNIT_DETAILS": "Add Unit Details",
+    "UNIT_DETAILS": "Unit Details",
     "UNIT_NUMBER": "Unit Number",
     "UNIT_USAGE": "Unit Usage",
     "UNIT_TYPE": "Unit Type",

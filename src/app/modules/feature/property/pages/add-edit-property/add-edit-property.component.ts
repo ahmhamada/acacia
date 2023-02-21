@@ -150,9 +150,6 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
         this.districts$ = this.propertyLogicService
           .getAreaDistricts(res.owner.area)
           .pipe(shareReplay(1));
-        console.log(res);
-        console.log(this.oldDocumentAttachments);
-        console.log(this.cities$);
       });
   }
 
@@ -234,28 +231,28 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     this.properties.push(this.handelCreateUnit());
   }
 
-  // handleRemoveUnit(index: number, unitId: any) {
-  //   const dialogData: ConfirmationDialog = {
-  //     title: `ACTIONS.DELETE_UNIT`,
-  //     message: 'LABELS.FORM.ARE_YOU_SURE',
-  //     actionLabel: 'ACTIONS.DELETE',
-  //     itemIndex: index + 1,
-  //   };
-  //   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-  //     maxWidth: '550px',
-  //     minWidth: '500px',
-  //     data: dialogData,
-  //   });
-  //   return dialogRef.afterClosed().subscribe((res) => {
-  //     if (res) {
-  //       unitId === ' '
-  //         ? this.properties.removeAt(index)
-  //         : this.onDeleteUnit(index, unitId);
-  //     } else {
-  //       return res;
-  //     }
-  //   });
-  // }
+  handleRemoveUnit(index: number, unitId: any) {
+    const dialogData: ConfirmationDialog = {
+      title: `ACTIONS.DELETE_UNIT`,
+      message: 'LABELS.FORM.ARE_YOU_SURE',
+      actionLabel: 'ACTIONS.DELETE',
+      itemIndex: index + 1,
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '550px',
+      minWidth: '500px',
+      data: dialogData,
+    });
+    return dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        unitId === ' '
+          ? this.properties.removeAt(index)
+          : this.onDeleteUnit(index, unitId);
+      } else {
+        return res;
+      }
+    });
+  }
 
   onDeleteUnit(index: number, unitToDelete: number) {
     this.properties.removeAt(index);
@@ -275,7 +272,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     this.selectedIndex > 0 && this.selectedIndex--;
   }
 
-  handleCancel(){
+  handleCancel() {
     this.router.navigateByUrl('/property');
   }
 

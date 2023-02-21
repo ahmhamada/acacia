@@ -1,14 +1,14 @@
-<div class="add-edit-property" RtlDir>
-    <div class="content-wrapper">
+<div class="add-edit-page" RtlDir>
+    <div class="content-container">
         <form [formGroup]="addEditProperty" autocomplete="off" (ngSubmit)="onAddProperty(addEditProperty)">
             <mat-stepper class="form-stepper" [orientation]="(stepperOrientation | async)!"
                 (selectionChange)="onSelection($event)" [selectedIndex]="selectedIndex" RtlDir>
                 <mat-step [label]="'PROPERTY.PROPERTY_DOCUMENTS' | translate"
                     [stepControl]="formGroup('propertyDocument')">
                     <form [formGroup]="formGroup('propertyDocument')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'PROPERTY.ADD_PROPERTY_DOCUMENT' | translate}}</h4>
-                            <div class="form-wrapper mt-5">
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'PROPERTY.ADD_PROPERTY_DOCUMENT' | translate}}</h4>
+                            <div class="form-wrapper">
                                 <div class="form-row">
                                     <div class="form-control-wrapper">
                                         <form-input [label]="'PROPERTY.LEGAL_DOCUMENT_TYPE' | translate"
@@ -53,8 +53,8 @@
                 </mat-step>
                 <mat-step [label]="'PROPERTY.PROPERTY_OWNERS' | translate" [stepControl]="formGroup('owner')">
                     <form [formGroup]="formGroup('owner')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'PROPERTY.ADD_PROPERTY_OWNER' | translate}}</h4>
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'PROPERTY.ADD_PROPERTY_OWNER' | translate}}</h4>
                             <div class="form-wrapper mt-5">
                                 <div class="form-row">
                                     <div class="form-control-wrapper">
@@ -81,7 +81,6 @@
                                 <h6>{{'LABELS.FORM.ADDRESS_IN_SAUDI' | translate}}:
                                 </h6>
                                 <div class="form-row">
-
                                     <div class="form-control-wrapper">
                                         <form-input [label]="'LABELS.CITY' | translate" [type]="InputTypes.SELECT"
                                             [selectOptions]="{
@@ -118,8 +117,8 @@
                 <mat-step [stepControl]="formGroup('realEstateDetails')"
                     [label]="'PROPERTY.PROPERTY_DETAILS' | translate">
                     <form [formGroup]="formGroup('realEstateDetails')" autocomplete="off">
-                        <div class="property-tab">
-                            <h4>{{'PROPERTY.ADD_PROPERTY_DETAILS' | translate}}</h4>
+                        <div class="tab-container">
+                            <h4 class="tab-headline">{{'PROPERTY.ADD_PROPERTY_DETAILS' | translate}}</h4>
                             <div class="form-wrapper mt-5">
                                 <div class="form-row equal-columns">
                                     <div class="form-control-wrapper">
@@ -199,16 +198,16 @@
                 <mat-step [stepControl]="formGroup('properties')" [label]="'PROPERTY.UNITS_DETAILS' | translate">
                     <form [formGroup]="addEditProperty" autocomplete="off">
                         <div formArrayName="properties">
-                            <div class="property-tab">
-                                <h4>{{'PROPERTY.ADD_UNITS_DETAILS' | translate}}</h4>
+                            <div class="tab-container">
+                                <h4 class="tab-headline">{{'PROPERTY.ADD_UNITS_DETAILS' | translate}}</h4>
                                 <div class="form-wrapper mt-5 unit-wrapper"
                                     *ngFor="let unit of properties.controls; let i = index" [formGroupName]="i">
                                     <div class="unit-title">
                                         <h5>{{'PROPERTY.ADD_UNIT_DETAILS' | translate}} #{{i + 1}}</h5>
-                                        <!-- <span (click)="                handleRemoveUnit(i, formArrayControl(i, 'id').value)
+                                        <span *ngIf="properties.controls.length !== 1" (click)="handleRemoveUnit(i, formArrayControl(i, 'id').value)
                                         ">
                                             <i class="fa-solid fa-trash"></i>
-                                        </span> -->
+                                        </span>
                                     </div>
                                     <div class="form-row equal-columns">
                                         <div class="form-control-wrapper">
@@ -388,8 +387,8 @@
                     </form>
                 </mat-step>
                 <mat-step [label]="'PROPERTY.ATTCHMENTS' | translate">
-                    <div class="property-tab">
-                        <h4>{{'PROPERTY.ATTCHMENTS' | translate}}</h4>
+                    <div class="tab-container">
+                        <h4 class="tab-headline">{{'PROPERTY.ATTCHMENTS' | translate}}</h4>
                         <div class="form-control-wrapper mt-5">
                             <upload-file label="PROPERTY.ADD_ATTACHMENTS" [singleFile]="false" [editMode]="editMode"
                                 [oldAttachments]="oldAttachments" [allowedTypes]="allowedTypes"

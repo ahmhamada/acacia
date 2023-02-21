@@ -28,7 +28,7 @@ export class ContractsListingComponent implements OnInit {
   contractPagingPayload = {
     pagedSearch: {
       pageIndex: 1,
-      pageSize: 8,
+      pageSize: 16,
     },
   };
   constructor(
