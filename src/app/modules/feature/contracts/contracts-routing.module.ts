@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddContractComponent } from './pages/add-contract/add-contract.component';
+import { ContractDetailsComponent } from './pages/contract-details/contract-details.component';
 import { ContractsListingComponent } from './pages/contracts-listing/contracts-listing.component';
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
       {
         title: 'Contract Details',
         path: 'details/:id',
-        component: AddContractComponent,
+        component: ContractDetailsComponent,
       },
     ],
   },
