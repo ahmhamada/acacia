@@ -58,6 +58,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-control-wrapper">
+                                    <upload-file label="CONTRACTS.UPLOAD_A_COPY_OF_CONTRACT_FILE" [singleFile]="true"
+                                        [formGroup]="addEditContract"
+                                        [formControl]="formControl('contractDuration','attachment')" [editMode]="false"
+                                        [allowedTypes]="allowedTypes"
+                                        (onAttachmentChange)="onContractFileChange($event,1)" canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -150,6 +159,15 @@
                                         </form-input>
                                     </div>
                                 </div>
+                                <div class="form-control-wrapper mb-4">
+                                    <upload-file label="CONTRACTS.UPLOAD_A_COPY_OF_ID_PHOTO" [singleFile]="true"
+                                        [formGroup]="addEditContract"
+                                        [formControl]="formControl('contractParties','idPhoto')" [editMode]="false"
+                                        [allowedTypes]="allowedTypes"
+                                        (onAttachmentChange)="onContractFileChange($event,2)" canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-control-wrapper">
                                         <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
@@ -168,10 +186,17 @@
                                         </form-input>
                                     </div>
                                 </div>
-                                <div class="form-control-wrapper">
-                                    <form-input [label]="'LABELS.FORM.EMAIL'" [type]="InputTypes.EMAIL"
-                                        [FormControl]="formControl('contractParties','email')">
-                                    </form-input>
+                                <div class="form-row">
+                                    <div class="form-control-wrapper">
+                                        <form-input [label]="'LABELS.FORM.EMAIL'" [type]="InputTypes.EMAIL"
+                                            [FormControl]="formControl('contractParties','email')">
+                                        </form-input>
+                                    </div>
+                                    <div class="form-control-wrapper" *ngIf="isCommercialContract">
+                                        <form-input [label]="'LABELS.VAT'" [type]="InputTypes.EMAIL"
+                                            [FormControl]="formControl('contractParties','vat')">
+                                        </form-input>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +213,14 @@
                                         [type]="InputTypes.NUMBER"
                                         [FormControl]="formControl('financialDetails','annualRentalFees')"
                                         (valueChanges)="
-                                        onTotalValueChange()">
+                                        onAnnualFeesValueChange()">
+                                    </form-input>
+                                </div>
+                                <div class="form-control-wrapper" *ngIf="isCommercialContract">
+                                    <form-input [label]="'LABELS.TOTAL_AMOUNT_OF_TAX'" [iconClass]="true"
+                                        [type]="InputTypes.NUMBER"
+                                        [FormControl]="formControl('financialDetails','totalTaxesAmount')"
+                                        [isReadonly]="true">
                                     </form-input>
                                 </div>
                                 <div class=" form-toggle-wrapper">
@@ -302,9 +334,9 @@
                                 </ng-container>
                                 <h5 class="font-weight-bold">{{'CONTRACTS.PAYMENTS' | translate}}
                                 </h5>
-                                <h6 class="mt-4 mb-0">{{'CONTRACTS.REPEATED_PAYMENTS' | translate}}:
+                                <h6 class="mt-4">{{'CONTRACTS.REPEATED_PAYMENTS' | translate}}:
                                 </h6>
-                                <div class="form-radio-wrapper">
+                                <div class="form-radio-wrapper mb-3">
                                     <form-input [label]="'CONTRACTS.PAYMENTS' | translate" [type]="InputTypes.RADIO"
                                         [radioOptions]="[
                                   {
@@ -398,6 +430,8 @@
                                     </div>
                                 </div>
                                 <div class="details-container mt-3" *ngIf="installmentPlanTable.length > 0">
+                                    <h6>{{'CONTRACTS.INSATLLMENTS_PAYMENT' | translate}}:
+                                    </h6>
                                     <table>
                                         <tr>
                                             <th>
@@ -407,11 +441,17 @@
                                                 {{'CONTRACTS.DUE_DATE' | translate}}
                                             </th>
                                             <th>{{'CONTRACTS.INVOICE_VALUE' | translate}}</th>
+                                            <th *ngIf="isCommercialContract">{{'CONTRACTS.TAX_VALUE' | translate}}</th>
                                         </tr>
                                         <tr *ngFor="let installment of installmentPlanTable">
                                             <td>{{installment.issuingDate | date:'yyyy-MM-dd'}}</td>
                                             <td>{{installment.dueDate | date:'yyyy-MM-dd'}}</td>
-                                            <td>{{+installment.totalInvoiceValue?.toFixed(2)}} {{ 'LABELS.SAR' | translate}}
+                                            <td>{{+installment.totalInvoiceValue?.toFixed(2)}} {{ 'LABELS.SAR' |
+                                                translate}}
+                                            </td>
+                                            <td *ngIf="isCommercialContract">{{+installment.TaxesAmount?.toFixed(2)}} {{
+                                                'LABELS.SAR' |
+                                                translate}}
                                             </td>
                                         </tr>
                                     </table>
@@ -420,7 +460,6 @@
                         </form>
                     </div>
                 </mat-step>
-
             </mat-stepper>
             <div class="add-edit-actions mt-1">
                 <div>

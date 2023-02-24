@@ -1,1 +1,274 @@
-<p>contract-details works!</p>
+<div class="page-container details-page" RtlDir>
+    <div class="page-content">
+        <div class="content-section">
+            <div class="download-wrapper">
+                <h4 class="tab-headline">{{'CONTRACTS.CONTRACT_DURATION' | translate}}</h4>
+                <a [href]="'https://acacia.azurewebsites.net/api/Contract/GenerateContractFile/' + contractId" download
+                    target="_blank" class="btn-fill" download>
+                    <i class="mx-2 fa fa-light fa-download"></i>
+                    {{'ACTIONS.DOWNLOAD_CONTRACT' | translate}}
+                </a>
+            </div>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.STARTING_DATE' | translate}}</span>
+                        <span>{{contractDetails?.startDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.END_DATE' | translate}}</span>
+                        <span>{{contractDetails?.endDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                    </div>
+                </div>
+                <div class="duration-container" *ngIf="calculatedContractDuration">
+                    <p>{{ 'LABELS.RENTAL_PERIOD_AD' | translate }} : </p>
+                    <div class="duration-wrapper">
+                        <div>
+                            <span>
+                                {{'LABELS.YEARS'
+                                | translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.years
+                                }}
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                {{'LABELS.MONTHS'
+                                | translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.months
+                                }}
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                {{'LABELS.DAYS' |
+                                translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.days }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'CONTRACTS.PROPERTY_AND_UNITS' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_USAGE' | translate}}</span>
+                        <span>{{contractDetails?.property?.propertyUse?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.PROPERTY_TYPE' | translate}}</span>
+                        <span>{{contractDetails?.property?.propertyType?.nameAr}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.CHOOSE_THE_PROPERTY' | translate}}</span>
+                        <span>{{contractDetails?.property?.propertyNumber}}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.CHOOSE_THE_UNIT' | translate}}</span>
+                        <span>{{contractDetails?.property?.realEstate?.realEstateNumber}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'CONTRACTS.CONTRACT_PARTIES' | translate}}</h4>
+            <div class="details-container">
+                <h6 class="mb-4">{{'LABELS.OWNER' | translate}}:</h6>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.FULL_NAME' | translate}}</span>
+                        {{contractDetails?.property?.realEstate?.realEstateOwner?.name}}
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NATIONAL_ID' | translate}}</span>
+                        {{contractDetails?.property?.realEstate?.realEstateOwner?.ownerNationalId}}
+                    </div>
+                    <div class="details-col">
+                    </div>
+                </div>
+                <h6 class="mb-4">{{'CONTRACTS.TENANT' | translate}}:</h6>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.TENANT_NAME' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.name}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NATIONAL_ID' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.tenantNationalId}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.DATE_OF_BIRTH' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.birthDay | date:'yyyy-MM-dd' }}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.TELEPHONE' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.telephone}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.EMAIL' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.email}}</span>
+                    </div>
+                    <div class="details-col" *ngIf="isCommercialContract">
+                        <span>{{'LABELS.VAT' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.vat}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'CONTRACTS.FINANCIAL_DATA' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.ANNUAL_FEES_FOR_RENTAL' | translate}}</span>
+                        <span>{{contractDetails?.annualRentalFees}} {{'LABELS.SAR' | translate}}</span>
+                    </div>
+                    <div class="details-col" *ngIf="isCommercialContract">
+                        <span>{{'LABELS.TOTAL_AMOUNT_OF_TAX' | translate}}</span>
+                        <span>{{contractDetails?.totalTaxesAmount}} {{'LABELS.SAR' | translate}}</span>
+                    </div>
+                </div>
+                <ng-container *ngIf="checkServicesVisibility()">
+                    <h6 class="mb-4">{{'PROPERTY.SERVICES' | translate}}:</h6>
+                    <h6 class="mb-4">{{'CONTRACTS.ELECTRICITY_FEES' | translate}}:</h6>
+                    <div class="details-row">
+                        <div class="details-col" *ngIf="contractDetails?.electricityFixedFees">
+                            <span>{{'CONTRACTS.ELECTRICITY_FIXED_FEES' | translate}}</span>
+                            <span>{{contractDetails?.electricityFixedFees}} {{'LABELS.SAR' | translate}}</span>
+                        </div>
+                        <div class="details-col" *ngIf="contractDetails?.electricityConsumption">
+                            <span>{{'CONTRACTS.ELECTRICITY_CONSUMPTION' | translate}}</span>
+                            <span>{{contractDetails?.electricityConsumption}}</span>
+                        </div>
+                        <div class="details-col">
+                        </div>
+                    </div>
+                    <h6 class="mb-4">{{'CONTRACTS.GAS_FEES' | translate}}:</h6>
+                    <div class="details-row">
+                        <div class="details-col" *ngIf="contractDetails?.gasFixedFees">
+                            <span>{{'CONTRACTS.GAS_FIXED_FEES' | translate}}</span>
+                            <span>{{contractDetails?.gasFixedFees}} {{'LABELS.SAR' | translate}}</span>
+                        </div>
+                        <div class="details-col" *ngIf="contractDetails?.gasConsumption">
+                            <span>{{'CONTRACTS.GAS_CONSUMPTION' | translate}}</span>
+                            <span>{{contractDetails?.gasConsumption}}</span>
+                        </div>
+                        <div class="details-col">
+                        </div>
+                    </div>
+                    <h6 class="mb-4">{{'CONTRACTS.WATER_FEES' | translate}}:</h6>
+                    <div class="details-row">
+                        <div class="details-col" *ngIf="contractDetails?.waterFixedFees">
+                            <span>{{'CONTRACTS.WATER_FIXED_FEES' | translate}}</span>
+                            <span>{{contractDetails?.waterFixedFees}} {{'LABELS.SAR' | translate}}</span>
+                        </div>
+                        <div class="details-col" *ngIf="contractDetails?.waterConsumption">
+                            <span>{{'CONTRACTS.WATER_CONSUMPTION' | translate}}</span>
+                            <span>{{contractDetails?.waterConsumption}}</span>
+                        </div>
+                        <div class="details-col">
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.REPEATED_PAYMENTS' | translate}} :</span>
+                        <span>{{installmentPlan | translate}}</span>
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.TOTAL_VALUE_OF_CONTRACT' | translate}}</span>
+                        <span>{{contractDetails?.totalValue}} {{'LABELS.SAR' | translate}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.INSURANCE_AMOUNT' | translate}}</span>
+                        <span>{{contractDetails?.insuranceAmount}} {{'LABELS.SAR' | translate}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.COMMISSION' | translate}}</span>
+                        <span>{{contractDetails?.commissionAmount}} {{'LABELS.SAR' | translate}}</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mt-3">
+            <h4 class="tab-headline">{{'CONTRACTS.CONFIRMATION' | translate}}</h4>
+            <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.STARTING_DATE' | translate}}</span>
+                        <span>{{contractDetails?.startDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.END_DATE' | translate}}</span>
+                        <span>{{contractDetails?.endDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.OWNER_NAME' | translate}}</span>
+                        {{contractDetails?.property?.realEstate?.realEstateOwner?.name}}
+                    </div>
+                </div>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.TENANT_NAME' | translate}}</span>
+                        <span>{{contractDetails?.tenant?.name}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.REAL_ESTATE_NAME' | translate}}</span>
+                        <span>
+                            {{contractDetails?.property?.realEstate?.name}}
+                        </span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.UNIT_NUMBER' | translate}}</span>
+                        <span>
+                            {{contractDetails?.property?.propertyNumber}}
+                        </span>
+                    </div>
+                </div>
+                <div class="details-container mt-3" *ngIf="installmentPlanTable.length > 0">
+                    <h6 class="mb-3">{{'CONTRACTS.INSATLLMENTS_PAYMENT' | translate}}:
+                    </h6>
+                    <table>
+                        <tr>
+                            <th>
+                                {{'PROPERTY.ISSUING_DATE' | translate}}
+                            </th>
+                            <th>
+                                {{'CONTRACTS.DUE_DATE' | translate}}
+                            </th>
+                            <th>{{'CONTRACTS.INVOICE_VALUE' | translate}}</th>
+                            <th *ngIf="isCommercialContract">{{'CONTRACTS.TAX_VALUE' | translate}}</th>
+                        </tr>
+                        <tr *ngFor="let installment of installmentPlanTable">
+                            <td>{{installment.issuingDate | date:'yyyy-MM-dd'}}</td>
+                            <td>{{installment.dueDate | date:'yyyy-MM-dd'}}</td>
+                            <td>{{+installment.totalInvoiceValue?.toFixed(2)}} {{ 'LABELS.SAR' | translate}}
+                            </td>
+                            <td *ngIf="isCommercialContract">{{+installment.TaxesAmount?.toFixed(2)}} {{ 'LABELS.SAR' |
+                                translate}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

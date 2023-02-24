@@ -40,22 +40,6 @@ export class PropertyLogicService {
     );
   }
 
-  uploadAttachments(attachment: any) {
-    return this.propertyService.uploadAttachments(attachment).pipe(
-      map((res) => {
-        return res;
-      })
-    );
-  }
-
-  downloadAttachments(attachment: string) {
-    return this.propertyService.downloadAttachments(attachment).pipe(
-      map((res) => {
-        return res;
-      })
-    );
-  }
-
   createRealEstate(payload: any) {
     return this.propertyService.createRealEstate(payload).pipe(
       map((res) => {
@@ -88,6 +72,14 @@ export class PropertyLogicService {
     );
   }
 
+  deleteUnit(unitId: number) {
+    return this.propertyService.deleteUnit(unitId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
   getRealEstateDetails(districtId: number) {
     return this.propertyService.getRealEstateById(districtId).pipe(
       map((res) => {
@@ -109,12 +101,12 @@ export class PropertyLogicService {
           },
           owner: {
             name: result.name,
-            ownerId: result.realEstateOwner.ownerNationalId,
+            ownerNationalId: result.realEstateOwner.ownerNationalId,
             ownerBirthDay: result.realEstateOwner.ownerBirthDay,
             districtId: result.realEstateOwner.districtId,
             id: result.realEstateOwner.id,
-            city: result.realEstateOwner.district.area.cityId,
-            area: result.realEstateOwner.district.areaId,
+            city: result.realEstateOwner.cityId,
+            area: result.realEstateOwner.areaId,
           },
           realEstateDetails: {
             name: result.name,
@@ -125,8 +117,8 @@ export class PropertyLogicService {
             buildingNumber: result.buildingNumber,
             addationalNumber: result.addationalNumber,
             buildDate: result.buildDate,
-            realEstateTypeId: result.realEstateTypeId,
-            realEstateUseId: result.realEstateUseId,
+            realEstateTypeId: result.realEstateType.id,
+            realEstateUseId: result.realEstateUse.id,
             id: result.id,
           },
           properties: result.properties,

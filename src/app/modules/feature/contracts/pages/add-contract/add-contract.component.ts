@@ -24,12 +24,14 @@ import { ToastrService } from 'src/app/modules/shared/services/toastr/toastr.ser
 import { ToastrTypes } from 'src/app/modules/shared/enums/toastrTypes';
 import { LookupsService } from 'src/app/modules/shared/services/lookups/lookups.service';
 import { RealEstateSearch } from '../../_models/realestate-search-model';
-import { PaymentWay } from '../../enums/payment-way.enum';
+import { PaymentWay } from '../../../../shared/enums/payment-way.enum';
 import { ContractType } from '../../enums/contract-type.enum';
-import { Invoice } from '../../_models/invoice.model';
 import { exceedValueValidator } from 'src/app/modules/shared/utils/custom-validator';
 import { ContractPayload } from '../../_models/contract-payload.model';
-
+import { generateDateDuration } from 'src/app/modules/shared/utils/generate-date-duration';
+import { generateInstallmentPlanTable } from 'src/app/modules/shared/utils/generate-installment-table';
+import { AttachmentsService } from 'src/app/modules/shared/services/attachments/attchments.service';
+import { CalculatedContractDuration } from '../../_models/calculated-contract-duration.model';
 @Component({
   selector: 'add-contract',
   templateUrl: './add-contract.component.html',
@@ -47,15 +49,14 @@ export class AddContractComponent implements OnInit, OnDestroy {
   realEstateOptions$!: any;
   propertiesOptions$!: any;
   realestateId: any;
-  calculatedContractDuration: {
-    years: number;
-    months: number;
-    days: number;
-    diffInDays: number;
-  };
+  calculatedContractDuration: CalculatedContractDuration;
   realEstateName: string;
   unitNumber: number;
   installmentPlanTable = [];
+  isCommercialContract = false;
+  attachment: any;
+  allowedTypes = ['pdf', 'png', 'jpeg', 'tiff'];
+
   constructor(
     private fb: FormBuilder,
     private contractsLogicService: ContractsLogicService,
@@ -65,13 +66,15 @@ export class AddContractComponent implements OnInit, OnDestroy {
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private lookupsService: LookupsService
+    private lookupsService: LookupsService,
+    private attchmentsService: AttachmentsService
   ) {
     this.addEditContract = this.fb.group({
       contractDuration: this.fb.group({
         startDate: ['', [Validators.required]],
         endDate: ['', [Validators.required]],
         rentalperiod: [null],
+        attachment: ['', [Validators.required]],
       }),
       propertyUnitDetails: this.fb.group({
         realEstateUseId: [null, [Validators.required]],
@@ -93,6 +96,8 @@ export class AddContractComponent implements OnInit, OnDestroy {
           [Validators.required, Validators.pattern('^[0-9]{10}$')],
         ],
         email: ['', [Validators.required, Validators.email]],
+        idPhoto: ['', [Validators.required]],
+        vat: [null],
       }),
       financialDetails: this.fb.group(
         {
@@ -106,6 +111,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
           gasFixedFees: [null],
           gasConsumption: [null],
           waterFixedFees: [null],
+          totalTaxesAmount: [0],
           waterConsumption: [null],
           paymentWay: [1, [Validators.required]],
           totalValue: [null],
@@ -120,6 +126,16 @@ export class AddContractComponent implements OnInit, OnDestroy {
         }
       ),
     });
+
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state;
+    this.isCommercialContract = state ? state['isCommercialContract'] : false;
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.isCommercialContract = params['isCommercial'];
+    });
+
+    this.isCommercialContract && this.addCommercialContractControls();
 
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -145,48 +161,11 @@ export class AddContractComponent implements OnInit, OnDestroy {
   onChange(e) {
     this.calculatedContractDuration = null;
     if (e.endValue) {
-      this.calculatedContractDuration = this.getDateDuration(
+      this.calculatedContractDuration = generateDateDuration(
         new Date(e.startValue),
         new Date(e.endValue)
       );
-      console.log(this.calculatedContractDuration);
     }
-  }
-
-  getDateDuration(startDate: Date, endDate: Date) {
-    const startYear = startDate.getFullYear();
-    const startMonth = startDate.getMonth();
-    const startDay = startDate.getDate();
-    const endYear = endDate.getFullYear();
-    const endMonth = endDate.getMonth();
-    const endDay = endDate.getDate();
-
-    let yearsDiff = endYear - startYear;
-    let monthsDiff = endMonth - startMonth;
-    let daysDiff = endDay - startDay;
-
-    const oneDay = 24 * 60 * 60 * 1000; // one day in milliseconds
-    const diffInDays = Math.round(
-      Math.abs((endDate.getTime() - startDate.getTime()) / oneDay)
-    );
-
-    if (daysDiff < 0) {
-      const daysInMonth = new Date(endYear, endMonth + 1, 0).getDate();
-      daysDiff += daysInMonth;
-      monthsDiff--;
-    }
-    if (monthsDiff < 0) {
-      monthsDiff += 12;
-      yearsDiff--;
-    }
-
-    const calculatedDate = {
-      years: yearsDiff,
-      months: monthsDiff,
-      days: daysDiff,
-      diffInDays: diffInDays,
-    };
-    return calculatedDate;
   }
 
   onPropertyTypeChange(e: any) {
@@ -275,70 +254,21 @@ export class AddContractComponent implements OnInit, OnDestroy {
       this.formControl('financialDetails', 'gasFixedFees').value +
       this.formControl('financialDetails', 'electricityFixedFees').value +
       this.formControl('financialDetails', 'waterFixedFees').value +
-      this.formControl('financialDetails', 'annualRentalFees').value;
+      this.formControl('financialDetails', 'annualRentalFees').value +
+      this.formControl('financialDetails', 'totalTaxesAmount').value;
     this.formControl('financialDetails', 'totalValue').setValue(totalValue);
   }
 
-  generateInstallmentPlanTable(
-    issuingDate: Date,
-    servicesFees: number,
-    rentalFees: number,
-    installmentPlan: PaymentWay
-  ): Invoice[] {
-    const invoices: Invoice[] = [];
-
-    let currentIssuingDate = new Date(issuingDate);
-    let currentDueDate = new Date(
-      issuingDate.getTime() + 10 * 24 * 60 * 60 * 1000
-    );
-
-    let totalInvoiceValue: number;
-    let numOfInstallments: number;
-    let numOfDays: number;
-    if (installmentPlan === PaymentWay.Monthly) {
-      numOfInstallments = 12;
-      numOfDays = 30000;
-      totalInvoiceValue = (servicesFees + rentalFees) / 12;
-    } else if (installmentPlan === PaymentWay.Quarterly) {
-      numOfInstallments = 4;
-      numOfDays = 90000;
-      totalInvoiceValue = (servicesFees + rentalFees) / 4;
-    } else if (installmentPlan === PaymentWay.SemiAnnual) {
-      numOfInstallments = 2;
-      numOfDays = 182000;
-      totalInvoiceValue = (servicesFees + rentalFees) / 2;
+  onAnnualFeesValueChange() {
+    if (this.isCommercialContract) {
+      const taxRate = 0.15;
+      this.formControl('financialDetails', 'totalTaxesAmount').setValue(
+        this.formControl('financialDetails', 'annualRentalFees').value * taxRate
+      );
+      this.onTotalValueChange();
     } else {
-      numOfInstallments = 1;
-      numOfDays = 365000;
-      totalInvoiceValue = servicesFees + rentalFees;
+      this.onTotalValueChange();
     }
-
-    invoices.push({
-      issuingDate: currentIssuingDate,
-      dueDate: currentDueDate,
-      totalInvoiceValue: totalInvoiceValue,
-      feesInvoiceValue: 0,
-      rentInvoiceValue: 0,
-    });
-
-    for (let i = 1; i < numOfInstallments; i++) {
-      currentIssuingDate = new Date(
-        currentDueDate.getTime() + 1 * 24 * 60 * 60 * numOfDays
-      );
-      currentDueDate = new Date(
-        currentIssuingDate.getTime() + 10 * 24 * 60 * 60 * 1000
-      );
-
-      invoices.push({
-        issuingDate: currentIssuingDate,
-        dueDate: currentDueDate,
-        totalInvoiceValue: totalInvoiceValue,
-        feesInvoiceValue: 0,
-        rentInvoiceValue: 0,
-      });
-    }
-    console.log(invoices);
-    return invoices;
   }
 
   onSelection(e: StepperSelectionEvent) {
@@ -350,13 +280,15 @@ export class AddContractComponent implements OnInit, OnDestroy {
     this.selectedIndex === 4 &&
       this.formControl('financialDetails', 'annualRentalFees').value &&
       this.formControl('contractDuration', 'startDate')?.value &&
-      (this.installmentPlanTable = this.generateInstallmentPlanTable(
+      (this.installmentPlanTable = generateInstallmentPlanTable(
         new Date(this.formControl('contractDuration', 'startDate')?.value),
         this.formControl('financialDetails', 'annualRentalFees').value,
         this.formControl('financialDetails', 'gasFixedFees').value +
           this.formControl('financialDetails', 'electricityFixedFees').value +
           this.formControl('financialDetails', 'waterFixedFees').value,
-        this.formControl('financialDetails', 'paymentWay').value
+        this.formControl('financialDetails', 'paymentWay').value,
+        this.calculatedContractDuration.monthDifference,
+        this.formControl('financialDetails', 'totalTaxesAmount').value
       ));
   }
 
@@ -389,6 +321,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
       annualRentalFees: form.value.financialDetails.annualRentalFees,
       electricityFixedFees: form.value.financialDetails.electricityFixedFees,
       electricityConsumption: form.value.financialDetails.electricityFixedFees,
+      attachment: form.value.contractDuration.attachment,
       gasFixedFees: form.value.financialDetails.gasFixedFees,
       gasConsumption: form.value.financialDetails.gasConsumption,
       waterFixedFees: form.value.financialDetails.waterFixedFees,
@@ -397,8 +330,12 @@ export class AddContractComponent implements OnInit, OnDestroy {
       insuranceAmount: form.value.financialDetails.insuranceAmount,
       commissionAmount: form.value.financialDetails.commissionAmount,
       paymentWay: form.value.financialDetails.paymentWay,
-      contractType: ContractType.Commercial,
-      totalTaxesAmount: 50,
+      contractType: this.isCommercialContract
+        ? ContractType.Commercial
+        : ContractType.Residential,
+      totalTaxesAmount: form.value.financialDetails.totalTaxesAmount
+        ? form.value.financialDetails.totalTaxesAmount
+        : null,
       propertyId: form.value.propertyUnitDetails.propertyId,
       installment: this.installmentPlanTable,
       tenantData: {
@@ -407,6 +344,10 @@ export class AddContractComponent implements OnInit, OnDestroy {
         telephone: form.value.contractParties.tenantTelephone,
         birthDay: form.value.contractParties.tenantBirthDay,
         email: form.value.contractParties.email,
+        idPhoto: form.value.contractParties.idPhoto,
+        vat: form.value.contractParties.vat
+          ? form.value.contractParties.vat
+          : '',
       },
     };
     this.contractsLogicService.createContract(payload).subscribe(
@@ -415,7 +356,11 @@ export class AddContractComponent implements OnInit, OnDestroy {
           'Contract Created successfully',
           ToastrTypes.success
         );
-        this.router.navigateByUrl('/contracts');
+        this.isCommercialContract
+          ? this.router.navigate(['/contracts/commercial'], {
+              queryParams: { isCommercial: true },
+            })
+          : this.router.navigateByUrl('/contracts/residential');
       },
       () => {
         this.toastrService.showToastr(
@@ -424,42 +369,38 @@ export class AddContractComponent implements OnInit, OnDestroy {
         );
       }
     );
-
-    // const payload = {
-    //   ...form.value,
-    //   realEstateAttachments: this.realEstateAttachments,
-    // };
-    // !this.editMode
-    //   ? this.propertyLogicService.createRealEstate(payload).subscribe(
-    //       (res) => {
-    //         this.toastrService.showToastr(
-    //           'Real Estate Created successfully',
-    //           ToastrTypes.success
-    //         );
-    //         this.router.navigateByUrl('/property');
-    //       },
-    //       () => {
-    //         this.toastrService.showToastr(
-    //           `An error occured when executing the create statement ,try again !`,
-    //           ToastrTypes.error
-    //         );
-    //       }
-    //     )
-    //   : this.editRealEstate();
   }
 
-  editRealEstate() {
-    // const payload = {
-    //   ...this.addEditContract.value,
-    //   realEstateAttachments: this.realEstateAttachments,
-    // };
-    // this.propertyLogicService.editRealEstate(payload).subscribe((res) => {
-    //   this.toastrService.showToastr(
-    //     'Real Estate Updated Successfully',
-    //     ToastrTypes.success
-    //   );
-    //   this.router.navigateByUrl('/property');
-    // });
+  addCommercialContractControls() {
+    this.formControl('contractParties', 'vat').setValidators(
+      Validators.required
+    );
+    this.formControl('financialDetails', 'totalTaxesAmount').setValidators(
+      Validators.required
+    );
+  }
+
+  onContractFileChange(selectedFiles: any, type: number) {
+    this.attachment = {};
+    const formData = new FormData();
+    const file = selectedFiles[0];
+    formData.append('Attachment', file, file.name);
+    this.attachment = formData;
+    this.attchmentsService
+      .uploadAttachments(this.attachment)
+      .subscribe((res) => {
+        type === 1
+          ? this.addEditContract
+              .get('contractDuration')
+              ?.get('attachment')
+              ?.patchValue(res.fileName)
+          : this.addEditContract
+              .get('contractParties')
+              ?.get('idPhoto')
+              ?.patchValue(res.fileName);
+        console.log(this.formControl('contractParties', 'idPhoto').value);
+        console.log(this.formControl('contractDuration', 'attachment').value);
+      });
   }
 
   get InputTypes() {

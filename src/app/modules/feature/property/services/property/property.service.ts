@@ -65,37 +65,6 @@ export class PropertyService {
       );
   }
 
-  uploadAttachments(attachment: any) {
-    return this.xhrService
-      .call(
-        {
-          url: '/api/Attachment/Upload',
-          method: Method.post,
-          body: attachment,
-        },
-        true
-      )
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
-  }
-
-  downloadAttachments(attachment: string) {
-    return this.xhrService
-      .call({
-        url: `api/Attachment/Download?fileName=${attachment}`,
-        method: Method.post,
-        body: {},
-      })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
-  }
-
   createRealEstate(payload: any) {
     return this.xhrService
       .call({
@@ -156,6 +125,19 @@ export class PropertyService {
     return this.xhrService
       .call({
         url: `/api/RealEstate/Delete?id=${propertyId}`,
+        method: Method.delete,
+        body: {},
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+  deleteUnit(unitId: number) {
+    return this.xhrService
+      .call({
+        url: `api/Property/Delete/${unitId}`,
         method: Method.delete,
         body: {},
       })

@@ -39,8 +39,8 @@
     }
 
     td {
-      min-width: 200px;
-      max-width: 200px;
+      min-width: 160px;
+      max-width: 180px;
       color: #424242;
     }
 
@@ -94,13 +94,36 @@
   &__foot {
     border: 1px solid #eee;
     &.rtl {
-    ::ng-deep.mat-paginator {
+      ::ng-deep.mat-paginator {
         direction: ltr !important;
-        .mat-paginator-container{
-
+        .mat-paginator-container {
           justify-content: flex-start;
         }
+      }
+    }
+  }
+  &.rtl {
+    .table__head {
+      ::ng-deep tr th {
+        position: relative;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #181a31;
+        font-weight: bold;
 
+        &:not(:first-child)::before {
+          content: unset;
+        }
+        &:not(:last-child)::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          height: 50%;
+          width: 1px;
+          background-color: rgb($grey-500, 0.2);
+        }
       }
     }
   }

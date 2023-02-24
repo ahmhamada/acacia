@@ -43,7 +43,8 @@
     "ID": "Id",
     "ADDRESS": "العنوان",
     "NO_DATA": "لاتوجد بيانات!",
-    "CONTRACTS": "العقود",
+    "RESIDENTIAL_CONTRACTS": "العقود السكنية",
+    "COMMERCIAL_CONTRACTS": "العقود التجارية",
     "YEARS": "سنوات",
     "MONTHS": "شهور",
     "DAYS": "أيام",
@@ -56,7 +57,10 @@
     "REAL_ESTATE_NAME": "اسم العقار",
     "CODE": "كود العقد",
     "YES": "نعم",
-    "NO": "لا"
+    "NO": "لا",
+    "VIEW_DETAILS": "عرض التفاصيل",
+    "VAT": "الرقم الضريبي",
+    "TOTAL_AMOUNT_OF_TAX": "اجمالي الضريبة"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -89,7 +93,8 @@
     "DELETE_UNIT": "حذف وحدة",
     "DELETE_REAL_ESTATE": "حذف عقار",
     "REMOVE": "حذف",
-    "DELETE_CONTRACT": "حذف عقد"
+    "DELETE_CONTRACT": "حذف عقد",
+    "DOWNLOAD_CONTRACT":"تحميل العقد"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "وثائق الملكية",
@@ -116,7 +121,7 @@
     "ADDITIONAL_NUMBER": "رقم اضافي",
     "ADD_UNITS_DETAILS": "اضافة تفاصيل الوحدات",
     "ADD_UNIT_DETAILS": "اضافة تفاصيل الوحدة",
-    "UNIT_DETAILS":"تفاصيل وحدة",
+    "UNIT_DETAILS": "تفاصيل وحدة",
     "UNIT_NUMBER": "رقم الوحدة",
     "UNIT_USAGE": "استخدام الوحدة",
     "UNIT_TYPE": "نوع الوحدة",
@@ -181,6 +186,10 @@
     "COMMISSION": "العمولة",
     "INSATLLMENTS_PAYMENT": "سداد الرسوم",
     "DUE_DATE": "تاريخ الاستحقاق",
-    "INVOICE_VALUE": "قيمة الفاتورة"
+    "INVOICE_VALUE": "قيمة الفاتورة",
+    "TAX_VALUE": "قيمة الضريبة",
+    "UPLOAD_A_COPY_OF_CONTRACT_FILE": "تحميل مرفق ملف العقد",
+    "UPLOAD_A_COPY_OF_ID_PHOTO": "تحميل صورة الهوية",
+    "CONTRACT_STATUS": "حالة العقد"
   }
 }

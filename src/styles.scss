@@ -41,6 +41,21 @@
     }
   }
 }
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(221 221 221 / 28%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $grey-400;
+  border-radius: 6px;
+}
+
 // .mat-form-field-invalid .mat-input-element,
 // .mat-form-field.mat-form-field-invalid .mat-form-field-label {
 //   caret-color: #1c1e1c;

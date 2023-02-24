@@ -6,7 +6,7 @@
                 <div class="details-row">
                     <div class="details-col">
                         <span>{{'PROPERTY.LEGAL_DOCUMENT_TYPE' | translate}}</span>
-                        <span>{{propertyDetails?.propertyDocument?.propertyDocumentType?.nameEn}}</span>
+                        <span>{{propertyDetails?.propertyDocument?.propertyDocumentType}}</span>
                     </div>
                     <div class="details-col">
                         <span>{{'PROPERTY.PROPERTY_DOCUMENT_NUMBER' | translate}}</span>
@@ -42,15 +42,15 @@
                 <div class="details-row">
                     <div class="details-col">
                         <span>{{'LABELS.CITY' | translate}}</span>
-                        <span>{{propertyDetails?.realEstateOwner?.district?.area?.city?.nameAr}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.city}}</span>
                     </div>
                     <div class="details-col">
                         <span>{{'LABELS.AREA' | translate}}</span>
-                        <span>{{propertyDetails?.realEstateOwner?.district?.area?.nameAr}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.area}}</span>
                     </div>
                     <div class="details-col">
                         <span>{{'LABELS.DISTRICT' | translate}}</span>
-                        <span>{{propertyDetails?.realEstateOwner?.district?.nameAr}}</span>
+                        <span>{{propertyDetails?.realEstateOwner?.district}}</span>
                     </div>
                 </div>
             </div>
@@ -61,11 +61,11 @@
                 <div class="details-row">
                     <div class="details-col">
                         <span>{{'PROPERTY.PROPERTY_TYPE' | translate}}</span>
-                        <span>{{propertyDetails?.realEstateType?.nameAr}}</span>
+                        <span>{{propertyDetails?.realEstateType?.name}}</span>
                     </div>
                     <div class="details-col">
                         <span>{{'PROPERTY.PROPERTY_USAGE' | translate}}</span>
-                        <span>{{propertyDetails?.realEstateUse?.nameAr}}</span>
+                        <span>{{propertyDetails?.realEstateUse?.name}}</span>
                     </div>
                     <div class="details-col">
                         <span>{{'PROPERTY.BUILD_DATE' | translate}}</span>

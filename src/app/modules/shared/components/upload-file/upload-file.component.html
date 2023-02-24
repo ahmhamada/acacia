@@ -1,5 +1,5 @@
 <div class="upload-file-wrapper" [ngClass]="{'is-image-preview': imgURL}">
-    <!-- <label for="uploadFile">{{label | translate}}</label> -->
+    <label class="mb-3" for="uploadFile">{{label | translate}}</label>
 
     <input type="file" name="uploadFile" #fileDropRef hidden="true" [accept]="canAccept"
         (change)="onFileSelected($event,2)" [multiple]="!singleFile" />

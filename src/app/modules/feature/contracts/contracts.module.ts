@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { ContractsRoutingModule } from './contracts-routing.module';
 
 import { ContractsListingComponent } from './pages/contracts-listing/contracts-listing.component';
+
+import { CommercialContractsListingComponent } from './pages/commercial-contracts-listing/commercial-contracts-listing.component';
+
 import { AddContractComponent } from './pages/add-contract/add-contract.component';
 import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContractDetailsComponent } from './pages/contract-details/contract-details.component';
 
 @NgModule({
-  declarations: [ContractsListingComponent, AddContractComponent, ContractDetailsComponent],
+  declarations: [
+    ContractsListingComponent,
+    AddContractComponent,
+    ContractDetailsComponent,
+    CommercialContractsListingComponent,
+  ],
   imports: [
     CommonModule,
     TranslateModule,

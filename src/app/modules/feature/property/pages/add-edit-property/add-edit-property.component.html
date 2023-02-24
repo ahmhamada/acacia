@@ -216,14 +216,24 @@
                                             </form-input>
                                         </div>
                                         <div class="form-control-wrapper">
-                                            <form-input [label]="'PROPERTY.UNIT_USAGE'" [type]="InputTypes.TEXT"
-                                                [FormControl]="formArrayControl(i,'propertyUse')">
+                                            <form-input [label]="'PROPERTY.UNIT_USAGE' | translate"
+                                                [type]="InputTypes.SELECT" [selectOptions]="{
+                            list: (unitUsages$ | async)!,
+                            key: 'id',
+                            value: 'name'
+                            }" [FormControl]="formArrayControl(i,'propertyUseId')">
                                             </form-input>
                                         </div>
                                         <div class="form-control-wrapper">
-                                            <form-input [label]="'PROPERTY.UNIT_TYPE'" [type]="InputTypes.TEXT"
-                                                [FormControl]="formArrayControl(i,'propertyType')">
-                                            </form-input>
+
+                                            <form-input [label]="'PROPERTY.UNIT_TYPE' | translate"
+                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                        list: (unitTypes$ | async)!,
+                        key: 'id',
+                        value: 'name'
+                        }" [FormControl]="formArrayControl(i,'propertyTypeId')">
+                                        </form-input>
+
                                         </div>
                                     </div>
                                     <div class="form-row equal-columns">

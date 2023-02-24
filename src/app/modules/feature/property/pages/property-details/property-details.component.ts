@@ -21,7 +21,6 @@ export class PropertyDetailsComponent implements OnInit {
       this.realestateId = params['id'];
       this.getRealEstateInfo();
     });
-    this.realestateId = +this.activatedRoute.snapshot.params['id'];
   }
 
   getRealEstateInfo() {

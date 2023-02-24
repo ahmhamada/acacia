@@ -6,6 +6,7 @@
     height: 100%;
     background: linear-gradient(172deg, #47858b -15.74%, #4e55a2 111.09%);
     box-shadow: 0 4px 16px #1d21400f;
+    flex-shrink: 0;
   }
   .content-wrapper {
     width: 100%;
@@ -13,7 +14,7 @@
 
     .content-container {
       // padding: 17px 20px;
-      background-color: #EDEEF6;
+      background-color: #edeef6;
       display: flex;
       // gap: 20px;
       // height: calc(100vh - 58px);
@@ -21,7 +22,8 @@
       overflow: auto;
       .layout-container {
         // padding: 24px 0;
-        width: 100%;
+        width: calc(100% - 290px);
+        flex-shrink: 0;
       }
     }
   }

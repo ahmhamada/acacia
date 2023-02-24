@@ -28,7 +28,9 @@
       "STARTING_DATE": "Starting Date",
       "END_DATE": "End Date",
       "RENTAL_PERIOD": "Rental Period",
-      "TELEPHONE": "Telephone"
+      "TELEPHONE": "Telephone",
+      "VAT": "VAT",
+      "TOTAL_AMOUNT_OF_TAX": "Total Amount Of Tax"
     },
     "AREA": "Area",
     "CITY": "City",
@@ -43,7 +45,8 @@
     "ID": "Id",
     "ADDRESS": "Address",
     "NO_DATA": "No Data Found",
-    "CONTRACTS": "Contracts",
+    "RESIDENTIAL_CONTRACTS": "Residential Contracts",
+    "COMMERCIAL_CONTRACTS": "Commercial Contracts",
     "YEARS": "Years",
     "MONTHS": "Months",
     "DAYS": "Days",
@@ -56,7 +59,8 @@
     "REAL_ESTATE_NAME": "Real Estate Name",
     "CODE": "Code",
     "YES": "Yes",
-    "NO": "No"
+    "NO": "No",
+    "VIEW_DETAILS": "View Details"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -89,7 +93,8 @@
     "DELETE_UNIT": "Delete Unit",
     "DELETE_REAL_ESTATE": "Delete Real Estate",
     "DELETE_CONTRACT": "Delete Contract",
-    "REMOVE": "Remove"
+    "REMOVE": "Remove",
+    "DOWNLOAD_CONTRACT":"Download Contract"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "Property Documents",
@@ -181,6 +186,11 @@
     "COMMISSION": "Commission",
     "INSATLLMENTS_PAYMENT": "Installments Payment",
     "DUE_DATE": "Due Date",
-    "INVOICE_VALUE": "Invoice Value"
+    "INVOICE_VALUE": "Invoice Value",
+    "TAX_VALUE": "Tax Value",
+    "CONTRACT_FILE": "Contract File",
+    "UPLOAD_A_COPY_OF_CONTRACT_FILE": "Upload a Copy of the Contract File",
+    "UPLOAD_A_COPY_OF_ID_PHOTO": "Upload a Copy of ID",
+    "CONTRACT_STATUS": "Contract Status"
   }
 }

@@ -13,6 +13,7 @@ import { LocaleDatePickerComponent } from './components/locale-date-picker/local
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { LookupsService } from './services/lookups/lookups.service';
+import { AttachmentsService } from './services/attachments/attchments.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,6 @@ import { LookupsService } from './services/lookups/lookups.service';
     UploadFileComponent,
     ConfirmDialogComponent,
   ],
-  providers: [LookupsService],
+  providers: [LookupsService, AttachmentsService],
 })
 export class SharedModule {}

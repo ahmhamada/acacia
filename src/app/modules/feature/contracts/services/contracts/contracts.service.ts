@@ -95,19 +95,31 @@ export class ContractsService {
       );
   }
 
-  // getRealEstateById(realestateId: number) {
-  //   return this.xhrService
-  //     .call({
-  //       url: `/api/RealEstate/Get/${realestateId}`,
-  //       method: Method.get,
-  //       body: {},
-  //     })
-  //     .pipe(
-  //       map((res) => {
-  //         return res;
-  //       })
-  //     );
-  // }
+  getContractDetails(contractId: number) {
+    return this.xhrService
+      .call({
+        url: `/api/Contract/Get/${contractId}`,
+        method: Method.get,
+        body: {},
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 
-
+  generateContractFile(contractId: number) {
+    return this.xhrService
+      .call({
+        url: `/api/Contract/GenerateContractFile/${contractId}`,
+        method: Method.get,
+        body: {},
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

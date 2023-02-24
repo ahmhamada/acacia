@@ -4,4 +4,5 @@ export interface Invoice {
   totalInvoiceValue: number;
   feesInvoiceValue: number;
   rentInvoiceValue: number;
+  TaxesAmount: number
 }

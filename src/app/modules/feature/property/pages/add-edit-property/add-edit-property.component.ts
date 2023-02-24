@@ -21,6 +21,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent } from 'src/app/modules/shared/components/confirm-dialog/confirm-dialog.component';
 import { ToastrService } from 'src/app/modules/shared/services/toastr/toastr.service';
+
+import { AttachmentsService } from 'src/app/modules/shared/services/attachments/attchments.service';
+
 import { ToastrTypes } from 'src/app/modules/shared/enums/toastrTypes';
 
 @Component({
@@ -43,6 +46,8 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
   attachment: any;
   propertyTypes$!: any;
   propertyUsageTypes$!: any;
+  unitUsages$!: any;
+  unitTypes$!: any;
   documentTypes$!: any;
   cities$!: any;
   realEstateAttachments: any[] = [];
@@ -55,7 +60,8 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private attchmentsService: AttachmentsService
   ) {
     this.addEditProperty = this.fb.group({
       propertyDocument: this.fb.group({
@@ -113,6 +119,12 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
         this.cities$ = this.propertyLogicService
           .getPropertyLookup('city')
           .pipe(shareReplay(1));
+        this.unitUsages$ = this.propertyLogicService
+          .getPropertyLookup('PropertyUse')
+          .pipe(shareReplay(1));
+        this.unitTypes$ = this.propertyLogicService
+          .getPropertyLookup('PropertyType')
+          .pipe(shareReplay(1));
       }
     );
     this.realestateId && this.getRealEstateInfo();
@@ -124,7 +136,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     const file = selectedFiles[0];
     formData.append('Attachment', file, file.name);
     this.attachment = formData;
-    this.propertyLogicService
+    this.attchmentsService
       .uploadAttachments(this.attachment)
       .subscribe((res) => {
         this.addEditProperty
@@ -139,10 +151,10 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       .getRealEstateById(this.realestateId)
       .subscribe((res: any) => {
         this.addEditProperty.patchValue(res);
-        res.realEstateAttachments.map((attachment: any) => {
+        this.oldDocumentAttachments.push(res.propertyDocument.attachment);
+        res.realEstateAttachments?.map((attachment: any) => {
           this.realEstateAttachments.push(attachment.attachment);
         });
-        this.oldDocumentAttachments.push(res.propertyDocument.attachment);
         this.oldAttachments = res.realEstateAttachments;
         this.areas$ = this.propertyLogicService
           .getCityAreas(res.owner.city)
@@ -161,7 +173,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       const file = selectedFiles[i];
       formData.append('Attachment', file, file.name);
       this.attachment = formData;
-      this.propertyLogicService
+      this.attchmentsService
         .uploadAttachments(this.attachment)
         .subscribe((res) => {
           this.realEstateAttachments.push(res.fileName);
@@ -199,8 +211,8 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     return this.fb.group({
       id: [null],
       propertyNumber: ['', [Validators.required]],
-      propertyType: ['', [Validators.required]],
-      propertyUse: ['', [Validators.required]],
+      propertyTypeId: ['', [Validators.required]],
+      propertyUseId: ['', [Validators.required]],
       floorNumber: ['', [Validators.required]],
       area: ['', [Validators.required]],
       buildDate: ['', [Validators.required]],
@@ -254,13 +266,11 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     });
   }
 
-  onDeleteUnit(index: number, unitToDelete: number) {
+  onDeleteUnit(index: number, unitId: number) {
     this.properties.removeAt(index);
-    // this.companyFacadeService.companyBankAccountService
-    //   .deleteBankAccount({ id: accountBankToDelete })
-    //   .subscribe((res) => {
-    //     this.bankAccounts.removeAt(index);
-    //   });
+    this.propertyLogicService.deleteUnit(unitId).subscribe((res) => {
+      this.properties.removeAt(index);
+    });
   }
 
   handleNext() {

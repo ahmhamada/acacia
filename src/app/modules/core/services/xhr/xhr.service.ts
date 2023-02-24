@@ -47,7 +47,7 @@ export class XhrService {
             ? (localStorage.getItem('defaultLanguage') as string)
             : 'en',
           Authorization: localStorage.getItem('token')
-            ? 'bearer ' +
+            ? 'Bearer ' +
               localStorage.getItem('token')?.replace(/^"(.*)"$/, '$1')
             : '',
         }))
@@ -60,7 +60,7 @@ export class XhrService {
             ? (localStorage.getItem('defaultLanguage') as string)
             : 'en',
           Authorization: localStorage.getItem('token')
-            ? 'bearer ' +
+            ? 'Bearer ' +
               localStorage.getItem('token')?.replace(/^"(.*)"$/, '$1')
             : '',
         }));

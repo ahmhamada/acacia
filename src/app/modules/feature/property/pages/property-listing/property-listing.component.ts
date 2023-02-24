@@ -86,8 +86,8 @@ export class PropertyListingComponent implements OnInit {
       .subscribe((res) => {
         this.propertyTable$ = of({
           data: res.items,
-          length: res.items.length,
-          pageSize: 8,
+          length: res.totalcount,
+          pageSize: res.paginationCount,
           pageIndex: 1,
           emptyState: 'LABELS.NO_DATA',
         });

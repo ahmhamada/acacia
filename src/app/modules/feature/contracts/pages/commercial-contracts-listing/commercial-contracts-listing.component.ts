@@ -12,11 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContractType } from '../../enums/contract-type.enum';
 
 @Component({
-  selector: 'contracts-listing',
-  templateUrl: './contracts-listing.component.html',
-  styleUrls: ['./contracts-listing.component.scss'],
+  selector: 'commercial-contracts-listing',
+  templateUrl: './commercial-contracts-listing.component.html',
+  styleUrls: ['./commercial-contracts-listing.component.scss'],
 })
-export class ContractsListingComponent implements OnInit {
+export class CommercialContractsListingComponent implements OnInit {
   propertyTable$: Observable<IDataTable<any>> = of({
     data: [],
     length: 0,
@@ -31,7 +31,7 @@ export class ContractsListingComponent implements OnInit {
       pageIndex: 1,
       pageSize: 8,
     },
-    contractType: ContractType.Residential
+    contractType: ContractType.Commercial,
   };
   constructor(
     private translationService: TranslationService,

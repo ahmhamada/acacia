@@ -18,6 +18,15 @@ export class ContractsLogicService {
     );
   }
 
+  generateContractFile(contractId: number) {
+    return this.contractsService.generateContractFile(contractId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+  
+
   searchRealEstate(payload: RealEstateSearch) {
     return this.contractsService.searchRealEstate(payload).pipe(
       map((res) => {
@@ -50,14 +59,13 @@ export class ContractsLogicService {
     );
   }
 
-  
-  // getRealEstates(payload: any) {
-  //   return this.contractsService.getRealEstates(payload).pipe(
-  //     map((res) => {
-  //       return res;
-  //     })
-  //   );
-  // }
+  getContractDetails(contractId: number) {
+    return this.contractsService.getContractDetails(contractId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 
   deleteContract(contractId: number) {
     return this.contractsService.deleteContract(contractId).pipe(

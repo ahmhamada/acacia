@@ -1,6 +1,8 @@
 export interface ContractPayload {
   startDate: string;
   endDate: string;
+  attachment: string;
+  totalTaxesAmount?: number;
   rentalperiod: number;
   annualRentalFees: number;
   electricityFixedFees: number;
@@ -14,7 +16,6 @@ export interface ContractPayload {
   commissionAmount: number;
   paymentWay: number;
   contractType: number;
-  totalTaxesAmount: number;
   propertyId: number;
   installment: Installment[];
   tenantData: TenantData;
@@ -34,4 +35,6 @@ export interface TenantData {
   telephone: number;
   birthDay: string;
   email: string;
+  idPhoto: string;
+  vat?: string;
 }

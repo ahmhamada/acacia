@@ -63,8 +63,8 @@ export class LocaleDatePickerComponent implements OnInit {
     )?.subscribe((value) =>
       this.valueChanges.emit({
         selectedValue: value,
-        startValue: this.datePicker?.start.value,
-        endValue: this.datePicker?.end.value,
+        startValue: this.datePicker?.start?.value,
+        endValue: this.datePicker?.end?.value,
       })
     );
   }
