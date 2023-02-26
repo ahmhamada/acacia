@@ -11,19 +11,19 @@ export class ContentLayoutComponent implements OnInit {
     {
       id: 'PROPERTIES',
       label: 'LABELS.PROPERTIES',
-      iconClasses: 'fa fa-light fa-building',
+      iconClasses: 'fa fa-light fa-building fa-fw',
       route: '/property/',
     },
     {
       id: 'RESEDENTIAL_CONTRACTS',
       label: 'LABELS.RESIDENTIAL_CONTRACTS',
-      iconClasses: 'fa fa-light fa-file-contract',
+      iconClasses: 'fa fa-light fa-file-contract fa-fw',
       route: '/contracts/residential',
     },
     {
       id: 'COMMERCIAL_CONTRACTS',
       label: 'LABELS.COMMERCIAL_CONTRACTS',
-      iconClasses: 'fa fa-light fa-file-contract',
+      iconClasses: 'fa fa-light fa-file-signature fa-fw',
       route: '/contracts/commercial',
     },
   ];

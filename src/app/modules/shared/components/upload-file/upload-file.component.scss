@@ -2,16 +2,6 @@
 @import "abstracts/mixins";
 
 .upload-file-wrapper {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // position: relative;
-
-  // label {
-  //   font-weight: 500;
-  //   color: #3f4254;
-  //   width: 14%;
-  // }
   .multiple-preview {
     width: 100%;
   }
@@ -20,7 +10,6 @@
     justify-content: center;
     align-items: center;
     height: 130px;
-    // width: 85.5%;
     background-color: $grey-100;
     border: 1px dashed #dadada;
     border-radius: 6px;
@@ -43,7 +32,6 @@
     align-items: baseline;
   }
   &.is-image-preview {
-    // margin: 0 20px;
     justify-content: unset;
     .image-preview {
       margin: 0 20px;
@@ -76,6 +64,9 @@
       font-weight: 500;
       color: $grey-500;
       cursor: pointer;
+      width: 150px;
+      word-break: break-all;
+      margin-top: 10px;
     }
   }
   @include bp-max-width($bp-lg-mobile-max-tablet-min) {

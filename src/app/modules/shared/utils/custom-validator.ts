@@ -11,12 +11,19 @@ export const passwordMatchingValidatior: ValidatorFn = (
     : { notmatched: true };
 };
 
-export function exceedValueValidator(controlName: string, compareToControlName: string): ValidatorFn {
+export function exceedValueValidator(
+  controlName: string,
+  compareToControlName: string
+): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const controlValue = control.get(controlName)?.value;
     const compareToControlValue = control.get(compareToControlName)?.value;
 
-    if (controlValue && compareToControlValue && controlValue > (compareToControlValue * 0.025)) {
+    if (
+      controlValue &&
+      compareToControlValue &&
+      controlValue > compareToControlValue * 0.025
+    ) {
       return { compareValuesPercentage: true };
     }
 
@@ -24,3 +31,10 @@ export function exceedValueValidator(controlName: string, compareToControlName: 
   };
 }
 
+export function tenDigitValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value;
+    const isValid = /^\d{10}$/.test(value);
+    return isValid ? null : { tenDigit: true };
+  };
+}

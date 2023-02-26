@@ -37,11 +37,14 @@
                                         [isArabicDatePicker]="false"
                                         *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
                                 </div>
+                                <!-- <div class="form-wrapper">
+                                    <file-uploader [multiple]="true" [files]="oldDocumentAttachments"></file-uploader>
+                                </div> -->
                                 <div class="form-control-wrapper">
                                     <upload-file label="PROPERTY.UPLOAD_A_COPY_OF_PROPERTY_DOCUMENT" [singleFile]="true"
                                         [formGroup]="addEditProperty"
                                         [formControl]="formControl('propertyDocument','attachment')"
-                                        [editMode]="editMode" [oldAttachments]="oldAttachments"
+                                        [editMode]="editMode" [oldAttachments]="oldDocumentAttachments"
                                         [allowedTypes]="allowedTypes" (onAttachmentChange)="onLogoChange($event)"
                                         canAccept="application/pdf,image/png,image/jpeg,image/tiff
                             ">
@@ -227,12 +230,12 @@
                                         <div class="form-control-wrapper">
 
                                             <form-input [label]="'PROPERTY.UNIT_TYPE' | translate"
-                                            [type]="InputTypes.SELECT" [selectOptions]="{
+                                                [type]="InputTypes.SELECT" [selectOptions]="{
                         list: (unitTypes$ | async)!,
                         key: 'id',
                         value: 'name'
                         }" [FormControl]="formArrayControl(i,'propertyTypeId')">
-                                        </form-input>
+                                            </form-input>
 
                                         </div>
                                     </div>

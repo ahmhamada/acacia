@@ -88,12 +88,20 @@ export class AddContractComponent implements OnInit, OnDestroy {
         tenantName: ['', [Validators.required]],
         tenantNationalId: [
           null,
-          [Validators.required, Validators.pattern('^[0-9]{10}$')],
+          [
+            Validators.required,
+            Validators.maxLength(10),
+            Validators.minLength(10),
+          ],
         ],
         tenantBirthDay: ['', [Validators.required]],
         tenantTelephone: [
           null,
-          [Validators.required, Validators.pattern('^[0-9]{10}$')],
+          [
+            Validators.required,
+            Validators.maxLength(10),
+            Validators.minLength(10),
+          ],
         ],
         email: ['', [Validators.required, Validators.email]],
         idPhoto: ['', [Validators.required]],
@@ -276,7 +284,6 @@ export class AddContractComponent implements OnInit, OnDestroy {
     //   e.previouslySelectedStep.interacted = false;
     // }
     this.selectedIndex = e.selectedIndex;
-    console.log(this.selectedIndex);
     this.selectedIndex === 4 &&
       this.formControl('financialDetails', 'annualRentalFees').value &&
       this.formControl('contractDuration', 'startDate')?.value &&
@@ -301,7 +308,11 @@ export class AddContractComponent implements OnInit, OnDestroy {
   }
 
   handleCancel() {
-    this.router.navigateByUrl('/contracts');
+    this.isCommercialContract
+      ? this.router.navigate(['/contracts/commercial'], {
+          queryParams: { isCommercial: true },
+        })
+      : this.router.navigateByUrl('/contracts/residential');
   }
 
   formControl(subForm: string, key: string) {
@@ -313,19 +324,38 @@ export class AddContractComponent implements OnInit, OnDestroy {
   }
 
   onAddContract(form: FormGroup) {
-    console.log(form);
     const payload: ContractPayload = {
       startDate: form.value.contractDuration.startDate,
       endDate: form.value.contractDuration.endDate,
       rentalperiod: this.calculatedContractDuration.diffInDays,
       annualRentalFees: form.value.financialDetails.annualRentalFees,
-      electricityFixedFees: form.value.financialDetails.electricityFixedFees,
-      electricityConsumption: form.value.financialDetails.electricityFixedFees,
+      electricityFixedFees:
+        this.formControl('financialDetails', 'selectedElectricityOption')
+          .value === 1
+          ? form.value.financialDetails.electricityFixedFees
+          : null,
+      electricityConsumption:
+        this.formControl('financialDetails', 'selectedElectricityOption')
+          .value === 2
+          ? form.value.financialDetails.electricityConsumption
+          : null,
       attachment: form.value.contractDuration.attachment,
-      gasFixedFees: form.value.financialDetails.gasFixedFees,
-      gasConsumption: form.value.financialDetails.gasConsumption,
-      waterFixedFees: form.value.financialDetails.waterFixedFees,
-      waterConsumption: form.value.financialDetails.waterConsumption,
+      gasFixedFees:
+        this.formControl('financialDetails', 'selectedGasOption').value === 1
+          ? form.value.financialDetails.gasFixedFees
+          : null,
+      gasConsumption:
+        this.formControl('financialDetails', 'selectedGasOption').value === 2
+          ? form.value.financialDetails.gasConsumption
+          : null,
+      waterFixedFees:
+        this.formControl('financialDetails', 'selectedWaterOption').value === 1
+          ? form.value.financialDetails.waterFixedFees
+          : null,
+      waterConsumption:
+        this.formControl('financialDetails', 'selectedWaterOption').value === 2
+          ? form.value.financialDetails.waterConsumption
+          : null,
       totalValue: form.value.financialDetails.totalValue,
       insuranceAmount: form.value.financialDetails.insuranceAmount,
       commissionAmount: form.value.financialDetails.commissionAmount,
@@ -398,8 +428,6 @@ export class AddContractComponent implements OnInit, OnDestroy {
               .get('contractParties')
               ?.get('idPhoto')
               ?.patchValue(res.fileName);
-        console.log(this.formControl('contractParties', 'idPhoto').value);
-        console.log(this.formControl('contractDuration', 'attachment').value);
       });
   }
 

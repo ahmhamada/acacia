@@ -23,21 +23,21 @@ import {
   ],
 })
 export class UploadFileComponent implements OnInit {
-  message!: string;
-  imgURL: any;
-  @ViewChild('fileDropRef') fileDropRef!: ElementRef;
-  selectedFiles: any[] = [];
-  @Input() label!: string;
   @Input() singleFile = true;
   @Input() allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+  @ViewChild('fileDropRef') fileDropRef!: ElementRef;
+  @Input() label!: string;
   @Input() canAccept = 'image/*';
-  previews: string[] = [];
-  fileType!: string;
-  errorType = '';
   @Input() editMode = false;
   @Output() onRemoveAttachment: EventEmitter<any> = new EventEmitter();
   @Input() oldAttachments: any[] = []; // attachment that is saved at backend and returned with the service response
   @Output() onAttachmentChange: EventEmitter<any> = new EventEmitter();
+  message!: string;
+  fileUrl: any;
+  selectedFiles: any[] = [];
+  previews: string[] = [];
+  fileType!: string;
+  errorType = '';
   @Input('formGroup') formGroup!: FormGroup;
   @Input('formControl') formControl!: FormControl;
 
@@ -46,8 +46,6 @@ export class UploadFileComponent implements OnInit {
   ngOnInit(): void {}
 
   checkType(file: File | any) {
-    console.log(this.oldAttachments);
-
     this.fileType = file.type.split('/').pop().toLowerCase();
     if (this.allowedTypes.includes(this.fileType)) {
       this.errorType = '';
@@ -59,8 +57,6 @@ export class UploadFileComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.oldAttachments);
-    console.log(changes['oldDocumentAttachments'])
     if (this.editMode) {
       if (changes['oldAttachments'].previousValue !== undefined) {
         if (
@@ -70,8 +66,7 @@ export class UploadFileComponent implements OnInit {
           if (this.oldAttachments) {
             this.selectedFiles = this.oldAttachments;
             if (this.singleFile) {
-              this.imgURL = this.oldAttachments[0];
-              console.log(this.imgURL);
+              this.fileUrl = this.oldAttachments[0];
             }
           }
         }
@@ -81,7 +76,7 @@ export class UploadFileComponent implements OnInit {
 
   checkFile(file: any) {
     if (!file.type) {
-      const fileType = file.attachment.split('.');
+      const fileType = file.attachment.split('.')[1];
       if (fileType !== 'pdf') {
         return true;
       } else {
@@ -114,14 +109,18 @@ export class UploadFileComponent implements OnInit {
         if (this.selectedFiles.length) {
           isFileValid = this.checkType(event.target.files[0]);
         } else {
-          this.imgURL = '';
+          this.fileUrl = '';
         }
       }
       if (this.selectedFiles.length && isFileValid) {
         let reader = new FileReader();
         reader.readAsDataURL(this.selectedFiles[0]);
         reader.onload = (_event) => {
-          this.imgURL = reader.result;
+          if (this.selectedFiles[0].type === 'application/pdf') {
+            this.fileUrl = 'assets/images/pdf-svg.svg';
+          } else {
+            this.fileUrl = reader.result;
+          }
         };
       }
     } else {
@@ -149,7 +148,7 @@ export class UploadFileComponent implements OnInit {
   handleRemoveFile(index: number) {
     if (this.singleFile) {
       this.fileDropRef.nativeElement.value = '';
-      this.imgURL = '';
+      this.fileUrl = '';
     } else {
       if (this.selectedFiles[index].id) {
         this.onRemoveAttachment.emit({

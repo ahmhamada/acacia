@@ -151,7 +151,13 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       .getRealEstateById(this.realestateId)
       .subscribe((res: any) => {
         this.addEditProperty.patchValue(res);
-        this.oldDocumentAttachments.push(res.propertyDocument.attachment);
+        this.oldDocumentAttachments = [
+          ...this.oldDocumentAttachments,
+          {
+            attachment: res.propertyDocument.attachment,
+            id: 1,
+          }
+        ];
         res.realEstateAttachments?.map((attachment: any) => {
           this.realEstateAttachments.push(attachment.attachment);
         });
@@ -275,7 +281,6 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
 
   handleNext() {
     this.selectedIndex < 5 && this.selectedIndex++;
-    console.log(this.addEditProperty);
   }
 
   handleBack() {

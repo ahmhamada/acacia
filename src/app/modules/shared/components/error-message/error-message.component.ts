@@ -40,7 +40,6 @@ export class ErrorMessageComponent implements OnInit {
         }
       }
     }
-    console.log(errors)
 
     return errors;
   }

@@ -14,6 +14,7 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { LookupsService } from './services/lookups/lookups.service';
 import { AttachmentsService } from './services/attachments/attchments.service';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AttachmentsService } from './services/attachments/attchments.service';
     LocaleDatePickerComponent,
     UploadFileComponent,
     ConfirmDialogComponent,
+    FileUploaderComponent,
   ],
   imports: [CommonModule, TranslateModule, MaterialModule, ReactiveFormsModule],
   exports: [
@@ -41,6 +43,7 @@ import { AttachmentsService } from './services/attachments/attchments.service';
     LocaleDatePickerComponent,
     UploadFileComponent,
     ConfirmDialogComponent,
+    FileUploaderComponent,
   ],
   providers: [LookupsService, AttachmentsService],
 })

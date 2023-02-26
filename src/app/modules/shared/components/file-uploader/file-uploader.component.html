@@ -1,0 +1,37 @@
+<div class="file-uploader-container" [class.drag-over]="dragOver">
+    <div class="drop-box" (drop)="onFilesDropped($event)" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)">
+        <input type="file" #fileInput (change)="onFileSelected($event)" [multiple]="multiple"
+            accept=".pdf, .png, .tiff, .jpeg, .jpg">
+
+        <div class="drop-text" (click)="fileInput.click()">
+            <img src="assets/images/upload-icon.png" alt="File upload icon">
+            <span *ngIf="!files.length">Drag &amp; drop files here or click to browse</span>
+        </div>
+    </div>
+
+    <div class="file-preview-container" *ngIf="files.length">
+        <div class="file-preview" *ngFor="let file of files; let i = index">
+            <div class="file-icon">
+                <img src="{{ getFileIcon(file) }}" alt="File icon">
+            </div>
+
+            <div class="file-info">
+                <div class="file-name">{{ getFileName(file) }}</div>
+            </div>
+
+            <div class="file-actions">
+                <button type="button" class="remove-file" (click)="removeFile(i)">
+                    <!-- <img src="assets/icons/delete-file.svg" alt="Delete file icon"> -->
+                    <span>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </button>
+            </div>
+
+            <div class="file-preview-image" *ngIf="file['preview']">
+                <img [src]="getFilePreview(file)" alt="File preview">
+            </div>
+        </div>
+    </div>
+</div>
