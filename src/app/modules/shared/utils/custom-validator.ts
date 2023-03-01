@@ -34,7 +34,14 @@ export function exceedValueValidator(
 export function tenDigitValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value = control.value;
-    const isValid = /^\d{10}$/.test(value);
+    const isValid = /^[0-9]{10}$/.test(value);
     return isValid ? null : { tenDigit: true };
+  };
+}
+
+export function numbersOnlyValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const isNumber = /^[0-9]*$/.test(control.value);
+    return isNumber ? null : { numbersOnly: true };
   };
 }

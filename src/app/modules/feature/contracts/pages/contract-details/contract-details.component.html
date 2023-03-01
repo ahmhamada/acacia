@@ -3,8 +3,8 @@
         <div class="content-section">
             <div class="download-wrapper">
                 <h4 class="tab-headline">{{'CONTRACTS.CONTRACT_DURATION' | translate}}</h4>
-                <a [href]="'https://acacia.azurewebsites.net/api/Contract/GenerateContractFile/' + contractId" download
-                    target="_blank" class="btn-fill" download>
+                <a [href]="Url.dev + 'api/Contract/GenerateContractFile/' + contractId" download target="_blank"
+                    class="btn-fill" download>
                     <i class="mx-2 fa fa-light fa-download"></i>
                     {{'ACTIONS.DOWNLOAD_CONTRACT' | translate}}
                 </a>

@@ -26,7 +26,11 @@ import { LookupsService } from 'src/app/modules/shared/services/lookups/lookups.
 import { RealEstateSearch } from '../../_models/realestate-search-model';
 import { PaymentWay } from '../../../../shared/enums/payment-way.enum';
 import { ContractType } from '../../enums/contract-type.enum';
-import { exceedValueValidator } from 'src/app/modules/shared/utils/custom-validator';
+import {
+  exceedValueValidator,
+  numbersOnlyValidator,
+  tenDigitValidator,
+} from 'src/app/modules/shared/utils/custom-validator';
 import { ContractPayload } from '../../_models/contract-payload.model';
 import { generateDateDuration } from 'src/app/modules/shared/utils/generate-date-duration';
 import { generateInstallmentPlanTable } from 'src/app/modules/shared/utils/generate-installment-table';
@@ -88,20 +92,12 @@ export class AddContractComponent implements OnInit, OnDestroy {
         tenantName: ['', [Validators.required]],
         tenantNationalId: [
           null,
-          [
-            Validators.required,
-            Validators.maxLength(10),
-            Validators.minLength(10),
-          ],
+          [Validators.required, numbersOnlyValidator(), tenDigitValidator()],
         ],
         tenantBirthDay: ['', [Validators.required]],
         tenantTelephone: [
           null,
-          [
-            Validators.required,
-            Validators.maxLength(10),
-            Validators.minLength(10),
-          ],
+          [Validators.required, , numbersOnlyValidator(), tenDigitValidator()],
         ],
         email: ['', [Validators.required, Validators.email]],
         idPhoto: ['', [Validators.required]],
@@ -301,6 +297,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
 
   handleNext() {
     this.selectedIndex < 5 && this.selectedIndex++;
+    console.log(this.addEditContract.value);
   }
 
   handleBack() {

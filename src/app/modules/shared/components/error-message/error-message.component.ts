@@ -17,6 +17,8 @@ export class ErrorMessageComponent implements OnInit {
       ErrorMessageComponent.checkPatternMessage(params.requiredPattern),
     email: () => 'LABELS.FORM.VALIDATIONS.REQUIRED_EMAIL',
     notmatched: () => 'LABELS.FORM.VALIDATIONS.MIS_MATCH',
+    numbersOnly: () => 'LABELS.FORM.VALIDATIONS.NUMBERS_ONLY',
+    tenDigit:() => 'LABELS.FORM.VALIDATIONS.TEN_DIGITS_VALUE'
   };
   constructor() {}
 

@@ -15,7 +15,9 @@
         "MIN": "قيمة البيان لابد ان تكون اصغر من ",
         "MIS_MATCH": "كلمة المرور غير متطابقة",
         "FILE_NOT_ALLOWED": "صيغة الملف غير مدعومة",
-        "COMMISSION_CAN_NOT_EXCEED": "لا يمكن ان تتجاوز العموله 2.5%   من \"رسم الايجار السنوي للوحدة \""
+        "COMMISSION_CAN_NOT_EXCEED": "لا يمكن ان تتجاوز العموله 2.5%   من \"رسم الايجار السنوي للوحدة \"",
+        "NUMBERS_ONLY": "هذا البيان يدعم ارقام فقط",
+        "TEN_DIGITS_VALUE": "من فضلك ادخل 10 ارقام فقط"
       },
       "FULL_NAME": "الاسم بالكامل",
       "USER_NAME": "اسم المستخدم",
@@ -94,7 +96,7 @@
     "DELETE_REAL_ESTATE": "حذف عقار",
     "REMOVE": "حذف",
     "DELETE_CONTRACT": "حذف عقد",
-    "DOWNLOAD_CONTRACT":"تحميل العقد"
+    "DOWNLOAD_CONTRACT": "تحميل العقد"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "وثائق الملكية",
@@ -127,7 +129,7 @@
     "UNIT_TYPE": "نوع الوحدة",
     "FLOOR_NUMBER": "رقم الطابق",
     "UNIT_AREA": "مساحة الوحدة",
-    "UNIT_FINISHING": "تشطيب الوحدة",
+    "UNIT_FINISHING": "نوع الفرش",
     "BUILD_DATE": "تاريخ الانشاء",
     "NUMBER_OF_ROOMS": "عدد الغرف",
     "FURNISHED": "مؤثث / مفروش",

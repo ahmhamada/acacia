@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { generateDateDuration } from 'src/app/modules/shared/utils/generate-date-duration';
 import { generateInstallmentPlanTable } from 'src/app/modules/shared/utils/generate-installment-table';
+import { Url } from 'src/app/modules/shared/_models/url.enum';
 import { PaymentWay } from '../../../../shared/enums/payment-way.enum';
 import { ContractsLogicService } from '../../services/contracts-logic/contracts-logic.service';
 import { CalculatedContractDuration } from '../../_models/calculated-contract-duration.model';
@@ -85,6 +86,10 @@ export class ContractDetailsComponent implements OnInit {
       this.contractDetails?.waterFixedFees ||
       this.contractDetails?.waterConsumption
     );
+  }
+
+  get Url() {
+    return Url;
   }
 
   // onDownloadFile() {

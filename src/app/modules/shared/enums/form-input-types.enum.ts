@@ -13,4 +13,5 @@ export enum InputTypes {
   RADIO = 'radio',
   PERCENTAGE = 'number',
   LOCALE_DATE_PICKER = 'locale-date-picker',
+  TEL = 'tel'
 }

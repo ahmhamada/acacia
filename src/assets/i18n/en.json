@@ -15,7 +15,9 @@
         "MIN": "Value must be less than",
         "MIS_MATCH": "Password does not match",
         "FILE_NOT_ALLOWED": "This file type is not allowed",
-        "COMMISSION_CAN_NOT_EXCEED": "Commission can’t exceed 2.5% of  Annual Rental Fees for the Unit "
+        "COMMISSION_CAN_NOT_EXCEED": "Commission can’t exceed 2.5% of  Annual Rental Fees for the Unit ",
+        "NUMBERS_ONLY": "Only numbers allowed",
+        "TEN_DIGITS_VALUE": "Please enter a 10-digit value"
       },
       "FULL_NAME": "Full Name",
       "USER_NAME": "User Name",
@@ -29,7 +31,6 @@
       "END_DATE": "End Date",
       "RENTAL_PERIOD": "Rental Period",
       "TELEPHONE": "Telephone",
-      "VAT": "VAT",
       "TOTAL_AMOUNT_OF_TAX": "Total Amount Of Tax"
     },
     "AREA": "Area",
@@ -60,7 +61,8 @@
     "CODE": "Code",
     "YES": "Yes",
     "NO": "No",
-    "VIEW_DETAILS": "View Details"
+    "VIEW_DETAILS": "View Details",
+    "VAT": "VAT"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -94,7 +96,7 @@
     "DELETE_REAL_ESTATE": "Delete Real Estate",
     "DELETE_CONTRACT": "Delete Contract",
     "REMOVE": "Remove",
-    "DOWNLOAD_CONTRACT":"Download Contract"
+    "DOWNLOAD_CONTRACT": "Download Contract"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "Property Documents",
