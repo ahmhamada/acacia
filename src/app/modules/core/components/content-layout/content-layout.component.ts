@@ -26,6 +26,12 @@ export class ContentLayoutComponent implements OnInit {
       iconClasses: 'fa fa-light fa-file-signature fa-fw',
       route: '/contracts/commercial',
     },
+    {
+      id: 'HANDING_OVER_UNITS',
+      label: 'LABELS.HANDING_OVER_UNITS',
+      iconClasses: 'fa fa-light fa-building-flag fa-fw',
+      route: '/units/handing',
+    },
   ];
   constructor(private translationService: TranslationService) {
     // translationService.setLanguage('en');

@@ -9,6 +9,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import { Url } from '../../_models/url.enum';
 
 @Component({
   selector: 'upload-file',
@@ -165,5 +166,9 @@ export class UploadFileComponent implements OnInit {
     !this.selectedFiles.length && this.formControl?.reset();
     this.formControl?.markAsTouched();
     this.formControl?.markAsDirty();
+  }
+
+  get Url() {
+    return Url;
   }
 }

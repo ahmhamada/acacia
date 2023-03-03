@@ -37,15 +37,35 @@
                                         [isArabicDatePicker]="false"
                                         *ngIf="currentLang !== Lang.arabic"></locale-date-picker>
                                 </div>
-                                <!-- <div class="form-wrapper">
-                                    <file-uploader [multiple]="true" [files]="oldDocumentAttachments"></file-uploader>
-                                </div> -->
-                                <div class="form-control-wrapper">
+                                <div class="form-control-wrapper mb-3">
                                     <upload-file label="PROPERTY.UPLOAD_A_COPY_OF_PROPERTY_DOCUMENT" [singleFile]="true"
                                         [formGroup]="addEditProperty"
                                         [formControl]="formControl('propertyDocument','attachment')"
                                         [editMode]="editMode" [oldAttachments]="oldDocumentAttachments"
-                                        [allowedTypes]="allowedTypes" (onAttachmentChange)="onLogoChange($event)"
+                                        [allowedTypes]="allowedTypes"
+                                        (onAttachmentChange)="onSingleChange($event,'propertyDocument', 'attachment')"
+                                        canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
+                                </div>
+                                <div class="form-control-wrapper mb-3">
+                                    <upload-file label="PROPERTY.INSTRUMENT_COPY" [singleFile]="true"
+                                        [formGroup]="addEditProperty"
+                                        [formControl]="formControl('propertyDocument','instrumentPhoto')"
+                                        [editMode]="editMode" [oldAttachments]="oldInstrumentAttachments"
+                                        [allowedTypes]="allowedTypes"
+                                        (onAttachmentChange)="onSingleChange($event,'propertyDocument', 'instrumentPhoto')"
+                                        canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
+                                </div>
+                                <div class="form-control-wrapper mb-3">
+                                    <upload-file label="PROPERTY.LICENSE_COPY" [singleFile]="true"
+                                        [formGroup]="addEditProperty"
+                                        [formControl]="formControl('propertyDocument','licensePhoto')"
+                                        [editMode]="editMode" [oldAttachments]="oldLicenseAttachments"
+                                        [allowedTypes]="allowedTypes"
+                                        (onAttachmentChange)="onSingleChange($event,'propertyDocument', 'licensePhoto')"
                                         canAccept="application/pdf,image/png,image/jpeg,image/tiff
                             ">
                                     </upload-file>
@@ -70,6 +90,15 @@
                                             [FormControl]="formControl('owner','name')">
                                         </form-input>
                                     </div>
+                                </div>
+                                <div class="form-control-wrapper mb-4">
+                                    <upload-file label="CONTRACTS.UPLOAD_A_COPY_OF_ID_PHOTO" [singleFile]="true"
+                                        [formGroup]="addEditProperty" [formControl]="formControl('owner','idPhoto')"
+                                        [editMode]="editMode" [oldAttachments]="oldIdPhotoAttachments"
+                                        [allowedTypes]="allowedTypes" (onAttachmentChange)="onSingleChange($event,
+                                        'owner','idPhoto')" canAccept="application/pdf,image/png,image/jpeg,image/tiff
+                            ">
+                                    </upload-file>
                                 </div>
                                 <div class="form-control-wrapper">
                                     <locale-date-picker [label]="'LABELS.FORM.DATE_OF_BIRTH'"
@@ -183,17 +212,17 @@
                                             [FormControl]="formControl('realEstateDetails','address')">
                                         </form-input>
                                     </div>
-                                    <div class="form-control-wrapper">
+                                    <!-- <div class="form-control-wrapper">
                                         <form-input [label]="'PROPERTY.BUILDING_NUMBER'" [type]="InputTypes.TEXT"
                                             [FormControl]="formControl('realEstateDetails','buildingNumber')">
                                         </form-input>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="form-control-wrapper">
+                                <!-- <div class="form-control-wrapper">
                                     <form-input [label]="'PROPERTY.ADDITIONAL_NUMBER'" [type]="InputTypes.TEXT"
                                         [FormControl]="formControl('realEstateDetails','addationalNumber')">
                                     </form-input>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </form>

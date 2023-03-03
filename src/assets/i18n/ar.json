@@ -62,7 +62,11 @@
     "NO": "لا",
     "VIEW_DETAILS": "عرض التفاصيل",
     "VAT": "الرقم الضريبي",
-    "TOTAL_AMOUNT_OF_TAX": "اجمالي الضريبة"
+    "TOTAL_AMOUNT_OF_TAX": "اجمالي الضريبة",
+    "HANDING_OVER_UNITS": "تسليم الوحدات",
+    "TENANT_DETAILS": "بيانات المستأجر",
+    "LESSOR_DETAILS": "بيانات المؤجر",
+    "FORM_DOWNLOAD":"تحميل النموذج"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -96,7 +100,10 @@
     "DELETE_REAL_ESTATE": "حذف عقار",
     "REMOVE": "حذف",
     "DELETE_CONTRACT": "حذف عقد",
-    "DOWNLOAD_CONTRACT": "تحميل العقد"
+    "DOWNLOAD_CONTRACT": "تحميل العقد",
+    "ACTIVATE_CONTRACT":"تفعيل العقد",
+    "CONFIRM":"تأكيد",
+    "ADD_HANDING_FORM": "اضافة نموذج تسليم"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "وثائق الملكية",
@@ -115,6 +122,8 @@
     "NATIONAL_ID": "رقم الهوية",
     "PROPERTY_NUMBER": "رقم العقار",
     "PROPERTY_TYPE": "نوع العقار",
+    "INSTRUMENT_COPY": "تحميل صورة الصك",
+    "LICENSE_COPY": "تحميل صورة الرخصة",
     "PROPERTY_USAGE": "استخدام العقار",
     "NUMBER_OF_FLOORS": "اجمالي عدد الطوابق",
     "TOTAL_NUMBER_OF_UNITS": "عدد الوحدات",
@@ -163,6 +172,7 @@
     "CONFIRMATION": "التأكيد",
     "CHOOSE_THE_PROPERTY": "اختيار العقار",
     "CHOOSE_THE_UNIT": "اختيار الوحدة",
+    "CHOOSE_THE_CONTRACT": "اختيار العقد",
     "TENANT": "المستأجر",
     "TENANT_NAME": "اسم المستأجر",
     "ANNUAL_FEES_FOR_RENTAL": "رسم الايجار السنوي للوحدة",
@@ -193,5 +203,30 @@
     "UPLOAD_A_COPY_OF_CONTRACT_FILE": "تحميل مرفق ملف العقد",
     "UPLOAD_A_COPY_OF_ID_PHOTO": "تحميل صورة الهوية",
     "CONTRACT_STATUS": "حالة العقد"
+  },
+  "UNITS": {
+    "UNIT_HANDING_STATUS": "حالة الوحدة الايجارية عند التسليم",
+    "CEILING_AND_PAINTING": "دهان السَّقف والجدران",
+    "FLOORS": "الأرضيَّات",
+    "BATHROOMS": "الحمَّامات والأطقم الصِّحيَّة",
+    "KITCHEN": "المطبخ",
+    "ROOMS_AND_ANNEXES": "الغرف والملاحق",
+    "ELECTRICITY_AND_LIGHTING": "الكهرباء والاضاءة",
+    "PLUMBING_AND_EXTENSIONS": "السِّباكة والتَّمديدات",
+    "WATER_TANK": "خزَّان المياه",
+    "DOORS": "الأبواب",
+    "WINDOWS": "النَّوافذ",
+    "AIR_CONDITIONING": "أجهزة التَّكييف",
+    "INTERCOM": "الإنتركوم (النداء الخارجي)",
+    "GYPSUM": "أعمال الجبس",
+    "KEYS": "المفاتيح",
+    "GARAGE": "الكراج",
+    "OTHERS": "أخري",
+    "ITEMS": "البند",
+    "CONDITION": "الحالة",
+    "ACCEPTABLE": "مقبول",
+    "DAMAGED": "تالف",
+    "NOTES": "الملاحظات",
+    "REPAIR_COST": "تكلفة الإصلاح"
   }
 }

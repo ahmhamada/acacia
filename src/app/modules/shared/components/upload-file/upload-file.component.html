@@ -30,7 +30,7 @@
                     <img *ngIf="selectedFiles[0].type === 'application/pdf' && singleFile && !editMode || fileUrl?.attachment?.split('.')[1] === 'pdf'"
                         src="assets/images/pdf-svg.svg" width="154px" height="140px">
 
-                    <img [src]="fileUrl?.attachment ? 'https://acacia.azurewebsites.net/api/Attachment/Download/' + fileUrl?.attachment : fileUrl"
+                    <img [src]="fileUrl?.attachment ? Url.dev + 'api/Attachment/Download/' + fileUrl?.attachment : fileUrl"
                         width="155px" height="140px"
                         *ngIf="singleFile && editMode && fileUrl?.attachment?.split('.')[1] !== 'pdf'">
                     <span class="file-name">

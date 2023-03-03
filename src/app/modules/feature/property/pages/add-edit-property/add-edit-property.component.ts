@@ -42,6 +42,9 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
   subs = new Subscriptions();
   editMode: boolean = false;
   oldDocumentAttachments: any[] = [];
+  oldIdPhotoAttachments: any[] = [];
+  oldLicenseAttachments: any[] = [];
+  oldInstrumentAttachments: any[] = [];
   oldAttachments: any[] = [];
   attachment: any;
   propertyTypes$!: any;
@@ -65,9 +68,11 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
   ) {
     this.addEditProperty = this.fb.group({
       propertyDocument: this.fb.group({
-        documentTypeId: [null, [Validators.required]],
-        documentNumber: ['', [Validators.required]],
-        releaseDate: ['', [Validators.required]],
+        documentTypeId: [null],
+        instrumentPhoto: [''],
+        licensePhoto: [''],
+        documentNumber: [''],
+        releaseDate: [''],
         attachment: ['', [Validators.required]],
         id: [null],
       }),
@@ -76,6 +81,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
         ownerNationalId: [null, [Validators.required]],
         ownerBirthDay: ['', [Validators.required]],
         districtId: ['', [Validators.required]],
+        idPhoto: [''],
         city: [''],
         area: [''],
         id: [null],
@@ -86,8 +92,8 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
         numOfFloors: [null, [Validators.required]],
         numOfProperty: [null, [Validators.required]],
         address: ['', [Validators.required]],
-        buildingNumber: ['', [Validators.required]],
-        addationalNumber: ['', [Validators.required]],
+        // buildingNumber: ['', [Validators.required]],
+        // addationalNumber: ['', [Validators.required]],
         buildDate: ['', [Validators.required]],
         realEstateTypeId: [null, [Validators.required]],
         realEstateUseId: [null, [Validators.required]],
@@ -130,7 +136,11 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
     this.realestateId && this.getRealEstateInfo();
   }
 
-  onLogoChange(selectedFiles: any) {
+  onSingleChange(
+    selectedFiles: any,
+    formGroupKey: string,
+    formControlKey: string
+  ) {
     this.attachment = {};
     const formData = new FormData();
     const file = selectedFiles[0];
@@ -140,8 +150,8 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       .uploadAttachments(this.attachment)
       .subscribe((res) => {
         this.addEditProperty
-          .get('propertyDocument')
-          ?.get('attachment')
+          .get(formGroupKey)
+          ?.get(formControlKey)
           ?.patchValue(res.fileName);
       });
   }
@@ -156,7 +166,28 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
           {
             attachment: res.propertyDocument.attachment,
             id: 1,
-          }
+          },
+        ];
+        this.oldIdPhotoAttachments = [
+          ...this.oldIdPhotoAttachments,
+          {
+            attachment: res.owner.idPhoto,
+            id: 1,
+          },
+        ];
+        this.oldLicenseAttachments = [
+          ...this.oldLicenseAttachments,
+          {
+            attachment: res.propertyDocument.licensePhoto,
+            id: 1,
+          },
+        ];
+        this.oldInstrumentAttachments = [
+          ...this.oldInstrumentAttachments,
+          {
+            attachment: res.propertyDocument.instrumentPhoto,
+            id: 1,
+          },
         ];
         res.realEstateAttachments?.map((attachment: any) => {
           this.realEstateAttachments.push(attachment.attachment);
@@ -221,7 +252,7 @@ export class AddEditPropertyComponent implements OnInit, OnDestroy {
       propertyUseId: ['', [Validators.required]],
       floorNumber: ['', [Validators.required]],
       area: ['', [Validators.required]],
-      buildDate: ['', [Validators.required]],
+      buildDate: [''],
       propertyFinish: ['', [Validators.required]],
       roomsNo: [null, [Validators.required]],
       furnished: [false, [Validators.required]],

@@ -1,0 +1,47 @@
+.page-container {
+  .download-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      width: fit-content;
+      margin-bottom: 18px;
+    }
+  }
+  .details-container {
+    .details-row {
+      justify-content: unset;
+      .details-col {
+        width: 33%;
+        align-items: flex-start;
+      }
+    }
+    h6 {
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      thead {
+        background: #4e55a2;
+        color: #fff;
+      }
+      tbody {
+        background-color: #fff;
+      }
+      tr {
+        text-align: center;
+        td,
+        th {
+          padding: 15px 0;
+          width: 230px;
+          max-width: 230px;
+        }
+        .no-data-col {
+          height: 250px;
+        }
+      }
+    }
+  }
+}

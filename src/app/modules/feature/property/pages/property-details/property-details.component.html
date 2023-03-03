@@ -67,15 +67,15 @@
                         <span>{{'PROPERTY.PROPERTY_USAGE' | translate}}</span>
                         <span>{{propertyDetails?.realEstateUse?.name}}</span>
                     </div>
-                    <div class="details-col">
+                    <div class="details-col" *ngIf="propertyDetails?.buildDate">
                         <span>{{'PROPERTY.BUILD_DATE' | translate}}</span>
                         <span>{{propertyDetails?.buildDate | date:'yyyy-MM-dd'}}</span>
                     </div>
                 </div>
                 <div class="details-row">
                     <div class="details-col">
-                        <span>{{'PROPERTY.PROPERTY_NUMBER' | translate}}</span>
-                        <span>{{propertyDetails?.buildingNumber}}</span>
+                        <!-- <span>{{'PROPERTY.PROPERTY_NUMBER' | translate}}</span>
+                        <span>{{propertyDetails?.buildingNumber}}</span> -->
                     </div>
                     <div class="details-col">
                         <span>{{'PROPERTY.NUMBER_OF_FLOORS' | translate}}</span>
@@ -100,12 +100,12 @@
                         <span>{{propertyDetails?.buildingNumber}}</span>
                     </div>
                 </div>
-                <div class="details-row">
+                <!-- <div class="details-row">
                     <div class="details-col">
                         <span>{{'PROPERTY.ADDITIONAL_NUMBER' | translate}}</span>
                         <span>{{propertyDetails?.addationalNumber}}</span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="content-section mt-3">

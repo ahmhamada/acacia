@@ -10,6 +10,7 @@ import { ConfirmDialogComponent } from 'src/app/modules/shared/components/confir
 import { ConfirmationDialog } from 'src/app/modules/shared/_models/dialog-confirmation.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ContractType } from '../../enums/contract-type.enum';
+import { ContractStatus } from '../../enums/contract-status.enum';
 
 @Component({
   selector: 'contracts-listing',
@@ -31,7 +32,7 @@ export class ContractsListingComponent implements OnInit {
       pageIndex: 1,
       pageSize: 8,
     },
-    contractType: ContractType.Residential
+    contractType: ContractType.Residential,
   };
   constructor(
     private translationService: TranslationService,
@@ -93,7 +94,40 @@ export class ContractsListingComponent implements OnInit {
       });
   }
 
+  handleContractStatus(contractId: number) {
+    const dialogData: ConfirmationDialog = {
+      title: `ACTIONS.ACTIVATE_CONTRACT`,
+      message: 'LABELS.FORM.ARE_YOU_SURE',
+      actionLabel: 'ACTIONS.CONFIRM',
+      iconClass: 'fa fa-light fa-triangle-exclamation'
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '550px',
+      minWidth: '500px',
+      data: dialogData,
+    });
+    const payload = {
+      id: contractId,
+      contractStatus: ContractStatus.Active,
+    };
+    return dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.contractsLogicService
+          .updateContractStatus(payload)
+          .subscribe((res) => {
+            this.searchContracts();
+          });
+      } else {
+        return res;
+      }
+    });
+  }
+
   get Lang() {
     return Lang;
+  }
+
+  get ContractStatus() {
+    return ContractStatus;
   }
 }

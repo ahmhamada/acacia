@@ -1,61 +1,46 @@
 <div class="page-container contracts-listing">
     <div class="page-header">
-        <h4>{{'LABELS.RESIDENTIAL_CONTRACTS' | translate }}</h4>
+        <h4>{{'LABELS.HANDING_OVER_UNITS' | translate }}</h4>
         <div class="btn-wrapper">
-            <button class="ac-btn btn-fill" [routerLink]="['/contracts/residential/add-contract']">
-                {{"CONTRACTS.ADD_NEW_CONTRACT" | translate }}
+            <button class="ac-btn btn-fill" [routerLink]="['/units/handing/add-request']">
+                {{"ACTIONS.ADD_HANDING_FORM" | translate }}
             </button>
         </div>
     </div>
     <div class="page-content">
         <section class="table-wrapper">
-            <data-table class="preview__table" [dataSource]="(propertyTable$ | async)!" *ngIf="propertyTable$"
+            <data-table class="preview__table" [dataSource]="(unitsRequestsTable$ | async)!" *ngIf="unitsRequestsTable$"
                 (pageChange)="onPageChange($event)">
                 <ng-template #tableHead>
                     <tr>
                         <th>{{'LABELS.OWNER_NAME' | translate}}</th>
-                        <th>{{'LABELS.REAL_ESTATE_NAME' | translate}}</th>
                         <th>{{'CONTRACTS.TENANT_NAME' | translate}}</th>
-                        <th>{{'PROPERTY.UNIT_NUMBER' | translate}}</th>
                         <th>{{'LABELS.CODE' | translate}}</th>
-                        <th>{{'CONTRACTS.CONTRACT_STATUS' | translate}}</th>
                         <th>{{'ACTIONS.ACTIONS' | translate}}</th>
                     </tr>
                 </ng-template>
                 <ng-template #tableRows let-row>
                     <tr>
                         <td>
-                            {{row?.owner}}
+                            {{row?.ownerName}}
                         </td>
                         <td>
-                            {{row?.realEstateName}}
-                        </td>
-                        <td>
-                            {{row?.tenant}}
-                        </td>
-                        <td>
-                            {{row?.propertyNumber}}
+                            {{row?.tenantName}}
                         </td>
                         <td>
                             {{row?.code}}
-                        </td>
-                        <td>
-                            {{row?.contractStatus}}
                         </td>
                         <td RtlDir>
                             <button mat-button [matMenuTriggerFor]="menu">
                                 <i class="fa-solid fa-ellipsis"></i>
                             </button>
                             <mat-menu #menu="matMenu" RtlDir>
-                                <button mat-menu-item RtlDir
-                                    [routerLink]="['/contracts/residential/details', row?.id]">{{'LABELS.VIEW_DETAILS' |
+                                <button mat-menu-item RtlDir [routerLink]="['/units/handing/details/', row?.contractId]"
+                                    [queryParams]="{isCommercial: true}">{{'LABELS.VIEW_DETAILS' |
                                     translate}}</button>
-                                <button *ngIf="row?.contractStatus === 'Draft'" mat-menu-item RtlDir (click)="handleContractStatus(row?.id)">{{'ACTIONS.ACTIVATE_CONTRACT' |
-                                    translate}}</button>
-                                <button mat-menu-item RtlDir (click)="handleRemoveContract(row.id)">{{'ACTIONS.DELETE' |
+                                <button mat-menu-item RtlDir (click)="handleRemoveUnitRequest(row?.contractId)">{{'ACTIONS.DELETE' |
                                     translate}}</button>
                             </mat-menu>
-
                         </td>
                     </tr>
                 </ng-template>

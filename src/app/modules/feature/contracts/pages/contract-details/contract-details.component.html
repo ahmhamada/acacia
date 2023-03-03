@@ -119,7 +119,7 @@
                         <span>{{'LABELS.FORM.TELEPHONE' | translate}}</span>
                         <span>{{contractDetails?.tenant?.telephone}}</span>
                     </div>
-                    <div class="details-col">
+                    <div class="details-col" *ngIf="contractDetails?.tenant?.email">
                         <span>{{'LABELS.FORM.EMAIL' | translate}}</span>
                         <span>{{contractDetails?.tenant?.email}}</span>
                     </div>

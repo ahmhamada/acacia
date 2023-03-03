@@ -1,0 +1,92 @@
+<div class="page-container details-page" RtlDir>
+    <div class="page-content">
+        <div class="content-section">
+            <div class="download-wrapper">
+                <h4 class="tab-headline">{{'LABELS.HANDING_OVER_UNITS' | translate}}</h4>
+                <!-- [href]="Url.dev + 'api/Contract/GenerateContractFile/' + contractId" download target="_blank" -->
+                <a class="btn-fill" download>
+                    <i class="mx-2 fa fa-light fa-download"></i>
+                    {{'LABELS.FORM_DOWNLOAD' | translate}}
+                </a>
+            </div>
+            <div class="details-container">
+                <h6 class="mb-4">{{'LABELS.TENANT_DETAILS' | translate}}:
+                </h6>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'CONTRACTS.TENANT_NAME' | translate}}</span>
+                        <span>{{contractDetails?.tenantName }}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NATIONAL_ID' | translate}}</span>
+                        <span>{{contractDetails?.tenantNationalId }}</span>
+                    </div>
+                </div>
+
+                <h6 class="mb-4">{{'LABELS.LESSOR_DETAILS' | translate}}:
+                </h6>
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.OWNER_NAME' | translate}}</span>
+                        <span>{{contractDetails?.ownerName }}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'PROPERTY.NATIONAL_ID' | translate}}</span>
+                        <span>{{contractDetails?.ownerNationalId }}</span>
+                    </div>
+                </div>
+
+                <h6 class="mb-4">{{'UNITS.UNIT_HANDING_STATUS' | translate}}:
+                </h6>
+                <div class="details-row">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{'UNITS.ITEMS' | translate}}
+                                </th>
+                                <th>
+                                    {{'UNITS.CONDITION' | translate}}
+                                </th>
+                                <th>
+                                    {{'UNITS.NOTES' | translate}}
+                                </th>
+                                <th>
+                                    {{'UNITS.REPAIR_COST' | translate}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="contractDetails?.items.length">
+
+                                <tr *ngFor="let item of contractDetails?.items">
+                                    <td>
+                                        {{item['item']}}
+                                    </td>
+                                    <td>
+                                        {{item['acceptance'] ? ("UNITS.ACCEPTABLE" | translate) : ("UNITS.DAMAGED" |
+                                        translate)}}
+                                    </td>
+                                    <td>
+                                        {{item['note'] ? item['note'] : '-'}}
+
+                                    </td>
+                                    <td>
+                                        {{item['fixFees'] ? item['fixFees'] : '-'}}
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="!contractDetails?.items.length">
+                                <tr>
+                                    <td colspan="4" class="no-data-col">
+                                        {{'LABELS.NO_DATA' | translate}}
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

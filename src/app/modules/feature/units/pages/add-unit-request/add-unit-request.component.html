@@ -1,0 +1,100 @@
+<div class="add-edit-page" RtlDir>
+    <div class="content-container">
+        <form [formGroup]="addUnitRequest" autocomplete="off" (ngSubmit)="onAddRequest(addUnitRequest)">
+            <div class="tab-container">
+                <h4 class="tab-headline">{{'LABELS.HANDING_OVER_UNITS' | translate}}</h4>
+
+                <div class="">
+                    <div class="form-control-wrapper">
+                        <form-input [label]="'CONTRACTS.CHOOSE_THE_CONTRACT' | translate" [type]="InputTypes.SELECT"
+                            [selectOptions]="{
+            list: (contractsOptions$ | async)!,
+            key: 'id',
+            value: 'code'
+            }" [FormControl]="formControl('contractId')" (selectedOption)="onContractSelectionChange($event)">
+                        </form-input>
+                    </div>
+                    <h6>{{'LABELS.TENANT_DETAILS' | translate}}:
+                    </h6>
+                    <div class="form-row">
+                        <div class="form-control-wrapper">
+                            <form-input [label]="'CONTRACTS.TENANT_NAME'" [type]="InputTypes.TEXT"
+                                [FormControl]="formControl('tenantName')" [isReadonly]="true">
+                            </form-input>
+                        </div>
+                        <div class="form-control-wrapper">
+                            <form-input [label]="'PROPERTY.NATIONAL_ID'" [type]="InputTypes.TEXT"
+                                [FormControl]="formControl('tenantId')" [isReadonly]="true">
+                            </form-input>
+                        </div>
+                    </div>
+                    <h6>{{'LABELS.LESSOR_DETAILS' | translate}}:
+                    </h6>
+                    <div class="form-row">
+                        <div class="form-control-wrapper">
+                            <form-input [label]="'LABELS.OWNER_NAME'" [type]="InputTypes.TEXT"
+                                [FormControl]="formControl('ownerName')" [isReadonly]="true">
+                            </form-input>
+                        </div>
+                        <div class="form-control-wrapper">
+                            <form-input [label]="'PROPERTY.NATIONAL_ID'" [type]="InputTypes.TEXT"
+                                [FormControl]="formControl('ownerId')" [isReadonly]="true">
+                            </form-input>
+                        </div>
+                    </div>
+                    <div formArrayName="items" *ngIf="handingOverFormFields.length">
+                        <h6 class="mb-4">{{'UNITS.UNIT_HANDING_STATUS' | translate}}:
+                        </h6>
+
+                        <div class="form-wrapper" *ngFor="let item of items.controls; let i = index"
+                            [formGroupName]="i">
+                            <h6>{{item.value['item']}} :
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-radio-wrapper">
+                                    <form-input [label]="item['item']" [type]="InputTypes.RADIO" [radioOptions]="[
+                          {
+                            key: 1,
+                            value: 'UNITS.ACCEPTABLE' | translate
+                          },
+                          {
+                            key: 2,
+                            value: 'UNITS.DAMAGED' | translate
+                          }
+                        ]" [FormControl]="formArrayControl(i,'acceptance')"
+                                        (valueChanges)="onFieldChange($event,formArrayControl(i,'fixFees'))">
+                                    </form-input>
+                                </div>
+                            </div>
+                            <div class=" form-row">
+                                <div class="form-control-wrapper">
+                                    <form-input *ngIf="formArrayControl(i,'acceptance').value" [label]="'UNITS.NOTES'"
+                                        [type]="InputTypes.TEXT" [FormControl]="formArrayControl(i,'note')">
+                                    </form-input>
+                                </div>
+                                <div class="form-control-wrapper">
+                                    <form-input *ngIf="formArrayControl(i,'acceptance').value === 2"
+                                        [label]="'UNITS.REPAIR_COST'" [type]="InputTypes.NUMBER"
+                                        [FormControl]="formArrayControl(i,'fixFees')">
+                                    </form-input>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add-edit-actions mt-1">
+                <div>
+                    <button type="button" class="ac-btn btn-outlined" (click)="handleCancel()">
+                        {{"ACTIONS.CANCEL" | translate}}
+                    </button>
+
+                    <button type="submit" [disabled]="addUnitRequest.invalid" class="ac-btn btn-outlined">
+                        {{"ACTIONS.SAVE" | translate}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

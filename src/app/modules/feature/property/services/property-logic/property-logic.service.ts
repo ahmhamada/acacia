@@ -98,6 +98,8 @@ export class PropertyLogicService {
             releaseDate: result.propertyDocument.releaseDate,
             attachment: result.propertyDocument.attachment,
             id: result.propertyDocument.id,
+            instrumentPhoto: result.propertyDocument.instrumentPhoto,
+            licensePhoto: result.propertyDocument.licensePhoto,
           },
           owner: {
             name: result.realEstateOwner.name,
@@ -107,6 +109,7 @@ export class PropertyLogicService {
             id: result.realEstateOwner.id,
             city: result.realEstateOwner.cityId,
             area: result.realEstateOwner.areaId,
+            idPhoto: result.realEstateOwner.idPhoto,
           },
           realEstateDetails: {
             name: result.name,

@@ -32,6 +32,14 @@ const routes: Routes = [
             (m) => m.ContractsModule
           ),
       },
+      {
+        path: 'units',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./modules/feature/units/units.module').then(
+            (m) => m.UnitsModule
+          ),
+      },
     ],
   },
 ];

@@ -1,0 +1,63 @@
+<div class="page-container details-page" RtlDir>
+    <div class="page-content">
+        <div class="content-section">
+            <div class="download-wrapper">
+                <h4 class="tab-headline">{{'CONTRACTS.CONTRACT_DURATION' | translate}}</h4>
+                <a [href]="Url.dev + 'api/Contract/GenerateContractFile/' + contractId" download target="_blank"
+                    class="btn-fill" download>
+                    <i class="mx-2 fa fa-light fa-download"></i>
+                    {{'ACTIONS.DOWNLOAD_CONTRACT' | translate}}
+                </a>
+            </div>
+            <!-- <div class="details-container">
+                <div class="details-row">
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.STARTING_DATE' | translate}}</span>
+                        <span>{{contractDetails?.startDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                        <span>{{'LABELS.FORM.END_DATE' | translate}}</span>
+                        <span>{{contractDetails?.endDate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="details-col">
+                    </div>
+                </div>
+                <div class="duration-container" *ngIf="calculatedContractDuration">
+                    <p>{{ 'LABELS.RENTAL_PERIOD_AD' | translate }} : </p>
+                    <div class="duration-wrapper">
+                        <div>
+                            <span>
+                                {{'LABELS.YEARS'
+                                | translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.years
+                                }}
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                {{'LABELS.MONTHS'
+                                | translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.months
+                                }}
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                {{'LABELS.DAYS' |
+                                translate}}
+                            </span>
+                            <span>
+                                {{ calculatedContractDuration.days }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+</div>

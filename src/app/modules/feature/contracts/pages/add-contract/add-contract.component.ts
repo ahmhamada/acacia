@@ -99,7 +99,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
           null,
           [Validators.required, , numbersOnlyValidator(), tenDigitValidator()],
         ],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [Validators.email]],
         idPhoto: ['', [Validators.required]],
         vat: [null],
       }),
@@ -130,10 +130,6 @@ export class AddContractComponent implements OnInit, OnDestroy {
         }
       ),
     });
-
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state;
-    this.isCommercialContract = state ? state['isCommercialContract'] : false;
 
     this.activatedRoute.queryParams.subscribe((params) => {
       this.isCommercialContract = params['isCommercial'];
@@ -297,7 +293,6 @@ export class AddContractComponent implements OnInit, OnDestroy {
 
   handleNext() {
     this.selectedIndex < 5 && this.selectedIndex++;
-    console.log(this.addEditContract.value);
   }
 
   handleBack() {
@@ -366,7 +361,7 @@ export class AddContractComponent implements OnInit, OnDestroy {
       propertyId: form.value.propertyUnitDetails.propertyId,
       installment: this.installmentPlanTable,
       tenantData: {
-        name: form.value.contractParties.name,
+        name: form.value.contractParties.tenantName,
         tenantNationalId: form.value.contractParties.tenantNationalId,
         telephone: form.value.contractParties.tenantTelephone,
         birthDay: form.value.contractParties.tenantBirthDay,

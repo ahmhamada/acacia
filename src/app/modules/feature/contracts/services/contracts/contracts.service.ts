@@ -122,4 +122,19 @@ export class ContractsService {
         })
       );
   }
+
+  updateContractStatus(payload: any) {
+    return this.xhrService
+      .call({
+        url: 'api/Contract/Update',
+        method: Method.post,
+        body: payload,
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
 }

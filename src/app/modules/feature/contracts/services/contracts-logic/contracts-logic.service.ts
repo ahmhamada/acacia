@@ -25,7 +25,6 @@ export class ContractsLogicService {
       })
     );
   }
-  
 
   searchRealEstate(payload: RealEstateSearch) {
     return this.contractsService.searchRealEstate(payload).pipe(
@@ -69,6 +68,14 @@ export class ContractsLogicService {
 
   deleteContract(contractId: number) {
     return this.contractsService.deleteContract(contractId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  updateContractStatus(payload: any) {
+    return this.contractsService.updateContractStatus(payload).pipe(
       map((res) => {
         return res;
       })

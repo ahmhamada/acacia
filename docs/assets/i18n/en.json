@@ -30,8 +30,7 @@
       "STARTING_DATE": "Starting Date",
       "END_DATE": "End Date",
       "RENTAL_PERIOD": "Rental Period",
-      "TELEPHONE": "Telephone",
-      "TOTAL_AMOUNT_OF_TAX": "Total Amount Of Tax"
+      "TELEPHONE": "Telephone"
     },
     "AREA": "Area",
     "CITY": "City",
@@ -62,7 +61,12 @@
     "YES": "Yes",
     "NO": "No",
     "VIEW_DETAILS": "View Details",
-    "VAT": "VAT"
+    "VAT": "VAT",
+    "TOTAL_AMOUNT_OF_TAX": "Total Amount Of Tax",
+    "HANDING_OVER_UNITS": "Handing Over Units",
+    "TENANT_DETAILS": "Tenant Data",
+    "LESSOR_DETAILS": "Lessor Data",
+    "FORM_DOWNLOAD": "Download Form"
   },
   "ACCOUNT": {
     "SIGN_IN": "Sign in",
@@ -96,7 +100,10 @@
     "DELETE_REAL_ESTATE": "Delete Real Estate",
     "DELETE_CONTRACT": "Delete Contract",
     "REMOVE": "Remove",
-    "DOWNLOAD_CONTRACT": "Download Contract"
+    "DOWNLOAD_CONTRACT": "Download Contract",
+    "ACTIVATE_CONTRACT": "Activate Contract",
+    "CONFIRM": "Confirm",
+    "ADD_HANDING_FORM": "Add Handing Form"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "Property Documents",
@@ -113,6 +120,8 @@
     "ADD_PROPERTY_OWNER": "Add Property Owner",
     "NATIONAL_ID": "National ID",
     "PROPERTY_NUMBER": "Property Number",
+    "INSTRUMENT_COPY": "Upload a Copy of Instrument Image",
+    "LICENSE_COPY": "Upload a Copy of License Image",
     "ADD_PROPERTY_DETAILS": "Add Property Details",
     "PROPERTY_TYPE": "Property Type",
     "PROPERTY_USAGE": "Property Usage",
@@ -163,6 +172,7 @@
     "CONFIRMATION": "Confirmation",
     "CHOOSE_THE_PROPERTY": "Choose the property",
     "CHOOSE_THE_UNIT": "Choose the unit",
+    "CHOOSE_THE_CONTRACT": "Choose the contract",
     "TENANT": "Tenant",
     "TENANT_NAME": "Tenant Name",
     "ANNUAL_FEES_FOR_RENTAL": "Annual Rental Fees for the Unit",
@@ -194,5 +204,30 @@
     "UPLOAD_A_COPY_OF_CONTRACT_FILE": "Upload a Copy of the Contract File",
     "UPLOAD_A_COPY_OF_ID_PHOTO": "Upload a Copy of ID",
     "CONTRACT_STATUS": "Contract Status"
+  },
+  "UNITS": {
+    "UNIT_HANDING_STATUS": "Rental unit condition upon handing over",
+    "CEILING_AND_PAINTING": "Ceiling and wall painting",
+    "FLOORS": "Flooors",
+    "BATHROOMS": "Bathrooms and sanitary sets",
+    "KITCHEN": "kitchen",
+    "ROOMS_AND_ANNEXES": "Rooms and annexes",
+    "ELECTRICITY_AND_LIGHTING": "Electricity and lighting",
+    "PLUMBING_AND_EXTENSIONS": "Plumbing and extensions",
+    "WATER_TANK": "Water tank",
+    "DOORS": "Doors",
+    "WINDOWS": "Windows",
+    "AIR_CONDITIONING": "Air conditioning devices",
+    "INTERCOM": "Intercom",
+    "GYPSUM": "Gypsum works",
+    "KEYS": "Keys",
+    "GARAGE": "Garage",
+    "OTHERS": "Others",
+    "ITEMS": "Items",
+    "CONDITION": "Condition",
+    "ACCEPTABLE": "Acceptable",
+    "DAMAGED": "Damaged",
+    "NOTES": "Notes",
+    "REPAIR_COST": "Repair cost"
   }
 }
