@@ -56,4 +56,12 @@ export class UnitsLogicService {
       })
     );
   }
+
+  deleteHandingForm(contractId: number) {
+    return this.unitsService.deleteHandingForm(contractId).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }

@@ -93,4 +93,19 @@ export class UnitsService {
         })
       );
   }
+
+  deleteHandingForm(contractId: number) {
+    return this.xhrService
+      .call({
+        url: `api/HandingOver/DeleteHandOvers/${contractId}`,
+        method: Method.delete,
+        body: {},
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+  
 }

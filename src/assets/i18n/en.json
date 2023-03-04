@@ -103,7 +103,8 @@
     "DOWNLOAD_CONTRACT": "Download Contract",
     "ACTIVATE_CONTRACT": "Activate Contract",
     "CONFIRM": "Confirm",
-    "ADD_HANDING_FORM": "Add Handing Form"
+    "ADD_HANDING_FORM": "Add Handing Form",
+    "DELETE_HANDING_FORM": "Delete Handing From"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "Property Documents",

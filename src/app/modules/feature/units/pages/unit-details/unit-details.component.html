@@ -3,8 +3,8 @@
         <div class="content-section">
             <div class="download-wrapper">
                 <h4 class="tab-headline">{{'LABELS.HANDING_OVER_UNITS' | translate}}</h4>
-                <!-- [href]="Url.dev + 'api/Contract/GenerateContractFile/' + contractId" download target="_blank" -->
-                <a class="btn-fill" download>
+                <a class="btn-fill" [href]="Url.dev + 'api/HandingOver/GenerateHandingOverFile/' + contractId" download
+                    target="_blank" download>
                     <i class="mx-2 fa fa-light fa-download"></i>
                     {{'LABELS.FORM_DOWNLOAD' | translate}}
                 </a>

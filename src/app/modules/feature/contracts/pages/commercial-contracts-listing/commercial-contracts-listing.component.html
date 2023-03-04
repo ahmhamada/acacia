@@ -51,6 +51,9 @@
                                 <button mat-menu-item RtlDir [routerLink]="['/contracts/commercial/details', row?.id]"
                                     [queryParams]="{isCommercial: true}">{{'LABELS.VIEW_DETAILS' |
                                     translate}}</button>
+                                <button *ngIf="row?.contractStatus === 'Draft'" mat-menu-item RtlDir
+                                    (click)="handleContractStatus(row?.id)">{{'ACTIONS.ACTIVATE_CONTRACT' |
+                                    translate}}</button>
                                 <button mat-menu-item RtlDir (click)="handleRemoveContract(row.id)">{{'ACTIONS.DELETE' |
                                     translate}}</button>
                             </mat-menu>

@@ -66,7 +66,7 @@
     "HANDING_OVER_UNITS": "تسليم الوحدات",
     "TENANT_DETAILS": "بيانات المستأجر",
     "LESSOR_DETAILS": "بيانات المؤجر",
-    "FORM_DOWNLOAD":"تحميل النموذج"
+    "FORM_DOWNLOAD": "تحميل النموذج"
   },
   "ACCOUNT": {
     "SIGN_IN": "تسجيل الدخول",
@@ -101,9 +101,10 @@
     "REMOVE": "حذف",
     "DELETE_CONTRACT": "حذف عقد",
     "DOWNLOAD_CONTRACT": "تحميل العقد",
-    "ACTIVATE_CONTRACT":"تفعيل العقد",
-    "CONFIRM":"تأكيد",
-    "ADD_HANDING_FORM": "اضافة نموذج تسليم"
+    "ACTIVATE_CONTRACT": "تفعيل العقد",
+    "CONFIRM": "تأكيد",
+    "ADD_HANDING_FORM": "اضافة نموذج تسليم",
+    "DELETE_HANDING_FORM": "حذف نموذج تسليم"
   },
   "PROPERTY": {
     "PROPERTY_DOCUMENTS": "وثائق الملكية",

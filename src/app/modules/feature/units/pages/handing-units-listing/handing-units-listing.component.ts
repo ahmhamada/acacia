@@ -56,7 +56,7 @@ export class HandingUnitsListingComponent implements OnInit {
 
   handleRemoveUnitRequest(contractId: number) {
     const dialogData: ConfirmationDialog = {
-      title: `ACTIONS.DELETE_CONTRACT`,
+      title: `ACTIONS.DELETE_HANDING_FORM`,
       message: 'LABELS.FORM.ARE_YOU_SURE',
       actionLabel: 'ACTIONS.DELETE',
     };
@@ -67,11 +67,11 @@ export class HandingUnitsListingComponent implements OnInit {
     });
     return dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        // this.contractsLogicService
-        //   .deleteContract(contractId)
-        //   .subscribe((res) => {
-        //     this.searchContracts();
-        //   });
+        this.unitsLogicService
+          .deleteHandingForm(contractId)
+          .subscribe((res) => {
+            this.searchHandingRequests();
+          });
       } else {
         return res;
       }
